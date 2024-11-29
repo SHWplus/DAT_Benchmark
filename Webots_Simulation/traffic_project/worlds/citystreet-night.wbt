@@ -1,0 +1,6669 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "../protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/Road.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/Crossroad.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/RoadLine.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/buildings/protos/SimpleBuilding.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/geometries/protos/Extrusion.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/protos/SumoInterface.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/bmw/BmwX5Simple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/toyota/ToyotaPriusSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/lincoln/LincolnMKZSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/mercedes_benz/MercedesBenzSprinterSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/tesla/TeslaModel3Simple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/range_rover/RangeRoverSportSVRSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/citroen/CitroenCZeroSimple.proto"
+EXTERNPROTO "../protos/Cypress.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/CurvedRoadSegment.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/RoadPillars.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/bmw/BmwX5.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficLightStandardLampGeometry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficLightBigPole.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficLightHorizontal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficLightArrowLampGeometry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/Pole.proto"
+IMPORTABLE EXTERNPROTO "../protos/trajectary.proto"
+IMPORTABLE EXTERNPROTO "../protos/M100.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/StreetLight.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/TruckSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/BusSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/TruckTrailerSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/MotorbikeSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/ScooterSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/MotorbikeDriver.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/ScooterDriver.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/TruckTankSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/humans/pedestrian/protos/Pedestrian.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/bluebotics/shrimp/protos/Shrimp.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/irobot/create/protos/Create.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/nasa/protos/Sojourner.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/micromagic/mantis/protos/Mantis.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/sphero/bb8/protos/BB-8.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/sony/aibo/protos/AiboErs7.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/robotis/bioloid/protos/BioloidDog.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/nex/protos/FireBird6.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/micromagic/scout/protos/Scout.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/epfl/biorob/protos/GhostDog.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/fujitsu/hoap2/protos/Hoap2.proto"
+IMPORTABLE EXTERNPROTO "../protos/SimpleRobot.proto"
+
+WorldInfo {
+  info [
+    "World generated using the Open Street Map to Webots importer"
+    "Author: "
+  ]
+  basicTimeStep 2
+  FPS 30
+  defaultDamping Damping {
+  }
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        30
+      ]
+      bounce 0
+      bounceVelocity 0
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.3614940345617321 -0.07893550314062402 0.9290270444503851 3.5418960685661975
+  position 863.4468856790747 344.2455155720949 806.351637855533
+  near 3
+}
+DEF tbg TexturedBackground {
+  texture "empty_office"
+  luminosity 0.3
+  skybox FALSE
+}
+DEF tbgl TexturedBackgroundLight {
+  luminosity 0.3
+}
+DEF land Floor {
+  translation 0 0 -0.1
+  size 900 900
+  appearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/grass.jpg"
+      ]
+    }
+    roughness 1
+    metalness 0
+  }
+}
+Cypress {
+  translation 0.547543 -199.827 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(19)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 12.6811 -185.715 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(20)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 23.2171 -173.138 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(21)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -48.4053 -264.082 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(12)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -34.6452 -247.48 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(18)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+StreetLight {
+  translation 29.729 0.19092 0
+  rotation 0 0 1 2.35619
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -67.111 80.9354 0
+  rotation 0 0 1 2.35619
+  name "street light(10)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -99.8283 42.3885 0
+  rotation 0 0 1 2.35619
+  name "street light(11)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -143.869 -295.88 0
+  rotation 0 0 1 0.785395307179586
+  name "street light(12)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -2.19044 -38.8004 0
+  rotation 0 0 1 2.35619
+  name "street light(2)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 71.6108 51.4816 0
+  rotation 0 0 -1 -1.8325953071795862
+  name "street light(1)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 100.8 -207.075 0
+  rotation 0 0 1 -2.094395307179586
+  name "street light(13)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -44.3676 -375.64 0
+  rotation 0 0 1 1.0472
+  name "street light(16)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 124.179 32.6896 0
+  rotation 0 0 1 -2.094395307179586
+  name "street light(17)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 269.585 -87.0916 0
+  rotation 0 0 1 -2.8797953071795863
+  name "street light(18)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 26.0448 111.032 0
+  rotation 0 0 1 -2.094395307179586
+  name "street light(14)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -16.6022 146.429 0
+  rotation 0 0 1 -2.8797953071795863
+  name "street light(15)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 226.164 -49.786 0
+  rotation 0 0 1 -2.094395307179586
+  name "street light(9)"
+  direction 0.4 0 -1
+}
+RoadPillars {
+  translation 1.315 -178.371 0.0577321
+  rotation -1.3491599999950278e-06 -2.355999999991317e-06 0.9999999999963145 -2.094395307179586
+  name "road pillar(8)"
+  height 53.4
+  width 5
+}
+RoadPillars {
+  translation -263.12 -281.42 0.0572499
+  rotation -1.3546999999950276e-06 2.3464099999913877e-06 -0.9999999999963296 -2.094395307179586
+  name "road pillar(9)"
+  height 22
+  width 5
+}
+RoadPillars {
+  translation -208.748 -346.331 0.0569453
+  rotation 9.719139999968655e-07 -2.346409999992433e-06 0.999999999996775 2.35619
+  name "road pillar(15)"
+  height 33
+  width 5
+}
+RoadPillars {
+  translation -106.495 -369.123 0.056837
+  rotation -3.089109999991349e-07 -2.346409999993429e-06 0.9999999999971996 -2.8797953071795863
+  name "road pillar(16)"
+  height 43
+  width 5
+}
+RoadPillars {
+  translation -42.0879 -302.878 0.0571481
+  rotation 1.8004599999921255e-06 2.3464099999897377e-06 -0.9999999999956264 1.8326
+  name "road pillar(17)"
+  height 52
+  width 5
+}
+RoadPillars {
+  translation -287.433 -252.675 0.0573858
+  rotation -9.719149999968655e-07 2.346409999992433e-06 -0.999999999996775 -2.3561953071795863
+  name "road pillar(13)"
+  height 16
+  width 5
+}
+RoadPillars {
+  translation -323.263 -216.845 0.0575554
+  rotation -9.719149999968655e-07 2.346409999992433e-06 -0.999999999996775 -2.3561953071795863
+  name "road pillar(14)"
+  height 9
+  width 5
+}
+Cypress {
+  translation 15.3592 93.4536 0
+  rotation 0 0 1 0.785401
+  name "cypress tree(6)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 35.6366 77.8962 0
+  rotation 0 0 1 0.785401
+  name "cypress tree(5)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 50.816 59.0652 0
+  rotation 0 0 1 0.785401
+  name "cypress tree(4)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 35.4062 40.9097 0
+  rotation 0 0 1 0.785401
+  name "cypress tree(3)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -88.0173 -310.346 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(9)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -67.0301 -331.332 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(31)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -48.1618 -346.07 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(32)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -27.6483 -363.344 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(33)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -8.48226 -377.228 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(34)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 7.8129 -391.843 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(35)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 19.9432 -381.656 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(36)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 38.7187 -392.496 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(53)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 28.4843 -369.684 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(37)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 46.7836 -380.249 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(54)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 47.055 -345.197 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(38)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 65.4848 -357.099 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(56)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 57.2818 -332.389 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(40)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 74.1571 -345.485 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(57)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 67.0634 -319.825 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(41)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 83.9275 -332.881 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(58)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 77.4065 -305.968 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(42)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 94.5967 -320.091 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(59)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 88.5296 -292.09 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(43)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 105.16 -306.371 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(60)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 112.462 -262.741 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(44)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 129.677 -277.062 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(62)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 121.896 -250.185 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(46)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 140.189 -264.482 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(63)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 101.14 -276.103 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(45)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 117.845 -291.383 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(61)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 37.8111 -358.132 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(39)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 56.3963 -368.862 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(55)"
+  scale 5
+  height 4
+  radius 15
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -103.065 -303.541 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(13)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -117.089 -292.323 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(14)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -132.609 -280.479 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(15)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -148.331 -267.721 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(16)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -162.579 -256.133 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(17)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -75.4175 -294.971 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(10)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -237.864 -93.4207 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(47)"
+  scale 5
+  height 5.5
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -250.858 -108.73 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(48)"
+  scale 5
+  height 5.5
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -263.277 -123.133 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(49)"
+  scale 5
+  height 5.5
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -275.568 -136.968 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(50)"
+  scale 5
+  height 5.5
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -289.331 -153.245 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(51)"
+  scale 5
+  height 5.5
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -294.031 -177.343 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(52)"
+  scale 5
+  height 5.5
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -62.4761 -280.374 0
+  rotation 0 0 1 0.7854009999999998
+  name "cypress tree(11)"
+  scale 5
+  height 4
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 23.4232 26.2131 0
+  rotation 0 0 1 0.523602
+  name "cypress tree(2)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 12.2597 10.5304 0
+  rotation 0 0 1 0.523602
+  name "cypress tree(1)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation -2.62495 -6.76937 0
+  rotation 0 0 1 0.523602
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Robot {
+  children [
+    Receiver {
+      name "receiverState"
+      channel 12
+    }
+    Emitter {
+      type "serial"
+      channel 1
+    }
+  ]
+  name "global_receiver"
+  controller "global_receiver"
+  customData "local"
+  supervisor TRUE
+}
+Cypress {
+  translation 42.447 -144.809 0
+  rotation 0 0 1 0.523602
+  name "cypress tree(22)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 54.7143 -129.156 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(23)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 67.4634 -112.83 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(24)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 78.3482 -98.9736 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(25)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 95.1709 -78.3755 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(26)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 109.526 -62.5164 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(27)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 123.393 -47.4256 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(28)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 134.703 -32.6251 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(29)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 146.721 -16.2644 0
+  rotation 0 0 1 1.0472
+  name "cypress tree(30)"
+  scale 5
+  height 3
+  radius 20
+  enableBoundingObject FALSE
+}
+Cypress {
+  translation 26.8669 -52.1308 0
+  rotation 0 0 1 0.523602
+  name "cypress tree(7)"
+  scale 5
+  height 3
+  radius 10
+  enableBoundingObject FALSE
+}
+Crossroad {
+  translation -88.125712 -329.715609 0.01
+  name "crossroad(1)"
+  id "-25462"
+  shape [
+    11.707532 -3.454519 0
+    0.761419 -12.182785 0
+    -3.402037 -11.72289 0
+    -12.179251 -0.815988 0
+    -9.837201 1.108818 0
+    1.108818 9.837201 0
+    5.473056 4.364133 0
+    11.707532 -3.454519 0
+  ]
+  connectedRoadIDs [
+    "-1098_1"
+    "-1098_2"
+    "-1100"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -130.590101 -33.219399 0.01
+  name "crossroad(2)"
+  id "10261232154"
+  shape []
+  connectedRoadIDs [
+    "1121913941"
+    "161688770"
+  ]
+  boundingObject TRUE
+}
+BmwX5 {
+  translation -17.28811696716581 4.423737494868385 53.74188847002018
+  rotation 0.005528798782290952 -0.002631589302022604 0.9999812533851674 2.0633107690938255
+  color 0.333333 0.666667 1
+  name "vehicle(6)"
+  controller "autonomous_vehicle"
+  sensorsSlotTop [
+    Camera {
+      translation 0.72 0 -0.05
+      children [
+        Pose {
+          translation -0.05 0 0
+          rotation 0 -1 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+}
+BmwX5 {
+  translation -158.9316578173596 250.95989296864354 53.74452375619538
+  rotation -0.008735276562928265 -0.007019406101217159 -0.9999372094693524 0.9663143512496839
+  color 0 0.666667 0.498039
+  name "vehicle(8)"
+  controller "autonomous_vehicle"
+  sensorsSlotTop [
+    Camera {
+      translation 0.72 0 -0.05
+      children [
+        Pose {
+          translation -0.05 0 0
+          rotation 0 -1 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+}
+BmwX5 {
+  translation -312.44008784871585 290.32582095276535 38.06857650846914
+  rotation -0.06930204538787833 -0.021278243123243664 0.9973687697510109 -2.5692162710360225
+  color 0.333333 0.666667 0
+  name "vehicle(10)"
+  controller "autonomous_vehicle"
+  sensorsSlotTop [
+    Camera {
+      translation 0.72 0 -0.05
+      children [
+        Pose {
+          translation -0.05 0 0
+          rotation 0 -1 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+}
+BmwX5 {
+  translation -293.5085685841111 9.903237940250309 3.8354203654681016
+  rotation 0.029666880668825654 -0.017326743764012574 0.9994096558178323 2.0982696360782884
+  color 0 0 0
+  name "vehicle(12)"
+  controller "autonomous_vehicle"
+  sensorsSlotTop [
+    Camera {
+      translation 0.72 0 -0.05
+      children [
+        Pose {
+          translation -0.05 0 0
+          rotation 0 -1 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+}
+BmwX5 {
+  translation -323.56206630813233 -68.7658104607503 3.147336207611185
+  rotation 0.04925360492252464 0.014364318979619676 -0.9986830071360919 2.4984608368807253
+  color 1 1 0.498039
+  name "vehicle(14)"
+  controller "autonomous_vehicle"
+  sensorsSlotTop [
+    Camera {
+      translation 0.72 0 -0.05
+      children [
+        Pose {
+          translation -0.05 0 0
+          rotation 0 -1 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+}
+DEF ORIGIN RangeRoverSportSVRSimple {
+  translation 0 28.01 0.4
+  name "v1"
+}
+DEF SUMO_INTERFACE SumoInterface {
+  gui FALSE
+  maxVehicles 150
+  step 100
+  seed 100
+  networkFiles "../../worlds/citystreet_net"
+  children [
+    Solid {
+      translation 196.99 223.18 0
+      rotation 0 0 1 3.141592653589793
+      children [
+        Pole {
+          translation -10.58 -1.94 0
+          name "pole(2)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 2.35619
+              red_light "123396147_0_r"
+              orange_light "123396147_0_y"
+              green_light "123396147_0_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 13.08 0 0
+          name "pole(1)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 -0.785395613280012
+              red_light "123396147_8_r"
+              orange_light "123396147_8_y"
+              green_light "123396147_8_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 0 12 0
+          slot [
+            TrafficLight {
+              rotation 0 0 1 0.7853903061004254
+              red_light "123396147_5_r"
+              orange_light "123396147_5_y"
+              green_light "123396147_5_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(9)"
+    }
+    Solid {
+      translation 137.72 -249.36 0
+      rotation 0 0 1 1.5707996938995747
+      children [
+        Pole {
+          translation -10.58 -1.94 0
+          name "pole(2)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 2.35619
+              red_light "72017905_4_r"
+              orange_light "72017905_4_y"
+              green_light "72017905_4_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 13.08 0 0
+          name "pole(1)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 -0.785395613280012
+              red_light "72017905_1_r"
+              orange_light "72017905_1_y"
+              green_light "72017905_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 0 12 0
+          slot [
+            TrafficLight {
+              rotation 0 0 1 0.7853903061004254
+              red_light "72017905_9_r"
+              orange_light "72017905_9_y"
+              green_light "72017905_9_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(8)"
+    }
+    Solid {
+      translation -88.1 -329.58 0
+      children [
+        Pole {
+          translation -10.58 -1.94 0
+          name "pole(2)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 2.35619
+              red_light "-25462_7_r"
+              orange_light "-25462_7_y"
+              green_light "-25462_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 13.08 0 0
+          name "pole(1)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 -0.785395613280012
+              red_light "-25462_4_r"
+              orange_light "-25462_4_y"
+              green_light "-25462_4_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 0 12 0
+          slot [
+            TrafficLight {
+              rotation 0 0 1 0.7853903061004254
+              red_light "-25462_1_r"
+              orange_light "-25462_1_y"
+              green_light "-25462_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(7)"
+    }
+    Solid {
+      translation -186 -252 0
+      children [
+        Pole {
+          translation -10.58 -1.94 0
+          name "pole(2)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 2.35619
+              red_light "26666275_7_r"
+              orange_light "26666275_7_y"
+              green_light "26666275_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 13.08 0 0
+          name "pole(1)"
+          slot [
+            TrafficLight {
+              rotation 0 0 1 -0.785395613280012
+              red_light "26666275_4_r"
+              orange_light "26666275_4_y"
+              green_light "26666275_4_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        Pole {
+          translation 0 12 0
+          slot [
+            TrafficLight {
+              rotation 0 0 1 0.7853903061004254
+              red_light "26666275_1_r"
+              orange_light "26666275_1_y"
+              green_light "26666275_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(6)"
+    }
+    Solid {
+      translation -224 -78 0
+      children [
+        TrafficLightBigPole {
+          translation 70.4588 51.2871 0
+          rotation 0 0 1 -2.25
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "73909660_11_r"
+              orange_light "73909660_11_y"
+              green_light "73909660_11_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "73909660_12_r"
+              orange_light "73909660_12_y"
+              green_light "73909660_12_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "73909660_13_r"
+              orange_light "73909660_13_y"
+              green_light "73909660_13_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 67.1699 78.6591 0
+          rotation 0 0 1 0.9162996938995747
+          name "traffic light big pole(1)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "73909660_1_r"
+              orange_light "73909660_1_y"
+              green_light "73909660_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "73909660_2_r"
+              orange_light "73909660_2_y"
+              green_light "73909660_2_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "73909660_3_r"
+              orange_light "73909660_3_y"
+              green_light "73909660_3_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 54.7941 64.3935 0
+          rotation 0 0 1 2.4870956132800117
+          name "traffic light big pole(2)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "73909660_16_r"
+              orange_light "73909660_16_y"
+              green_light "73909660_16_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "73909660_17_r"
+              orange_light "73909660_17_y"
+              green_light "73909660_17_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "73909660_18_r"
+              orange_light "73909660_18_y"
+              green_light "73909660_18_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 82.5085 66.2125 0
+          rotation 0 0 1 -0.6792003061004254
+          name "traffic light big pole(3)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "73909660_6_r"
+              orange_light "73909660_6_y"
+              green_light "73909660_6_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "73909660_7_r"
+              orange_light "73909660_7_y"
+              green_light "73909660_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "73909660_8_r"
+              orange_light "73909660_8_y"
+              green_light "73909660_8_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(5)"
+    }
+    Solid {
+      translation -125 -157 0
+      children [
+        TrafficLightBigPole {
+          translation 70.4588 51.2871 0
+          rotation 0 0 1 -2.25
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "71987057_11_r"
+              orange_light "71987057_11_y"
+              green_light "71987057_11_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "71987057_12_r"
+              orange_light "71987057_12_y"
+              green_light "71987057_12_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "71987057_13_r"
+              orange_light "71987057_13_y"
+              green_light "71987057_13_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 67.1699 78.6591 0
+          rotation 0 0 1 0.9162996938995747
+          name "traffic light big pole(1)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "71987057_1_r"
+              orange_light "71987057_1_y"
+              green_light "71987057_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "71987057_2_r"
+              orange_light "71987057_2_y"
+              green_light "71987057_2_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "71987057_3_r"
+              orange_light "71987057_3_y"
+              green_light "71987057_3_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 54.7941 64.3935 0
+          rotation 0 0 1 2.4870956132800117
+          name "traffic light big pole(2)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "71987057_16_r"
+              orange_light "71987057_16_y"
+              green_light "71987057_16_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "71987057_17_r"
+              orange_light "71987057_17_y"
+              green_light "71987057_17_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "71987057_18_r"
+              orange_light "71987057_18_y"
+              green_light "71987057_18_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 82.5085 66.2125 0
+          rotation 0 0 1 -0.6792003061004254
+          name "traffic light big pole(3)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "71987057_6_r"
+              orange_light "71987057_6_y"
+              green_light "71987057_6_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "71987057_7_r"
+              orange_light "71987057_7_y"
+              green_light "71987057_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "71987057_8_r"
+              orange_light "71987057_8_y"
+              green_light "71987057_8_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(4)"
+    }
+    Solid {
+      translation -28 -235 0
+      children [
+        TrafficLightBigPole {
+          translation 70.4588 51.2871 0
+          rotation 0 0 1 -2.25
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1837240570_11_r"
+              orange_light "1837240570_11_y"
+              green_light "1837240570_11_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1837240570_12_r"
+              orange_light "1837240570_12_y"
+              green_light "1837240570_12_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1837240570_13_r"
+              orange_light "1837240570_13_y"
+              green_light "1837240570_13_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 67.1699 78.6591 0
+          rotation 0 0 1 0.9162996938995747
+          name "traffic light big pole(1)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1837240570_1_r"
+              orange_light "1837240570_1_y"
+              green_light "1837240570_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1837240570_2_r"
+              orange_light "1837240570_2_y"
+              green_light "1837240570_2_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1837240570_3_r"
+              orange_light "1837240570_3_y"
+              green_light "1837240570_3_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 54.7941 64.3935 0
+          rotation 0 0 1 2.4870956132800117
+          name "traffic light big pole(2)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1837240570_16_r"
+              orange_light "1837240570_16_y"
+              green_light "1837240570_16_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1837240570_17_r"
+              orange_light "1837240570_17_y"
+              green_light "1837240570_17_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1837240570_18_r"
+              orange_light "1837240570_18_y"
+              green_light "1837240570_18_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 82.5085 66.2125 0
+          rotation 0 0 1 -0.6792003061004254
+          name "traffic light big pole(3)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1837240570_6_r"
+              orange_light "1837240570_6_y"
+              green_light "1837240570_6_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1837240570_7_r"
+              orange_light "1837240570_7_y"
+              green_light "1837240570_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1837240570_8_r"
+              orange_light "1837240570_8_y"
+              green_light "1837240570_8_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(3)"
+    }
+    Solid {
+      translation 98 -78 0
+      children [
+        TrafficLightBigPole {
+          translation 70.4588 51.2871 0
+          rotation 0 0 1 -2.25
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736513671_11_r"
+              orange_light "1736513671_11_y"
+              green_light "1736513671_11_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736513671_12_r"
+              orange_light "1736513671_12_y"
+              green_light "1736513671_12_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736513671_13_r"
+              orange_light "1736513671_13_y"
+              green_light "1736513671_13_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 67.1699 78.6591 0
+          rotation 0 0 1 0.9162996938995747
+          name "traffic light big pole(1)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736513671_1_r"
+              orange_light "1736513671_1_y"
+              green_light "1736513671_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736513671_2_r"
+              orange_light "1736513671_2_y"
+              green_light "1736513671_2_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736513671_3_r"
+              orange_light "1736513671_3_y"
+              green_light "1736513671_3_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 54.7941 64.3935 0
+          rotation 0 0 1 2.4870956132800117
+          name "traffic light big pole(2)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736513671_16_r"
+              orange_light "1736513671_16_y"
+              green_light "1736513671_16_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736513671_17_r"
+              orange_light "1736513671_17_y"
+              green_light "1736513671_17_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736513671_18_r"
+              orange_light "1736513671_18_y"
+              green_light "1736513671_18_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 82.5085 66.2125 0
+          rotation 0 0 1 -0.6792003061004254
+          name "traffic light big pole(3)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736513671_6_r"
+              orange_light "1736513671_6_y"
+              green_light "1736513671_6_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736513671_7_r"
+              orange_light "1736513671_7_y"
+              green_light "1736513671_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736513671_8_r"
+              orange_light "1736513671_8_y"
+              green_light "1736513671_8_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation -98 78 0
+      children [
+        TrafficLightBigPole {
+          translation 70.4588 51.2871 0
+          rotation 0 0 1 -2.25
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499199_11_r"
+              orange_light "1736499199_11_y"
+              green_light "1736499199_11_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499199_12_r"
+              orange_light "1736499199_12_y"
+              green_light "1736499199_12_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499199_13_r"
+              orange_light "1736499199_13_y"
+              green_light "1736499199_13_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 67.1699 78.6591 0
+          rotation 0 0 1 0.9162996938995747
+          name "traffic light big pole(1)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499199_1_r"
+              orange_light "1736499199_1_y"
+              green_light "1736499199_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499199_2_r"
+              orange_light "1736499199_2_y"
+              green_light "1736499199_2_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499199_3_r"
+              orange_light "1736499199_3_y"
+              green_light "1736499199_3_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 54.7941 64.3935 0
+          rotation 0 0 1 2.4870956132800117
+          name "traffic light big pole(2)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499199_16_r"
+              orange_light "1736499199_16_y"
+              green_light "1736499199_16_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499199_17_r"
+              orange_light "1736499199_17_y"
+              green_light "1736499199_17_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499199_18_r"
+              orange_light "1736499199_18_y"
+              green_light "1736499199_18_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 82.5085 66.2125 0
+          rotation 0 0 1 -0.6792003061004254
+          name "traffic light big pole(3)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499199_6_r"
+              orange_light "1736499199_6_y"
+              green_light "1736499199_6_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499199_7_r"
+              orange_light "1736499199_7_y"
+              green_light "1736499199_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499199_8_r"
+              orange_light "1736499199_8_y"
+              green_light "1736499199_8_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+      name "solid(1)"
+    }
+    Solid {
+      children [
+        TrafficLightBigPole {
+          translation 70.4588 51.2871 0
+          rotation 0 0 1 -2.25
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499182_11_r"
+              orange_light "1736499182_11_y"
+              green_light "1736499182_11_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499182_12_r"
+              orange_light "1736499182_12_y"
+              green_light "1736499182_12_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499182_13_r"
+              orange_light "1736499182_13_y"
+              green_light "1736499182_13_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 67.1699 78.6591 0
+          rotation 0 0 1 0.9162996938995747
+          name "traffic light big pole(1)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499182_1_r"
+              orange_light "1736499182_1_y"
+              green_light "1736499182_1_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499182_2_r"
+              orange_light "1736499182_2_y"
+              green_light "1736499182_2_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499182_3_r"
+              orange_light "1736499182_3_y"
+              green_light "1736499182_3_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 54.7941 64.3935 0
+          rotation 0 0 1 2.4870956132800117
+          name "traffic light big pole(2)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499182_16_r"
+              orange_light "1736499182_16_y"
+              green_light "1736499182_16_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499182_17_r"
+              orange_light "1736499182_17_y"
+              green_light "1736499182_17_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499182_18_r"
+              orange_light "1736499182_18_y"
+              green_light "1736499182_18_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+        TrafficLightBigPole {
+          translation 82.5085 66.2125 0
+          rotation 0 0 1 -0.6792003061004254
+          name "traffic light big pole(3)"
+          slot1 [
+            TrafficLight {
+              name ""
+              red_light "1736499182_6_r"
+              orange_light "1736499182_6_y"
+              green_light "1736499182_6_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot2 [
+            TrafficLightHorizontal {
+              red_light "1736499182_7_r"
+              orange_light "1736499182_7_y"
+              green_light "1736499182_7_g"
+              lamp_geometry TrafficLightStandardLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+          slot3 [
+            TrafficLightHorizontal {
+              name "horizontal traffic light(1)"
+              red_light "1736499182_8_r"
+              orange_light "1736499182_8_y"
+              green_light "1736499182_8_g"
+              lamp_geometry TrafficLightArrowLampGeometry {
+              }
+              recognitionColors [
+                0.25 0.25 0.25
+                1 0 0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+Crossroad {
+  translation 3.985036 -140.528447 0.01
+  name "crossroad(3)"
+  id "10267739701"
+  shape []
+  connectedRoadIDs [
+    "1122667815"
+    "161688768"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -253.834396 65.057379 0.01
+  name "crossroad(4)"
+  id "122641670"
+  shape []
+  connectedRoadIDs [
+    "603942760"
+    "606916054"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 196.6232 222.800434 0.01
+  name "crossroad(5)"
+  id "123396147"
+  shape [
+    12.17927 0.815707 0
+    9.837159 -1.109194 0
+    -1.109194 -9.837159 0
+    -11.707474 3.454715 0
+    -0.761215 12.182797 0
+    3.402307 11.722811 0
+    12.17927 0.815707 0
+  ]
+  connectedRoadIDs [
+    "382219819"
+    "399179069"
+    "608741621"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 69.291049 64.567117 0.01
+  name "crossroad(6)"
+  id "1736499182"
+  shape [
+    12.180085 0.803456 0
+    11.704313 -3.465409 0
+    0.750085 -12.183488 0
+    -3.387066 -11.727224 0
+    -12.1782 -0.831538 0
+    -11.711159 3.442203 0
+    -0.774233 12.181977 0
+    3.414097 11.719383 0
+    12.180085 0.803456 0
+  ]
+  connectedRoadIDs [
+    "161890281"
+    "186070725"
+    "404995536"
+    "607576339"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -29.55125 143.381828 0.01
+  name "crossroad(7)"
+  id "1736499199"
+  shape [
+    12.179899 0.806261 0
+    11.707366 -3.45508 0
+    0.760835 -12.182821 0
+    -3.423342 -11.716686 0
+    -12.180715 -0.793846 0
+    -11.699647 3.481129 0
+    -0.733718 12.184484 0
+    3.411398 11.720169 0
+    12.179899 0.806261 0
+  ]
+  connectedRoadIDs [
+    "1049269630"
+    "161687301"
+    "606916054"
+    "608741620"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 264.999481 -91.481388 0.01
+  name "crossroad(8)"
+  id "1736513666"
+  shape []
+  connectedRoadIDs [
+    "234665446"
+    "382238932"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 166.676037 -13.083853 0.01
+  name "crossroad(9)"
+  id "1736513671"
+  shape [
+    12.179087 0.818439 0
+    11.707012 -3.456279 0
+    0.759588 -12.182899 0
+    -3.423729 -11.716573 0
+    -12.180741 -0.793443 0
+    -11.707894 3.453284 0
+    -0.762704 12.182706 0
+    3.399677 11.723574 0
+    12.179087 0.818439 0
+  ]
+  connectedRoadIDs [
+    "1046059232"
+    "234665446"
+    "382229043"
+    "405164498"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 40.615275 -169.73652 0.01
+  name "crossroad(10)"
+  id "1837240570"
+  shape [
+    12.178756 0.816376 0
+    11.707585 -3.454338 0
+    0.761608 -12.182773 0
+    -3.400682 -11.723283 0
+    -12.179157 -0.817396 0
+    -11.70777 3.453712 0
+    -0.762259 12.182732 0
+    3.401764 11.723457 0
+    12.178756 0.816376 0
+  ]
+  connectedRoadIDs [
+    "1122667815"
+    "323126705"
+    "323126706"
+    "438258030"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 81.662661 54.702384 0.01
+  name "crossroad(11)"
+  id "1967655309"
+  shape []
+  connectedRoadIDs [
+    "382229043"
+    "607576339"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -125.717494 23.883209 0.01
+  name "crossroad(12)"
+  id "1967750287"
+  shape []
+  connectedRoadIDs [
+    "161687301"
+    "603942759"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 3.566779 -215.775011 0.01
+  name "crossroad(13)"
+  id "2611822743"
+  shape []
+  connectedRoadIDs [
+    "-1098_1"
+    "323126706"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -185.512074 -252.059479 0.01
+  name "crossroad(14)"
+  id "26666275"
+  shape [
+    11.707569 -3.454393 0
+    0.76155 -12.182776 0
+    -3.401864 -11.72294 0
+    -12.179239 -0.816167 0
+    -9.837213 1.108712 0
+    1.108712 9.837213 0
+    5.473009 4.364192 0
+    11.707569 -3.454393 0
+  ]
+  connectedRoadIDs [
+    "-1098_2"
+    "543624991"
+    "580285684"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 119.153078 -72.139967 0.01
+  name "crossroad(15)"
+  id "3299219872"
+  shape []
+  connectedRoadIDs [
+    "1046059231"
+    "405164498"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 88.380253 -110.380615 0.01
+  name "crossroad(16)"
+  id "3898602818"
+  shape []
+  connectedRoadIDs [
+    "1046059231"
+    "323126705"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 5.973702 -14.114627 0.01
+  name "crossroad(17)"
+  id "3898602843"
+  shape []
+  connectedRoadIDs [
+    "404995536"
+    "543624990"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 93.421339 94.553063 0.01
+  name "crossroad(18)"
+  id "4019296931"
+  shape []
+  connectedRoadIDs [
+    "161890281"
+    "399179069"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -4.294963 174.766326 0.01
+  name "crossroad(19)"
+  id "5766742578"
+  shape []
+  connectedRoadIDs [
+    "608741620"
+    "608741621"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -56.770393 -92.082996 0.01
+  name "crossroad(20)"
+  id "71987057"
+  shape [
+    12.17779 0.817391 0
+    11.707483 -3.454683 0
+    0.761248 -12.182795 0
+    -3.402134 -11.722862 0
+    -12.179258 -0.815887 0
+    -11.707556 3.454438 0
+    -0.761503 12.182779 0
+    3.400979 11.724617 0
+    12.17779 0.817391 0
+  ]
+  connectedRoadIDs [
+    "161688768"
+    "161688770"
+    "543624990"
+    "543624991"
+  ]
+  boundingObject TRUE
+}
+StreetLight {
+  translation -240.795 -218.851 0
+  rotation 0 0 -1 -1.047195307179586
+  name "street light(24)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -168.947 -15.2143 0
+  rotation 0 0 -1 -0.261795307179586
+  name "street light(25)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -58.9707 153.832 0
+  rotation 0 0 -1 -1.047195307179586
+  name "street light(41)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -133.648 215.218 0
+  rotation 0 0 -1 -1.047195307179586
+  name "street light(42)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -214.672 280.079 0
+  rotation 0 0 -1 -1.047195307179586
+  name "street light(43)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -251.943 52.4385 0
+  rotation 0 0 -1 -1.047195307179586
+  name "street light(26)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -342.133 122.959 0
+  rotation 0 0 -1 -1.047195307179586
+  name "street light(27)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -342.521 202.091 0
+  rotation 0 0 1 -0.5236053071795865
+  name "street light(44)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -280.769 281.693 0
+  rotation 0 0 1 -0.5236053071795865
+  name "street light(45)"
+  direction 0.4 0 -1
+}
+Crossroad {
+  translation 138.939406 -248.136632 0.01
+  name "crossroad(21)"
+  id "72017905"
+  shape [
+    12.179262 0.815834 0
+    4.388501 -5.453536 0
+    -1.065035 -9.842037 0
+    -9.842037 1.065035 0
+    -11.707464 3.45471 0
+    -0.761218 12.182808 0
+    3.402185 11.722847 0
+    12.179262 0.815834 0
+  ]
+  connectedRoadIDs [
+    "-1100"
+    "382238932"
+    "438258030"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation -155.613382 -13.265695 0.01
+  name "crossroad(22)"
+  id "73909660"
+  shape [
+    12.178038 0.817452 0
+    11.707503 -3.454617 0
+    0.761317 -12.182791 0
+    -3.401645 -11.723003 0
+    -12.179224 -0.816395 0
+    -11.707588 3.454328 0
+    -0.761618 12.182772 0
+    3.400866 11.724388 0
+    12.178038 0.817452 0
+  ]
+  connectedRoadIDs [
+    "1121913941"
+    "580285684"
+    "603942759"
+    "603942760"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 191.710141 18.025912 0.01
+  name "crossroad(23)"
+  id "9619955250"
+  shape []
+  connectedRoadIDs [
+    "1046059232"
+    "382219819"
+  ]
+  boundingObject TRUE
+}
+Crossroad {
+  translation 15.231707 107.67265 0.01
+  name "crossroad(24)"
+  id "9642835947"
+  shape []
+  connectedRoadIDs [
+    "1049269630"
+    "186070725"
+  ]
+  boundingObject TRUE
+}
+Road {
+  translation 132.670066 -255.927355 0.01
+  name "West 6th Street"
+  id "-1100"
+  startJunction "72017905"
+  endJunction "-25462"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -120.590142 -149.853782 0
+    -122.587143 -151.139109 0
+    -124.81654 -150.320656 0
+    -212.977126 -80.02273 0
+  ]
+  startingAngle [
+    -4.034777
+  ]
+  endingAngle [
+    -2.468448
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -35.814465 135.586179 0.01
+  name "South Grand Avenue"
+  id "161687301"
+  startJunction "1736499199"
+  endJunction "1967750287"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -0.600472 -0.74739 0
+    -14.080274 -17.483887 0
+    -15.12786 -18.785652 0
+    -22.253232 -27.639862 0
+    -51.456805 -63.929 0
+    -57.235426 -71.109644 0
+    -65.031247 -80.79689 0
+    -67.649429 -84.050293 0
+    -71.316061 -88.606517 0
+    -89.903029 -111.70297 0
+  ]
+  startingAngle [
+    -4.035563
+  ]
+  endingAngle [
+    -4.034756
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -36.414936 134.838789 -0.07
+  rotation 0 0 1 2.463559
+  name "pedestrian crossing(1)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation -93.049891 64.476535 -0.07
+  rotation 0 0 1 2.463961
+  name "pedestrian crossing(2)"
+  size 14 5.6
+}
+Road {
+  translation -48.951654 -98.317362 0.01
+  name "West 6th Street(1)"
+  id "161688768"
+  startJunction "71987057"
+  endJunction "10267739701"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    0.525207 -0.41878 0
+    17.008778 -13.562797 0
+    52.936689 -42.211085 0
+  ]
+  startingAngle [
+    0.67313
+  ]
+  endingAngle [
+    0.673118
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -48.426447 -98.736142 -0.07
+  rotation 0 0 1 0.897642
+  name "pedestrian crossing(3)"
+  size 14 5.6
+}
+Road {
+  translation -130.590101 -33.219399 0.01
+  name "West 6th Street(2)"
+  id "161688770"
+  startJunction "10261232154"
+  endJunction "71987057"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    11.584881 -9.237811 0
+    65.133421 -51.937184 0
+    66.001099 -52.629067 0
+  ]
+  startingAngle [
+    0.673155
+  ]
+  endingAngle [
+    0.673151
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -65.45668 -85.156583 -0.07
+  rotation 0 0 1 0.897645
+  name "pedestrian crossing(4)"
+  size 14 5.6
+}
+Road {
+  translation 75.57043 72.34975 0.01
+  name "South Olive Street"
+  id "161890281"
+  startJunction "1736499182"
+  endJunction "4019296931"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    0.566534 0.70216 0
+    9.671629 12.039164 0
+    17.85091 22.203312 0
+  ]
+  startingAngle [
+    -0.891895
+  ]
+  endingAngle [
+    -0.893185
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 76.136964 73.05191 -0.07
+  rotation 0 0 1 2.464946
+  name "pedestrian crossing(5)"
+  size 14 5.6
+}
+Road {
+  translation 61.478959 70.809813 0.01
+  name "West 5th Street"
+  id "186070725"
+  startJunction "1736499182"
+  endJunction "9642835947"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -2.262014 1.807592 0
+    -46.247251 36.862837 0
+  ]
+  startingAngle [
+    -2.467396
+  ]
+  endingAngle [
+    -2.468451
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 59.216944 72.617405 -0.07
+  rotation 0 0 1 0.897901
+  name "pedestrian crossing(6)"
+  size 14 5.6
+}
+Road {
+  translation 264.999481 -91.481388 0.01
+  name "West 5th Street(1)"
+  id "234665446"
+  startJunction "1736513666"
+  endJunction "1736513671"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -8.518035 6.791729 0
+    -51.242453 40.857608 0
+    -88.358975 70.454467 0
+    -90.503856 72.164235 0
+  ]
+  startingAngle [
+    -0.893204
+  ]
+  endingAngle [
+    -2.468599
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 256.481447 -84.68966 -0.07
+  rotation 0 0 1 0.89768
+  name "pedestrian crossing(7)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation 176.640506 -21.026922 -0.07
+  rotation 0 0 1 0.897802
+  name "pedestrian crossing(8)"
+  size 14 5.6
+}
+Road {
+  translation 46.885615 -161.946601 0.01
+  name "South Hill Street"
+  id "323126705"
+  startJunction "1837240570"
+  endJunction "3898602818"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    0.395884 0.491825 0
+    41.494639 51.565986 0
+  ]
+  startingAngle [
+    -0.893057
+  ]
+  endingAngle [
+    -0.893203
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 47.281499 -161.454776 -0.07
+  rotation 0 0 1 2.464
+  name "pedestrian crossing(9)"
+  size 14 5.6
+}
+Road {
+  translation 34.345359 -177.52678 0.01
+  name "South Hill Street(1)"
+  id "323126706"
+  startJunction "1837240570"
+  endJunction "2611822743"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    -30.778579 -38.248232 0
+  ]
+  startingAngle [
+    -4.034785
+  ]
+  endingAngle [
+    -4.034765
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 34.672148 -177.120682 -0.07
+  rotation 0 0 1 2.463989
+  name "pedestrian crossing(10)"
+  size 14 5.6
+}
+Road {
+  translation 191.710141 18.025912 0.01
+  name "South Hill Street(2)"
+  id "382219819"
+  startJunction "9619955250"
+  endJunction "123396147"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    13.356501 16.598128 0
+    50.899606 63.253201 0
+    81.795933 101.64855 0
+    100.416605 124.788875 0
+    101.24076 127.009386 0
+    99.951713 128.996408 0
+    10.386235 200.41054 0
+  ]
+  startingAngle [
+    -0.892565
+  ]
+  endingAngle [
+    -2.468476
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 242.609747 81.279113 -0.07
+  rotation 0 0 1 2.463999
+  name "pedestrian crossing(11)"
+  size 14 5.6
+}
+Road {
+  translation 158.858042 -6.848554 0.01
+  name "West 5th Street(2)"
+  id "382229043"
+  startJunction "1736513671"
+  endJunction "1967655309"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -1.987994 1.58554 0
+    -19.67891 15.689482 0
+    -77.19538 61.550938 0
+  ]
+  startingAngle [
+    -2.468343
+  ]
+  endingAngle [
+    -2.466701
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 156.870048 -5.263014 -0.07
+  rotation 0 0 1 0.897739
+  name "pedestrian crossing(12)"
+  size 14 5.6
+}
+Road {
+  translation 143.327908 -242.683096 0.01
+  name "South Broadway"
+  id "382238932"
+  startJunction "72017905"
+  endJunction "1736513666"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    0.78643 0.977287 0
+    58.82975 73.107467 0
+    94.643684 117.613721 0
+    111.89368 139.050542 0
+    115.562478 143.609821 0
+    121.671574 151.201708 0
+  ]
+  startingAngle [
+    -0.893192
+  ]
+  endingAngle [
+    -0.893204
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 144.114338 -241.705809 -0.07
+  rotation 0 0 1 2.463991
+  name "pedestrian crossing(13)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation 258.890386 -99.073275 -0.07
+  rotation 0 0 1 2.464
+  name "pedestrian crossing(14)"
+  size 14 5.6
+}
+Road {
+  translation 93.421339 94.553063 0.01
+  name "South Olive Street(1)"
+  id "399179069"
+  startJunction "4019296931"
+  endJunction "123396147"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    44.580398 55.399041 0
+    68.040485 84.552561 0
+    94.987127 118.038948 0
+    96.932601 120.456583 0
+  ]
+  startingAngle [
+    -0.893185
+  ]
+  endingAngle [
+    -0.893195
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 188.408466 212.59201 -0.07
+  rotation 0 0 1 2.463992
+  name "pedestrian crossing(15)"
+  size 14 5.6
+}
+Road {
+  translation 5.973702 -14.114627 0.01
+  name "South Olive Street(2)"
+  id "404995536"
+  startJunction "3898602843"
+  endJunction "1736499182"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    16.85641 20.946635 0
+    55.535781 68.991677 0
+    57.055928 70.884654 0
+  ]
+  startingAngle [
+    -0.893177
+  ]
+  endingAngle [
+    -0.894201
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 9.735341 -9.440222 -0.07
+  rotation 0 0 1 2.463974
+  name "pedestrian crossing(16)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation 61.509483 54.87705 -0.07
+  rotation 0 0 1 2.464997
+  name "pedestrian crossing(17)"
+  size 14 5.6
+}
+Road {
+  translation 119.153078 -72.139967 0.01
+  name "South Hill Street(3)"
+  id "405164498"
+  startJunction "3299219872"
+  endJunction "1736513671"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    1.681603 2.089694 0
+    39.839996 49.512903 0
+    41.251952 51.266731 0
+  ]
+  startingAngle [
+    -0.893188
+  ]
+  endingAngle [
+    -0.892971
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 158.993074 -22.627063 -0.07
+  rotation 0 0 1 2.463767
+  name "pedestrian crossing(18)"
+  size 14 5.6
+}
+Road {
+  translation 48.43383 -175.971116 0.01
+  name "West 6th Street(3)"
+  id "438258030"
+  startJunction "1837240570"
+  endJunction "72017905"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    2.362436 -1.883831 0
+    34.552703 -27.550928 0
+    41.848938 -33.368686 0
+    82.686817 -65.931175 0
+  ]
+  startingAngle [
+    0.67316
+  ]
+  endingAngle [
+    0.673129
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 50.796267 -177.854947 -0.07
+  rotation 0 0 1 0.89767
+  name "pedestrian crossing(19)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation 133.412955 -243.730085 -0.07
+  rotation 0 0 1 0.89767
+  name "pedestrian crossing(20)"
+  size 14 5.6
+}
+Road {
+  translation -50.501019 -84.2923 0.01
+  name "South Olive Street(3)"
+  id "543624990"
+  startJunction "71987057"
+  endJunction "3898602843"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    0.285162 0.35436 0
+    20.192321 25.091561 0
+    42.761888 53.137462 0
+    46.172799 57.376016 0
+    48.470589 60.231356 0
+    56.47472 70.177673 0
+  ]
+  startingAngle [
+    -0.89318
+  ]
+  endingAngle [
+    -0.893177
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+StreetLight {
+  translation -43.3 -88.8476 0
+  rotation 0 0 1 -2.8797953071795863
+  name "street light(3)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 213.538 -170.362 0
+  rotation 0 0 1 2.35619
+  name "street light(19)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 87.2019 -325.51 0
+  rotation 0 0 1 2.35619
+  name "street light(22)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -111.318 -59.187 0
+  rotation 0 0 -1 -1.047195307179586
+  name "street light(23)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -12.7844 -137.101 0
+  rotation 0 0 -1 -0.785395307179586
+  name "street light(20)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 145.258 -253.271 0
+  rotation 0 0 1 2.61799
+  name "street light(21)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 54.7257 -166.969 0
+  rotation 0 0 1 3.14159
+  name "street light(4)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 31.0609 -196.86 0
+  rotation 0 0 1 2.35619
+  name "street light(30)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -15.1203 -254.501 0
+  rotation 0 0 1 2.35619
+  name "street light(31)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -113.913 -177.111 0
+  rotation 0 0 1 2.35619
+  name "street light(33)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -172.466 -248.086 0
+  rotation 0 0 1 -2.8797953071795863
+  name "street light(34)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -269.504 -169.878 0
+  rotation 0 0 1 2.35619
+  name "street light(35)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -215.893 -101.147 0
+  rotation 0 0 1 2.35619
+  name "street light(36)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation -74.9678 -327.688 0
+  rotation 0 0 1 3.14159
+  name "street light(32)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 91.5531 -120.717 0
+  rotation 0 0 1 2.35619
+  name "street light(5)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 128.719 -76.0924 0
+  rotation 0 0 1 2.35619
+  name "street light(6)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 11.6821 -415.012 0
+  rotation 0 0 -1 -1.5707953071795862
+  name "street light(7)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 179.83 -10.5918 0
+  rotation 0 0 1 -2.8797953071795863
+  name "street light(8)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 237.891 61.4362 0
+  rotation 0 0 1 2.35619
+  name "street light(28)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 142.242 139.894 0
+  rotation 0 0 1 2.35619
+  name "street light(37)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 197.354 208.78 0
+  rotation 0 0 1 2.35619
+  name "street light(38)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 97.4507 286.598 0
+  rotation 0 0 1 2.35619
+  name "street light(39)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 41.9406 217.571 0
+  rotation 0 0 1 2.35619
+  name "street light(40)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 302.879 142.95 0
+  rotation 0 0 1 3.14159
+  name "street light(29)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 252.044 190.085 0
+  rotation 0 0 1 -2.3561953071795863
+  name "street light(46)"
+  direction 0.4 0 -1
+}
+StreetLight {
+  translation 155.63 267.179 0
+  rotation 0 0 1 -2.3561953071795863
+  name "street light(47)"
+  direction 0.4 0 -1
+}
+PedestrianCrossing {
+  translation -50.215856 -83.937941 -0.07
+  rotation 0 0 1 2.463965
+  name "pedestrian crossing(21)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation 2.212056 -18.789028 -0.07
+  rotation 0 0 1 2.463972
+  name "pedestrian crossing(22)"
+  size 14 5.6
+}
+Road {
+  translation -179.24252 -244.268928 0.01
+  name "South Olive Street(4)"
+  id "543624991"
+  startJunction "26666275"
+  endJunction "71987057"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    2.668226 3.31554 0
+    39.941615 49.631699 0
+    65.490288 81.378855 0
+    71.379101 88.696404 0
+    84.917703 105.519759 0
+    86.133052 107.02998 0
+    116.201123 144.396547 0
+  ]
+  startingAngle [
+    -0.893157
+  ]
+  endingAngle [
+    -0.893209
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -176.574294 -240.953388 -0.07
+  rotation 0 0 1 2.463956
+  name "pedestrian crossing(23)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation -62.825174 -99.603672 -0.07
+  rotation 0 0 1 2.463759
+  name "pedestrian crossing(24)"
+  size 14 5.6
+}
+Road {
+  translation -161.884302 -21.055147 0.01
+  name "South Grand Avenue(1)"
+  id "580285684"
+  startJunction "73909660"
+  endJunction "26666275"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -54.794332 -68.090075 0
+    -61.798468 -76.793332 0
+    -120.590581 -149.847235 0
+    -121.414856 -152.067696 0
+    -120.125911 -154.054779 0
+    -29.100735 -226.640082 0
+  ]
+  startingAngle [
+    -4.034769
+  ]
+  endingAngle [
+    0.673166
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -161.780282 -20.925887 -0.07
+  rotation 0 0 1 2.463972
+  name "pedestrian crossing(25)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation -216.678634 -89.145222 -0.07
+  rotation 0 0 1 2.463949
+  name "pedestrian crossing(26)"
+  size 14 5.6
+}
+Road {
+  translation -125.717494 23.883209 0.01
+  name "South Grand Avenue(2)"
+  id "603942759"
+  startJunction "1967750287"
+  endJunction "73909660"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -23.453328 -29.143681 0
+    -23.626189 -29.35847 0
+  ]
+  startingAngle [
+    -4.034756
+  ]
+  endingAngle [
+    -4.034731
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -149.170822 -5.260472 -0.07
+  rotation 0 0 1 2.463935
+  name "pedestrian crossing(27)"
+  size 14 5.6
+}
+Road {
+  translation -253.834396 65.057379 0.01
+  name "West 6th Street(4)"
+  id "603942760"
+  startJunction "122641670"
+  endJunction "73909660"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    8.980612 -7.161362 0
+    88.833292 -70.837195 0
+    90.402464 -72.088471 0
+  ]
+  startingAngle [
+    0.673169
+  ]
+  endingAngle [
+    0.673161
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -244.853784 57.896017 -0.07
+  rotation 0 0 1 0.897633
+  name "pedestrian crossing(28)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation -165.001104 -5.779816 -0.07
+  rotation 0 0 1 0.897636
+  name "pedestrian crossing(29)"
+  size 14 5.6
+}
+Road {
+  translation -37.384056 149.598511 0.01
+  name "West 5th Street(3)"
+  id "606916054"
+  startJunction "1736499199"
+  endJunction "122641670"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -1.868898 1.483293 0
+    -5.107878 4.102068 0
+    -86.1968 68.762115 0
+    -92.073688 73.448374 0
+    -108.939346 86.897161 0
+    -154.437264 123.177758 0
+    -201.382894 160.613174 0
+    -203.612284 161.431685 0
+    -205.609347 160.146429 0
+    -314.689862 24.606806 0
+    -327.911145 8.178718 0
+    -328.735446 5.958269 0
+    -327.446521 3.971176 0
+    -216.45034 -84.541132 0
+  ]
+  startingAngle [
+    -2.470722
+  ]
+  endingAngle [
+    0.673169
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -39.252954 151.081803 -0.07
+  rotation 0 0 1 0.890883
+  name "pedestrian crossing(30)"
+  size 14 5.6
+}
+PedestrianCrossing {
+  translation -129.457745 223.046884 -0.07
+  rotation 0 0 1 0.897639
+  name "pedestrian crossing(31)"
+  size 14 5.6
+}
+Road {
+  translation 81.662661 54.702384 0.01
+  name "West 5th Street(4)"
+  id "607576339"
+  startJunction "1967655309"
+  endJunction "1736499182"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -4.245028 3.397075 0
+    -4.547165 3.637534 0
+  ]
+  startingAngle [
+    -2.466701
+  ]
+  endingAngle [
+    -2.469379
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 77.417633 58.099459 -0.07
+  rotation 0 0 1 0.898582
+  name "pedestrian crossing(32)"
+  size 14 5.6
+}
+Road {
+  translation -4.294963 174.766326 0.01
+  name "South Grand Avenue(3)"
+  id "608741620"
+  startJunction "5766742578"
+  endJunction "1736499199"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -17.975438 -22.303288 0
+    -19.001021 -23.58247 0
+  ]
+  startingAngle [
+    -4.034028
+  ]
+  endingAngle [
+    -4.036583
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -22.270401 152.463039 -0.07
+  rotation 0 0 1 2.465786
+  name "pedestrian crossing(33)"
+  size 14 5.6
+}
+Road {
+  translation 188.804443 229.034778 0.01
+  name "South Grand Avenue(4)"
+  id "608741621"
+  startJunction "123396147"
+  endJunction "5766742578"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -88.677218 70.707446 0
+    -90.906641 71.525871 0
+    -92.903656 70.24054 0
+    -174.217555 -30.804981 0
+    -193.099406 -54.268452 0
+  ]
+  startingAngle [
+    -2.468465
+  ]
+  endingAngle [
+    -4.034028
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 88.380253 -110.380615 0.01
+  name "South Hill Street(4)"
+  id "1046059231"
+  startJunction "3898602818"
+  endJunction "3299219872"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    14.84178 18.443491 0
+    30.772825 38.240648 0
+  ]
+  startingAngle [
+    -0.893203
+  ]
+  endingAngle [
+    -0.893188
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 103.222033 -91.937124 -0.07
+  rotation 0 0 1 2.463984
+  name "pedestrian crossing(34)"
+  size 14 5.6
+}
+Road {
+  translation 172.931045 -5.281618 0.01
+  name "South Hill Street(5)"
+  id "1046059232"
+  startJunction "1736513671"
+  endJunction "9619955250"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  wayPoints [
+    0 0 0
+    0.146114 0.182256 0
+    18.779096 23.30753 0
+  ]
+  startingAngle [
+    -0.895023
+  ]
+  endingAngle [
+    -0.892565
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 173.077159 -5.099362 -0.07
+  rotation 0 0 1 2.463361
+  name "pedestrian crossing(35)"
+  size 14 5.6
+}
+Road {
+  translation 15.231707 107.67265 0.01
+  name "West 5th Street(5)"
+  id "1049269630"
+  startJunction "9642835947"
+  endJunction "1736499199"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 24.587139
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -16.785776 13.384654 0
+    -36.305921 28.950382 0
+    -36.964006 29.475077 0
+  ]
+  startingAngle [
+    -2.468451
+  ]
+  endingAngle [
+    -2.468496
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -21.074214 136.623032 -0.07
+  rotation 0 0 1 0.8977
+  name "pedestrian crossing(36)"
+  size 14 5.6
+}
+Road {
+  translation -147.794678 -19.500105 0.01
+  name "West 6th Street(5)"
+  id "1121913941"
+  startJunction "73909660"
+  endJunction "10261232154"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    0.880871 -0.702382 0
+    17.204577 -13.719295 0
+  ]
+  startingAngle [
+    0.673136
+  ]
+  endingAngle [
+    0.673155
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation -146.913806 -20.202486 -0.07
+  rotation 0 0 1 0.897628
+  name "pedestrian crossing(37)"
+  size 14 5.6
+}
+Road {
+  translation 3.985036 -140.528447 0.01
+  name "West 6th Street(6)"
+  id "1122667815"
+  startJunction "10267739701"
+  endJunction "1837240570"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    28.646203 -22.840822 0
+    28.812018 -22.973059 0
+  ]
+  startingAngle [
+    0.673118
+  ]
+  endingAngle [
+    0.673213
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+PedestrianCrossing {
+  translation 32.631238 -163.369268 -0.07
+  rotation 0 0 1 0.897583
+  name "pedestrian crossing(38)"
+  size 14 5.6
+}
+Road {
+  translation 3.566779 -215.775011 0.01
+  name "West 6th Street(7)"
+  id "-1098_1"
+  startJunction "2611822743"
+  endJunction "-25462"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -85.423053 -106.149954 0
+  ]
+  startingAngle [
+    -4.034765
+  ]
+  endingAngle [
+    -4.034765
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -93.598721 -325.351418 0.01
+  name "West 6th Street(8)"
+  id "-1098_2"
+  startJunction "-25462"
+  endJunction "26666275"
+  width 14
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 11.176
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    -84.094768 67.057379 0
+  ]
+  startingAngle [
+    -2.468438
+  ]
+  endingAngle [
+    -2.468438
+  ]
+  startLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+  ]
+  endLine [
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_triangle.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+    "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/textures/road_line_dashed.png"
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -172.207 272.366 53.46
+  rotation 0 0 1 -1.06
+  name "bridge_seg1"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  bottom TRUE
+  wayPoints [
+    0 0 0
+    50 8 0
+    400 0 0
+  ]
+  locked FALSE
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+Road {
+  translation -203.962 345.716 53.5
+  rotation 0 0 -1 -0.523595307179586
+  name "road(26)"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  wayPoints [
+    -9.2 -79.5 0
+    -20 15 0
+    -180 -1 -25
+    -200 -0.8 -25
+  ]
+  locked FALSE
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+CurvedRoadSegment {
+  translation -350.65 202.449 28.5
+  rotation 0 0 1 2.1
+  name "road(27)"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  curvatureRadius 50
+  locked FALSE
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+Road {
+  translation -394.065 177.635 28.5
+  rotation 0 0 -1 1.04
+  name "road(28)"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  wayPoints [
+    0 0 0
+    40 0 0
+    180 0 -25
+    200 0 -25
+  ]
+  locked FALSE
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+CurvedRoadSegment {
+  translation -336.259 -19.6867 3.5
+  rotation 0 0 -1 1.0416
+  name "road(29)"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  curvatureRadius 50
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+RoadPillars {
+  translation -190.79 296.32 0.0599606
+  rotation -1.782279999712021e-05 -2.3464099996208693e-06 0.999999999838421 -0.261795307179586
+  height 53.1
+  width 5
+}
+RoadPillars {
+  translation 33.54 -121.11 0.0580025
+  rotation 2.3464099999870814e-06 2.3464099999870814e-06 -0.9999999999944944 1.5708
+  name "road pillar(1)"
+  height 53.4
+  width 5
+}
+RoadPillars {
+  translation -26.007 12.4076 0.0586237
+  rotation 1.3546999999950276e-06 -2.3464099999913877e-06 0.9999999999963296 2.0944
+  name "road pillar(2)"
+  height 53.4
+  width 5
+}
+RoadPillars {
+  translation -58.9049 77.7893 0.0589316
+  rotation 1.3546999999950276e-06 -2.3464099999913877e-06 0.9999999999963296 2.0944
+  name "road pillar(4)"
+  height 53.4
+  width 5
+}
+RoadPillars {
+  translation 5.19509 -41.7077 0.0583755
+  rotation 3.0578999999772855e-06 2.3464099999825706e-06 -0.9999999999925719 1.309
+  name "road pillar(3)"
+  height 53.4
+  width 5
+}
+RoadPillars {
+  translation -372.18 246.871 0.0597283
+  rotation -5.664719999893519e-06 2.346409999955894e-06 -0.9999999999812028 -0.7854053071795866
+  name "road pillar(6)"
+  height 28.4
+  width 5
+}
+RoadPillars {
+  translation -307.791 288.473 0.0599231
+  rotation -8.756859999640145e-06 2.3463999999035773e-06 -0.999999999958906 -0.5236053071795865
+  name "road pillar(10)"
+  height 37.8
+  width 5
+}
+RoadPillars {
+  translation -387.39 166.436 0.059348
+  rotation 1.3546999999950276e-06 -2.3464099999913877e-06 0.9999999999963296 2.0944
+  name "road pillar(7)"
+  height 27.8
+  width 5
+}
+RoadPillars {
+  translation -387.39 166.436 0.059348
+  rotation 1.3546999999950276e-06 -2.3464099999913877e-06 0.9999999999963296 2.0944
+  name "road pillar(11)"
+  height 20.8
+  width 5
+}
+RoadPillars {
+  translation -355.365 110.968 0.0590878
+  rotation 1.3546999999950276e-06 -2.3464099999913877e-06 0.9999999999963296 2.0944
+  name "road pillar(12)"
+  height 21
+  width 5
+}
+CurvedRoadSegment {
+  translation -46.454 -115.511 53.5
+  rotation 0 0 1 -1.047195307179586
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  curvatureRadius 80
+  totalAngle 1.2
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+Road {
+  translation 16.0025 -165.495 53.5
+  rotation 0 0 -1 -0.9
+  name "road(31)"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  wayPoints [
+    0 0 0
+    -80 0 0
+    -140 -50 0
+    -210 -50 -7.5
+    -245 -25 -11.25
+    -280 0 -15
+    -280 125 -25
+    -255 160 -35
+    -250 280 -50
+    -232 305 -53.5
+  ]
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+CurvedRoadSegment {
+  translation -311.542 -138.638 0
+  rotation 0 0 -1 -1.9146053071795865
+  name "bridge(30)"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  curvatureRadius 59
+  totalAngle 1.2
+  locked FALSE
+  roadBoundingObject TRUE
+}
+Road {
+  translation -349.592 -93.4924 0
+  rotation 0 0 1 0.7
+  name "road(30)"
+  width 14
+  lines [
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  roadBorderHeight 2
+  wayPoints [
+    -1 0 0
+    10 0 0
+    40 0.1 3.5
+    49.3 -1.55 3.5
+  ]
+  locked FALSE
+  roadBoundingObject TRUE
+  rightBorderBoundingObject TRUE
+  leftBorderBoundingObject TRUE
+}
+SimpleBuilding {
+  translation 211.98 150.53 0
+  name "Metro 417 Resident Parking"
+  floorNumber 2
+  corners [
+    0 0
+    40.15 -31.57
+    58.48 -7.35
+    53.8 -3.6
+    56.61 -0.59
+    22.65 28.31
+  ]
+  wallType "stone wall"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -32.04 235.89 0
+  name "Edison Building"
+  corners [
+    0 0, 7.28 8.92, 16.85 1.5, 9.25 -7.01, 21.16 -16.8, 28.6 -7.86, 37.89 -15.09, 42.12 -18.49, 35.12 -27.54, 35.78 -28.13, 15.69 -52.73, 14.58 -51.73, 13.98 -52.34, 14.25 -55.26, 11.52 -58.2, 7.47 -58.57, 4.26 -56.03, 3.96 -53.27, 2.94 -52.63, 1.59 -54.24, 1.21 -54.03, -0.54 -56.42, 0.77 -57.75, -4.85 -64.98, -33.66 -42.41, -35.03 -43.74, -39.5 -40.12, -35.93 -35.23, -4.77 3.59
+  ]
+  wallType "glass highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 37.69 159.75 0
+  name "Gas Company Tower"
+  floorNumber 76
+  corners [
+    0 0
+    -1.36 -1.68
+    11.66 -12.13
+    13.07 -10.36
+    42.29 -35.12
+    36.31 -41.66
+    47.14 -50.02
+    29.23 -73.52
+    16.75 -63.18
+    17.09 -62.76
+    9.74 -56.86
+    -42.36 -15.07
+    -39.5 -11.51
+    -42.41 -9.17
+    -37.18 -2.64
+    -33.29 -5.76
+    -35.48 1.02
+    -28.23 0.33
+    -32.29 3.59
+    -27.17 10.01
+    -24.2 7.64
+    -18.48 14.81
+  ]
+  wallType "classic building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 150.84 47.22 0
+  name "Title Guarantee Building Apartments"
+  floorHeight 4.94
+  floorNumber 14
+  corners [
+    0 0
+    27.67 -21.83
+    27.46 -22.1
+    27.93 -22.47
+    26.68 -24.04
+    26.28 -23.71
+    20.66 -30.65
+    20.37 -31.85
+    14.28 -39.25
+    13.93 -39.26
+    12.66 -40.65
+    10.46 -40.95
+    8.82 -39.65
+    8.52 -39.9
+    0.31 -33.29
+    0.43 -33.15
+    -15.91 -20.1
+  ]
+  wallType "old brick building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 95.77 188.34 0
+  name "building(1)"
+  corners [
+    0 0
+    -1.47 1.09
+    2.08 5.52
+    3.49 4.43
+    4.17 5.36
+    16.64 -4.48
+    11.51 -11.12
+    -1.09 -1.41
+  ]
+  wallType "highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 200.89 -193.63 0
+  name "Arcade Theatre"
+  floorHeight 3.24
+  floorNumber 10
+  corners [
+    0 0
+    11.87 14.22
+    48.84 -15.21
+    50.15 -16.25
+    38.73 -30.46
+  ]
+  wallType "old building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 180.09 -102.79 0
+  name "SB Grand Lofts"
+  floorHeight 4.71
+  floorNumber 12
+  corners [
+    0 0
+    3.01 3.69
+    1.73 4.61
+    5.1 8.83
+    6.42 7.9
+    9.56 11.83
+    18.46 27.56
+    23.31 35.7
+    62.64 4.43
+    36.32 -28.43
+  ]
+  wallType "stone wall"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 103.04 -198.51 0
+  name "building(2)"
+  floorHeight 3.03
+  floorNumber 6
+  corners [
+    0 0
+    12.42 15.53
+    18.59 22.15
+    17.15 23.4
+    20.38 26.82
+    21.69 25.59
+    22.57 26.61
+    31.68 19.32
+    23.91 9.52
+    10.01 -7.97
+  ]
+  wallType "red and white building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 208.64 13.05 0
+  name "building(3)"
+  floorHeight 5.35
+  floorNumber 2
+  corners [
+    0 0
+    -0.59 0.29
+    4.98 8.76
+    5.48 8.35
+    8.41 7.9
+    29.59 -8.67
+    21.88 -18.84
+    -0.47 -1.69
+  ]
+  wallType "old building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 203.96 -149.01 0
+  name "building(4)"
+  floorHeight 3.1
+  floorNumber 2
+  corners [
+    0 0
+    -36 28.6
+    -35.83 28.81
+    -37.13 29.73
+    -32.48 35.54
+    4.69 6.01
+  ]
+  wallType "stone brick"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 199.86 -154.26 0
+  name "building(5)"
+  floorHeight 3.15
+  floorNumber 2
+  corners [
+    0 0
+    -0.81 0.69
+    -1.01 0.46
+    -36.17 28.59
+    -31.9 33.85
+    4.1 5.25
+  ]
+  wallType "residential building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 151.15 -144.71 0
+  name "building(6)"
+  floorHeight 3.67
+  corners [
+    0 0
+    0.15 0.18
+    -2.63 2.46
+    1.9 8.17
+    37.91 -20.62
+    37.8 -20.75
+    38.94 -21.66
+    34.51 -27.32
+    34.15 -26.99
+    34.01 -27.18
+  ]
+  wallType "transparent highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 180.45 -178.07 0
+  name "building(7)"
+  floorHeight 3.35
+  floorNumber 2
+  corners [
+    0 0
+    -1.49 1.19
+    -34.16 27.31
+    -29.3 33.36
+    4.71 6.19
+  ]
+  wallType "highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 170.8 -193.59 0
+  name "building(8)"
+  floorHeight 3.17
+  floorNumber 4
+  corners [
+    0 0
+    -3.32 -4.1
+    -4.59 -3.07
+    -13.06 -13.53
+    -14.01 -12.75
+    -36.07 14.4
+    -45.19 21.69
+    -49.73 17.47
+    -50.86 18.39
+    -49.76 19.8
+    -48.46 18.89
+    -38.77 30.98
+    -3.28 2.61
+  ]
+  wallType "blue glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 148.38 -130.49 0
+  name "International Jewelry Center"
+  floorHeight 3.12
+  floorNumber 22
+  corners [
+    0 0
+    -51.9 -65.34
+    -56.24 -61.9
+    -86.94 -37.71
+    -34.62 28.37
+    -30.88 26.61
+  ]
+  wallType "red and white building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 171.48 -113.46 0
+  name "Maximes Merchants Building"
+  floorHeight 3.01
+  floorNumber 10
+  corners [
+    0 0
+    4.51 5.62
+    3.3 6.58
+    5.85 9.77
+    7.12 8.86
+    8.61 10.67
+    44.93 -17.75
+    46 -18.65
+    37.17 -29.53
+  ]
+  wallType "blue glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 126.95 -188.99 0
+  name "Metropolitan Theater Annex"
+  floorHeight 3.16
+  floorNumber 11
+  corners [
+    0 0
+    7.77 9.8
+    29.83 -17.35
+    29.64 -17.61
+    30.51 -18.32
+    28.35 -21
+    27.66 -20.44
+    27.53 -22
+  ]
+  wallType "gray glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 230.52 -5.79 0
+  name "Pershing Square Building"
+  floorHeight 4.08
+  floorNumber 14
+  corners [
+    0 0
+    -21.94 -24.82
+    -42.02 -8.35
+    -23.48 17.83
+    -23.8 18.23
+    -22.36 17.15
+  ]
+  wallType "old office building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 178.96 -176.88 0
+  name "Richman Brothers Building"
+  floorHeight 3.09
+  floorNumber 11
+  corners [
+    0 0
+    -11.44 -14.1
+    -46.94 14.27
+    -43.07 19.09
+    -44.21 20.07
+    -42.4 22.38
+    -41.18 21.48
+    -35.64 28.26
+    -32.79 25.98
+    -32.67 26.12
+  ]
+  wallType "old brick building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 197.55 -155.37 0
+  name "Schulte-United Department Store"
+  floorHeight 3.19
+  floorNumber 8
+  corners [
+    0 0
+    0.53 -0.45
+    -1.84 -3.38
+    -2.66 -2.73
+    -8.49 -9.96
+    -44.5 18.83
+    -35.2 30.53
+    -33.99 29.55
+    -33.86 29.7
+    1.3 1.57
+  ]
+  wallType "brick building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 204.21 -242.96 0
+  name "Spring Arcade Building"
+  floorHeight 3.02
+  floorNumber 17
+  corners [
+    0 0
+    -0.94 -1.18
+    -27.08 19.38
+    -3.32 49.33
+    35.41 18.86
+    74.91 -12.21
+    52.55 -40.37
+    12.51 -8.87
+    12.04 -9.46
+  ]
+  wallType "office building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 126.95 -188.99 0
+  name "The Sun Drug Company Building"
+  floorHeight 3.37
+  floorNumber 6
+  corners [
+    0 0
+    27.53 -22
+    13.52 -39.35
+    -13.9 -17.5
+  ]
+  wallType "old office building"
+}
+SimpleBuilding {
+  translation 158.41 -46.49 0
+  name "building(9)"
+  floorHeight 5.5
+  floorNumber 1
+  corners [
+    0 0
+    2.55 3.22
+    9.18 -2.04
+    10.97 0.23
+    14.12 -2.27
+    13.81 -2.68
+    14.19 -2.98
+    12.61 -4.98
+    12.23 -4.69
+    9.8 -7.76
+  ]
+  wallType "blue glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 177.42 -39.04 0
+  name "building(10)"
+  floorHeight 5.5
+  floorNumber 1
+  corners [
+    0 0
+    -0.18 0.72
+    -0.09 1.41
+    0.36 1.88
+    1.06 2.12
+    1.71 1.98
+    3.45 0.45
+    3.55 -0.17
+    3.47 -0.64
+    3.09 -1.17
+    2.61 -1.37
+    1.74 -1.34
+  ]
+  wallType "red and white building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 31.84 -205.84 0
+  name "Western Jewery Mart"
+  floorHeight 3.01
+  floorNumber 17
+  corners [
+    0 0
+    14.88 18.96
+    47.71 -7.12
+    32.7 -26.01
+    25.68 -20.42
+    13.5 -10.68
+  ]
+  wallType "gray glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -158.53 4.93 0
+  name "611 Place"
+  floorHeight 4.5
+  floorNumber 42
+  corners [
+    0 0
+    -14.13 10.48
+    -29.42 23.03
+    -71.8 56.23
+    -71.53 56.88
+    -73.8 58.69
+    -65.91 68.55
+    -63.81 66.88
+    -62.4 68.64
+    -37.13 48.6
+    -29.91 42.81
+    -28.71 44.28
+    -14.44 62.22
+    -11.39 66
+    -10.75 65.5
+    4.91 85.06
+    44.06 53.97
+    22.12 26.58
+    10.84 12.5
+  ]
+  wallType "concrete building"
+  wallColor [
+    0.95 0.96 0.87
+  ]
+  roofType "bitumen"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -262.23 186.83 0
+  name "California Club"
+  floorHeight 3.13
+  floorNumber 15
+  corners [
+    0 0
+    1.06 1.34
+    1.76 0.79
+    3.49 0.97
+    6.02 1.23
+    6.65 1.86
+    24.47 -12.25
+    24.11 -12.81
+    24.57 -17.15
+    48.13 -34.12
+    49.32 -32.65
+    52.66 -35.36
+    49.43 -39.46
+    52.3 -41.71
+    52.04 -42.06
+    52.33 -42.29
+    30.77 -69.93
+    25.79 -66.04
+    25.59 -66.29
+    1.39 -47.22
+    0.99 -47.72
+    -22.81 -28.95
+    -22.18 -28.11
+    -41.68 -12.72
+    -19.54 15.41
+  ]
+  wallType "orange building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -52.51 -157.86 0
+  name "City National Bank Building"
+  floorHeight 4.66
+  floorNumber 24
+  corners [
+    0 0
+    -2.21 -2.81
+    -26.79 16.38
+    -0.75 49.44
+    23.84 30.25
+    21.15 26.84
+  ]
+  wallType "concrete building"
+  wallColor [
+    0.97 0.95 0.87
+  ]
+  roofType "bitumen"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -133.24 76.27 0
+  name "Hilton Checkers"
+  floorHeight 3.12
+  floorNumber 17
+  corners [
+    0 0, -0.83 -1.04, -3.47 1.05, -2.6 2.16, -9.59 7.71, -10.4 6.7, -12.95 8.73, -12.03 9.89, -17.48 14.22, -17.8 13.82, -18.39 14.29, -18.2 14.53, -18.4 14.7, -10.12 25.12, -10.81 25.6, -9 27.91, -4.94 24.69, -6.92 22.21, -6.23 21.66, -6.06 21.88, -3.25 19.65, -3.43 19.43, -2.85 18.98, -0.83 21.53, 5.44 16.56, 3.98 14.72, 3.77 14.89, 3.19 14.16, 3.77 13.71, 3.93 13.9, 6.77 11.64, 6.62 11.45, 7.01 11.15, 9.01 13.69, 16.71 7.57, 15.24 5.71, 15.02 5.89, 14.44 5.16, 15.12 4.61, 15.23 4.74, 18.73 1.94, 20.7 4.43, 30.31 -3.22, 20.16 -16.02
+  ]
+  wallType "construction building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -144.9 -106.92 0
+  name "James Oviatt Building"
+  floorHeight 3.08
+  floorNumber 19
+  corners [
+    0 0
+    10.95 13.62
+    39.99 -9.58
+    40.13 -9.42
+    40.69 -8.72
+    43.25 -10.77
+    42.69 -11.46
+    42.5 -11.7
+    47.94 -16.05
+    48.05 -16.54
+    37.43 -29.95
+    6.58 -5.33
+  ]
+  wallType "old building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -187.02 170.51 0
+  name "Los Angeles Public Library"
+  floorNumber 4
+  corners [
+    0 0, 0.32 0.42, -2.5 2.7, -3 2.07, -8.72 6.72, -11.53 3.27, -21.16 11.11, -17.56 15.53, -17.33 15.34, -15.37 17.76, -15.54 17.89, -14.71 18.91, -14.45 18.7, -12.52 21.08, -12.81 21.33, -12.02 22.28, -11.75 22.07, -9.82 24.45, -10.16 24.73, -9.37 25.71, -9.05 25.45, -7.09 27.87, -7.4 28.13, -6.63 29.07, -6.31 28.81, -4.37 31.2, -4.82 31.56, -3.59 33.06, -3.39 32.9, -2.03 34.57, -5.83 37.67, -4.88 38.83, -5.13 39.05, -3.18 41.45, -2.98 41.28, -2.06 42.41, 1.82 39.26, 3.26 41.03, 2.94 41.3, 4.08 42.69, 4.46 42.39, 6.44 44.83, 6.07 45.13, 6.89 46.13, 7.26 45.84, 9.11 48.12, 7.48 49.44, 8.21 50.33, 6.3 51.87, 8.91 55.07, 10.91 53.44, 13.32 56.41, 13.94 55.91, 16.65 59.24, 20.79 55.91, 20.52 55.58, 35.67 43.41, 38.41 46.82, 38.8 46.84, 41.96 44.31, 42.01 43.89, 41.65 43.42, 52.95 34.76, 53.16 35.03, 53.6 35.11, 56.85 32.43, 56.86 32.14, 54.16 28.81, 69.18 16.62, 69.53 17.05, 73.71 13.66, 71.06 10.41, 71.72 9.88, 69.35 6.96, 68.76 7.45, 66.09 4.17, 75.72 -3.65, 74.13 -5.61, 86.73 -15.86, 87.49 -14.94, 87.06 -14.59, 95.73 -3.91, 113.83 -18.36, 116.72 -14.82, 134.77 -29.48, 129.8 -35.58, 129.02 -34.94, 120.37 -45.59, 121.65 -46.64, 117.71 -51.5, 117.29 -51.16, 111.99 -57.67, 112.51 -58.09, 108.53 -62.97, 107.58 -62.2, 96.04 -76.39, 96.96 -77.14, 91.91 -83.36, 91.34 -82.89, 88.56 -86.31, 32.62 -40.85, 34.93 -38, 29.87 -33.89, 31.98 -31.29, 25.51 -26.02, 28.15 -22.77, 22.53 -18.2, 23 -17.62, 19.98 -15.16, 19.6 -15.63, 18.86 -15.04, 19.12 -14.72, 16.11 -12.26, 15.77 -12.69, 14.98 -12.05, 15.28 -11.67, 12.41 -9.32, 12.08 -9.73, 11.29 -9.09, 11.57 -8.74, 8.58 -6.32, 8.31 -6.66, 7.49 -5.99, 7.76 -5.65, 4.87 -3.3, 4.57 -3.67, 3.81 -3.05, 4.13 -2.66, 1.07 -0.17, 0.73 -0.59
+  ]
+  wallType "brick building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -243.24 -23.5 0
+  name "building(11)"
+  floorHeight 3.6
+  floorNumber 2
+  corners [
+    0 0
+    2.45 3.08
+    2.54 3
+    6.34 8.87
+    13.52 3.15
+    12.22 4.31
+    21.11 -2.45
+    41.56 -16.79
+    35.07 -27.96
+  ]
+  wallType "gray glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -203.47 -25.41 0
+  name "building(12)"
+  floorHeight 3.09
+  floorNumber 17
+  corners [
+    0 0
+    4.9 6.23
+    -7.39 13.91
+    1.85 25.77
+    26.62 8.01
+    26.62 7.69
+    6.27 -18.22
+    1.91 -14.74
+    1.79 -14.88
+    -18.66 -0.54
+    -12.24 7.67
+  ]
+  wallType "stone brick"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -39.78 110.69 0
+  name "Biltmore Tower"
+  floorHeight 4.24
+  floorNumber 25
+  corners [
+    0 0
+    0.78 2.41
+    2.79 4.85
+    4.91 6.21
+    12.34 15.3
+    21.34 8
+    22.93 6.36
+    25.72 4.92
+    27.62 3
+    36.42 -4.07
+    15.6 -29.93
+    -8.54 -10.65
+  ]
+  wallType "glass highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -189.13 66.17 0
+  name "building(13)"
+  corners [
+    0 0
+    -3.37 2.94
+    -8.4 -3.49
+    -29.13 12.79
+    -26.21 18.64
+    -30.96 22.33
+    6.5 70.12
+    23.25 56.85
+    23.14 56.67
+    33.63 48.45
+    32.11 46.59
+    37.11 42.51
+    30.78 35.27
+  ]
+  wallType "construction building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -210.35 -54.26 0
+  name "building(14)"
+  floorHeight 3.08
+  floorNumber 20
+  corners [
+    0 0
+    1.73 -1.35
+    -7.76 -13.6
+    -8.78 -12.85
+    -10.07 -14.43
+    -8.29 -16.22
+    -15.41 -24.71
+    -43.8 -3.13
+    -45.27 -5.04
+    -45.9 -5.77
+    -53.86 0.58
+    -53.26 1.32
+    -51.78 3.11
+    -53.74 4.65
+    -32.88 30.76
+    2.19 2.8
+  ]
+  wallType "old office building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -203.23 -202.23 0
+  name "Giannini Place"
+  floorHeight 3.08
+  floorNumber 17
+  corners [
+    0 0
+    3.22 4
+    21.48 -10.57
+    26.76 -4.01
+    8.47 10.59
+    10.43 13.03
+    14.77 18.42
+    41.32 -2.77
+    33.1 -12.98
+    18.93 -30.58
+    -7.5 -9.49
+    -4.72 -6.02
+    -2.13 -2.81
+    -3.42 -1.8
+    -1.2 0.96
+  ]
+  wallType "factory building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -66.75 -211.54 0
+  name "building(15)"
+  floorHeight 3.32
+  floorNumber 9
+  corners [
+    0 0
+    23.1 28.37
+    59.15 1.93
+    38.46 -24.11
+    39.37 -24.83
+    39.52 -25.58
+    39.38 -26.29
+    39 -26.71
+    38.48 -26.97
+    37.82 -26.95
+    37.43 -26.82
+    36.61 -26.18
+    35.43 -27.69
+  ]
+  wallType "transparent highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 73.69 -75.28 0
+  name "Pershing Square Bell Tower"
+  floorHeight 3.02
+  floorNumber 13
+  corners [
+    0 0
+    -6.78 5.2
+    -3.71 13.27
+    5.06 6.46
+  ]
+  wallType "brick building"
+}
+SimpleBuilding {
+  translation 44.38 15.37 0
+  name "building(16)"
+  floorHeight 4.7
+  floorNumber 1
+  corners [
+    0 0
+    9.43 12.03
+    17.73 -14.28
+    1.04 -0.84
+  ]
+  wallType "old building"
+}
+SimpleBuilding {
+  translation -187.93 -156.54 0
+  name "One Wilshire"
+  floorHeight 4
+  floorNumber 30
+  corners [
+    0 0
+    -8.3 6.47
+    -5.49 10.04
+    -7.7 11.76
+    -10.99 7.59
+    -24.32 17.97
+    -20.69 22.59
+    -36.63 35.01
+    -29.59 43.96
+    3.29 85.79
+    11.55 96.31
+    39.06 74.88
+    50.6 65.89
+    40.33 52.82
+    41.08 52.23
+  ]
+  wallType "tall house"
+  wallColor [
+    0.93 0.93 0.84
+  ]
+  roofType "bitumen"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -133.04 -169.12 0
+  name "building(17)"
+  floorHeight 3.37
+  corners [
+    0 0
+    -7.55 -9.58
+    -43.37 19.15
+    -35.79 28.58
+  ]
+  wallType "highrise"
+}
+SimpleBuilding {
+  translation -31.36 -131.03 0
+  name "building(18)"
+  floorHeight 3.12
+  floorNumber 16
+  corners [
+    0 0
+    7.29 -5.93
+    -13.86 -32.37
+    -21.15 -26.84
+  ]
+  wallType "old brick building"
+}
+SimpleBuilding {
+  translation -152.35 -122.36 0
+  name "building(19)"
+  floorHeight 4.05
+  floorNumber 2
+  corners [
+    0 0
+    -4.8 3.91
+    3.44 14.62
+    8.35 10.89
+  ]
+  wallType "classic building"
+}
+SimpleBuilding {
+  translation -117.89 -150 0
+  name "building(20)"
+  floorHeight 3.08
+  floorNumber 5
+  corners [
+    0 0
+    -30.91 24.68
+    -20.43 37.75
+    10.42 13.13
+  ]
+  wallType "brick building"
+}
+SimpleBuilding {
+  translation 75.84 -86.23 0
+  name "building(21)"
+  floorHeight 5.7
+  floorNumber 1
+  corners [
+    0 0
+    2.42 3.01
+    7.22 -0.85
+    4.8 -3.86
+  ]
+  wallType "glass building"
+}
+SimpleBuilding {
+  translation -21.76 -134.06 0
+  name "Park Central Building"
+  floorHeight 3.76
+  floorNumber 14
+  corners [
+    0 0
+    -0.07 0.06
+    -0.86 0.74
+    0.19 2.05
+    0.59 2.55
+    6.46 -2.16
+    6 -2.78
+    16.62 -11.27
+    -8.29 -42.56
+    -11.56 -46.68
+    -14.04 -44.69
+    -27 -34.33
+    -23.46 -29.34
+    -2.32 -2.9
+  ]
+  wallType "orange building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 26.66 -38.59 0
+  name "building(22)"
+  floorHeight 5.7
+  floorNumber 1
+  corners [
+    0 0
+    -6.73 -7.67
+    -11.13 -4.63
+    -0.79 8.24
+    1.05 10.55
+    13.49 0.56
+    11.59 -1.85
+    8.05 -6.32
+  ]
+  wallType "concrete building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -209.96 -185 0
+  name "Q"
+  floorHeight 3.13
+  floorNumber 6
+  corners [
+    0 0
+    -13.31 -16.98
+    -21.76 -10.27
+    -11.17 3.35
+    -1.82 15.36
+    6.67 8.51
+  ]
+  wallType "stone wall"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -228.39 -156.24 0
+  name "The Collection Building"
+  floorHeight 3.07
+  floorNumber 6
+  corners [
+    0 0
+    16.6 -13.4
+    7.26 -25.41
+    -3.33 -39.03
+    -20.04 -25.76
+  ]
+  wallType "office building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -203.29 -176.49 0
+  name "building(23)"
+  floorHeight 3.05
+  floorNumber 8
+  corners [
+    0 0
+    0.07 -0.07
+    2.07 2.43
+    11.52 -5.17
+    -10.63 -32.92
+    -19.98 -25.5
+    -6.67 -8.51
+  ]
+  wallType "tall house"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -168.73 -140.42 0
+  name "building(24)"
+  floorHeight 3.12
+  floorNumber 14
+  corners [
+    0 0
+    -0.88 0.81
+    13.85 19.18
+    19.55 14.63
+    19.93 15.1
+    50.84 -9.57
+    35.69 -28.7
+    -0.1 -0.12
+  ]
+  wallType "factory building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -73.32 -93.48 0
+  name "Heron Building"
+  floorHeight 3.16
+  floorNumber 16
+  corners [
+    0 0
+    -20.58 -26.21
+    -27.05 -21.17
+    -27.62 -21.89
+    -30.93 -19.31
+    -30.35 -18.57
+    -70.57 12.97
+    -50.25 38.85
+  ]
+  wallType "glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -153.46 -194.8 0
+  name "building(25)"
+  floorHeight 3.14
+  floorNumber 14
+  corners [
+    0 0
+    -8.44 -10.2
+    -35 10.99
+    -35.74 14.98
+    -43.49 21.16
+    -35.67 30.95
+    1.25 1.57
+  ]
+  wallType "old office building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -143.88 -80.52 0
+  name "Telecom Center LA"
+  floorHeight 3.07
+  floorNumber 19
+  corners [
+    0 0
+    -2.53 1.98
+    -4.98 -1.14
+    -32.5 20.3
+    -9.7 49.23
+    20.31 25.88
+  ]
+  wallType "old building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -107.24 28.07 0
+  name "building(26)"
+  corners [
+    0 0
+    9.75 12.05
+    12.22 15.12
+    91.97 -48.4
+    89.57 -51.46
+    79.86 -63.46
+    75.38 -59.89
+    73.89 -61.75
+    50.07 -42.94
+    51.53 -41.13
+    34.9 -27.87
+    16.39 -13.09
+  ]
+  wallType "construction building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -222.13 -25.96 0
+  name "Jivago"
+  floorHeight 3.06
+  floorNumber 5
+  corners [
+    0 0
+    -8.89 6.77
+    10.35 31.44
+    9.83 32.28
+    20.51 26.31
+    11.27 14.46
+    15.85 18.02
+    10.96 11.81
+    6.42 8.22
+  ]
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 43.7 213.71 0
+  name "AT&T Switching Center"
+  floorHeight 3.04
+  floorNumber 45
+  corners [
+    0 0, 16.65 20.51, 22.39 28.11, 45.41 55.94, 46.21 54.75, 61.2 42.76, 57.76 38.49, 65.28 32.48, 62.06 28.51, 54.38 34.66, 38.62 15.13, 60.76 -2.6, 54.91 -9.83, 38.37 -30.28, 40.23 -31.77, 38.06 -34.44, 41.07 -36.86, 39.05 -39.36, 48.79 -47.21, 50.91 -48.91, 57.28 -54.02, 61.11 -49.3, 77.11 -62.67, 54.12 -90.45, 10.25 -53.58, -22.28 -27.36, -3.63 -4.43
+  ]
+  wallType "concrete building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 75.34 180.97 0
+  name "building(27)"
+  floorNumber 14
+  corners [
+    0 0
+    -3.09 2.48
+    -35.26 28.31
+    -14.99 53.25
+    -9.24 60.85
+    6.98 47.87
+    29.13 30.14
+    23.28 22.91
+    6.74 2.46
+    4.11 5.08
+  ]
+  wallType "construction building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 53.95 160.13 0
+  name "building(28)"
+  floorNumber 9
+  corners [
+    0 0
+    -32.52 26.22
+    -13.87 49.16
+    18.3 23.32
+  ]
+  wallType "office building"
+}
+SimpleBuilding {
+  translation -149.52 -98.1 0
+  name "building(29)"
+  floorHeight 4
+  floorNumber 30
+  corners [
+    0 0
+    -35.12 27.35
+    -68 -14.48
+    -32.88 -41.83
+  ]
+  wallType "old house"
+  wallColor [
+    0.93 0.93 0.84
+  ]
+  roofType "bitumen"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -49.39 214.4 0
+  name "building(30)"
+  floorHeight 4.68
+  floorNumber 14
+  corners [
+    0 0
+    17.35 21.49
+    24.63 30.41
+    34.2 22.99
+    26.6 14.48
+    38.51 4.7
+    45.95 13.63
+    55.25 6.4
+    31.87 -23.19
+    27.18 -19.41
+    22.44 -25.23
+    1.57 -8.38
+    5.07 -4.09
+  ]
+  wallType "transparent highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -154.37 68.09 0
+  name "building(31)"
+  floorHeight 4.5
+  floorNumber 42
+  corners [
+    0 0
+    13.92 -10.94
+    2.94 -24.78
+    17.96 -36.59
+    6.68 -50.67
+    -7.81 -39.26
+    -18.29 -52.69
+    -33.58 -40.13
+    -26.35 -30.81
+    -36.22 -22.98
+    -34.07 -20.35
+    -32.87 -18.88
+    -18.59 -0.95
+    -7.6 -9.59
+  ]
+  wallType "office building"
+  wallColor [
+    0.95 0.96 0.87
+  ]
+  roofType "bitumen"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -105.05 3.18 0
+  name "building(32)"
+  floorHeight 4.37
+  floorNumber 12
+  corners [
+    0 0
+    24.27 -19.41
+    26.5 -16.64
+    23.57 -14.3
+    32.71 -2.97
+    49.34 -16.24
+    47.89 -18.04
+    35.85 -32.98
+    17.27 -56.03
+    0.23 -42.4
+    9.86 -30.51
+    -7.37 -16.67
+    -17 -28.55
+    -34.25 -14.9
+    -2.19 24.89
+    14.2 11.8
+    4.93 0.32
+    2.09 2.59
+  ]
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 53.95 160.13 0
+  name "building(33)"
+  floorNumber 8
+  corners [
+    0 0
+    43.87 -36.87
+    66.86 -9.09
+    50.86 4.28
+    47.03 -0.44
+    40.67 4.67
+    38.55 6.37
+    28.8 14.22
+    30.83 16.72
+    27.82 19.15
+    29.98 21.81
+    28.13 23.3
+    25.5 25.93
+    21.39 20.84
+    18.3 23.32
+  ]
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 65.79 124.84 5
+  name "building(34)"
+  floorHeight 4.38
+  floorNumber 52
+  corners [
+    0 0
+    -18.36 -21.95
+    -70.46 19.84
+    -67.59 23.41
+    -70.51 25.74
+    -65.28 32.27
+    -60.39 38.5
+    -55.26 44.93
+    -52.3 42.55
+  ]
+  wallType "blue glass building"
+  roofShape "flat roof"
+  bottom TRUE
+}
+RoadPillars {
+  translation -111.838 176.172 0.059392
+  rotation 1.3546999999950276e-06 -2.3464099999913877e-06 0.9999999999963296 2.0944
+  name "road pillar(5)"
+  height 53.4
+  width 5
+}
+SimpleBuilding {
+  translation -59.33 -37.6 0
+  name "building(35)"
+  floorNumber 6
+  corners [
+    0 0
+    -3.12 -3.91
+    -7.52 -0.44
+    -22.89 -19.72
+    -0.75 -37.2
+    29.7 0.98
+    25.98 3.93
+    2.16 22.74
+    -9.87 7.81
+  ]
+  wallType "brick building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 176.73 177.52 0
+  name "Metro 417 Apartments"
+  floorHeight 4.57
+  floorNumber 12
+  corners [
+    0 0
+    -22.86 -28.06
+    -10.99 -37.64
+    7.38 -15.11
+    15.1 -21.35
+    -3.27 -43.88
+    8.49 -53.38
+    28.28 -29.09
+    39.17 -37.88
+    18.96 -62.66
+    30.13 -71.69
+    48.02 -49.74
+    57.41 -57.32
+    38.66 -80.34
+    50.38 -89.81
+    74.68 -59.99
+    32.8 -26.18
+    53.96 -0.23
+    44.69 7.26
+    37.84 -1.13
+    41.74 -4.28
+    34.21 -13.52
+    30.36 -10.41
+    23.42 -18.92
+  ]
+  wallType "old house"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -157.31 200.94 0
+  name "building(36)"
+  floorNumber 17
+  corners [
+    0 0
+    11.34 -9.06
+    8.4 -12.7
+    12.69 -16.13
+    3.31 -27.77
+    -0.14 -25.02
+    -3.39 -29.06
+    -15.88 -19.08
+    -13.37 -15.96
+    -17.36 -12.79
+    -7.46 -0.5
+    -3.17 -3.92
+  ]
+  wallType "orange building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -187.57 124.23 0
+  name "building(37)"
+  floorHeight 3.01
+  floorNumber 41
+  corners [
+    0 0
+    5.5 -4.39
+    10 -8.01
+    12.62 -4.09
+    22.44 -11.31
+    19.63 -14.64
+    29.22 -22.79
+    -1.55 -58.06
+    -4.92 -55.13
+    -9.95 -61.55
+    -30.68 -45.27
+    -27.76 -39.42
+    -19.63 -25.79
+    -10.05 -12
+  ]
+  wallType "orange building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 109.4 80.55 0
+  name "building(38)"
+  floorNumber 24
+  corners [
+    0 0
+    26.97 -21.77
+    37.01 -31.26
+    23.17 -49.33
+    13.34 -42.93
+    -13.08 -16.35
+  ]
+  wallType "construction building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 144.85 138.43 0
+  name "Trademark Apartments"
+  floorNumber 7
+  corners [
+    0 0
+    -30.12 -38.49
+    -10.07 -54.04
+    -3.88 -46.13
+    -9.64 -41.67
+    2.2 -26.53
+    9.31 -32.04
+    6.95 -35.06
+    37.58 -58.81
+    39.49 -56.38
+    45.83 -61.3
+    31.36 -79.79
+    17.37 -68.95
+    2.82 -87.55
+    34.62 -112.22
+    76.19 -59.09
+  ]
+  wallType "highrise"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation 104.54 86.42 0
+  name "Park Fifth Tower Apartments"
+  floorNumber 24
+  corners [
+    0 0
+    -17.14 -20.8
+    28.62 -57.23
+    44.64 -37.89
+    35.75 -28.49
+  ]
+  wallType "old building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -220.93 73.56 0
+  name "building(39)"
+  floorNumber 4
+  corners [
+    0 0
+    -1.41 -1.76
+    -3.51 -0.09
+    -11.4 -9.95
+    -9.13 -11.75
+    -9.4 -12.41
+    32.98 -45.6
+    40.21 -36.28
+    30.34 -28.45
+    32.49 -25.83
+    25.27 -20.04
+  ]
+  wallType "gray glass building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -172.97 67.14 0
+  name "building(40)"
+  floorNumber 4
+  corners [
+    0 0
+    3.05 3.79
+    3.69 3.28
+    19.35 22.84
+    58.5 -8.25
+    36.55 -35.64
+    21.53 -23.83
+    32.51 -9.99
+    18.59 0.95
+    11 -8.64
+  ]
+  wallType "red and white building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -172.66 15.4 0
+  name "building(41)"
+  floorNumber 4
+  corners [
+    0 0
+    14.13 -10.48
+    24.97 2.02
+    10.47 13.42
+  ]
+  wallType "brick building"
+}
+SimpleBuilding {
+  translation -183.26 -82.62 0
+  name "building(42)"
+  floorHeight 3.07
+  floorNumber 41
+  corners [
+    0 0
+    -21.97 -28.08
+    -7.92 -38.96
+    14.05 -10.9
+  ]
+  wallType "red and white building"
+  roofType "bitumen"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -217.52 -112.58 0
+  name "building(43)"
+  floorNumber 2
+  corners [
+    0 0
+    -7.03 -8.95
+    8.9 -21.37
+    5.28 -25.99
+    18.61 -36.37
+    21.89 -32.2
+    24.1 -33.92
+    21.29 -37.49
+    29.59 -43.96
+    70.67 8.27
+    69.92 8.86
+    80.2 21.93
+    68.66 30.92
+    41.14 52.35
+    32.88 41.83
+    68 14.48
+    35.12 -27.35
+  ]
+  wallType "office building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -112.42 -13.49 0
+  name "building(44)"
+  corners [
+    0 0
+    17.23 -13.84
+    7.6 -25.73
+    -9.64 -11.88
+  ]
+  wallType "gray glass building"
+}
+SimpleBuilding {
+  translation -90.85 14.99 0
+  name "building(45)"
+  corners [
+    0 0
+    18.5 -14.78
+    9.36 -26.1
+    12.3 -28.44
+    10.07 -31.21
+    -14.2 -11.8
+    -12.11 -9.21
+    -9.27 -11.49
+  ]
+  wallType "brick building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -139.3 -11.71 0
+  name "PacMutual"
+  floorHeight 4.37
+  floorNumber 12
+  corners [
+    0 0
+    17.24 -13.65
+    34.48 -27.51
+    51.52 -41.13
+    70.1 -18.08
+    79.97 -25.89
+    76.85 -29.8
+    72.45 -26.33
+    57.08 -45.61
+    79.22 -63.09
+    109.67 -24.91
+    105.95 -21.96
+    107.44 -20.1
+    111.92 -23.68
+    121.63 -11.67
+    124.03 -8.61
+    44.28 54.91
+    41.81 51.83
+    32.06 39.79
+  ]
+  wallType "construction building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -111.05 -181.48 0
+  name "building(46)"
+  corners [
+    0 0
+    30.79 -24.58
+    27.13 -29.13
+    32.13 -33.12
+    10.63 -59.82
+    -25.17 -31.26
+  ]
+  wallType "brick building"
+  roofShape "flat roof"
+}
+SimpleBuilding {
+  translation -120.93 174.68 0
+  name "building(47)"
+  floorNumber 4
+  corners [
+    0 0, -4.22 3.39, -34.11 -35.46, -36.22 -38.06, -31.17 -42.17, -33.47 -45.02, 22.47 -90.48, 25.24 -87.06, 25.82 -87.53, 30.87 -81.31, 29.95 -80.56, 41.49 -66.36, 42.44 -67.14, 46.42 -62.25, 45.9 -61.84, 51.19 -55.33, 51.61 -55.66, 55.56 -50.81, 54.27 -49.76, 62.92 -39.11, 63.71 -39.75, 68.68 -33.65, 50.62 -18.99, 47.74 -22.53, 29.64 -8.08, 20.97 -18.76, 21.4 -19.11, 20.64 -20.03, 8.03 -9.78, 9.62 -7.81
+  ]
+  wallType "transparent highrise"
+  roofShape "flat roof"
+}
+Solid {
+  children [
+    DEF SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/red_brick_wall.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 33.7 0
+        }
+      }
+      geometry Extrusion {
+        crossSection [
+          0.1 0
+          0.1 0
+          -0.1 0
+          -0.1 0
+          0.1 0
+        ]
+        spine [
+          109.43 -37.28 0
+          99.17 -29.56 0
+          88.7 -42.57 0
+          92.02 -45.05 0
+        ]
+        splineSubdivision 0
+      }
+    }
+  ]
+  name "wall(1)"
+  boundingObject USE SHAPE
+}
+Solid {
+  translation 0 0 0.75
+  children [
+    DEF SHAPE Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/red_brick_wall.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 28.8 1.5
+        }
+      }
+      geometry Extrusion {
+        crossSection [
+          0.1 0.75
+          0.1 -0.75
+          -0.1 -0.75
+          -0.1 0.75
+          0.1 0.75
+        ]
+        spine [
+          82.56 -50.18 0
+          91.74 -57.54 0
+          81.03 -70.83 0
+        ]
+        splineSubdivision 0
+      }
+    }
+  ]
+  name "wall(2)"
+  boundingObject USE SHAPE
+}
+DEF City-Owned_Private_Parking Pose {
+  translation 175.738528 178.788405 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/light_asphalt.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 48 48
+        }
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0 0 -0.01
+            24.41 -20.18 -0.01
+            38.84 -2.39 -0.01
+            47.45 9.04 -0.01
+            22.52 28.22 -0.01
+            0 0 -0.01
+          ]
+        }
+        coordIndex [
+          0, 1, 2, 3, 4, 5, -1
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}
+DEF parking Pose {
+  translation 140.428223 175.79349 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/light_asphalt.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 59 59
+        }
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0 0 -0.01
+            14.56 18.8 -0.01
+            -19.99 44.43 -0.01
+            -33.16 29.06 -0.01
+            -36.98 31.77 -0.01
+            -44.32 22.78 -0.01
+            -9.68 -4.26 -0.01
+            -4 3.13 -0.01
+            0 0 -0.01
+          ]
+        }
+        coordIndex [
+          0, 1, 2, 3, 4, 5, 6, 7, 8, -1
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}
+DEF water Pose {
+  translation 20.381178 -75.92283 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.3 0.5 0.8
+        roughness 1
+        metalness 0
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0 0 0
+            4.47 1.38 0
+            8.68 1.24 0
+            12.65 -0.18 0
+            15.99 -2.74 0
+            18.38 -6.19 0
+            19.58 -10.21 0
+            19.48 -14.41 0
+            18.09 -18.37 0
+            15.55 -21.72 0
+            12.09 -24.11 0
+            7.6 -25.4 0
+            2.93 -25.1 0
+            -1.35 -23.23 0
+            -4.73 -20.02 0
+            -6.82 -15.85 0
+            -7.37 -11.22 0
+            -6.29 -6.69 0
+            -3.74 -2.79 0
+            0 0 0
+          ]
+        }
+        ccw FALSE
+        coordIndex [
+          0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+          10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+          -1
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}
+DEF parking Pose {
+  translation 156.594187 -46.647804 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/light_asphalt.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 68 68
+        }
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0 0 -0.01
+            36.56 -28.16 -0.01
+            5.36 -68.31 -0.01
+            -31.21 -40.15 -0.01
+            0 0 -0.01
+          ]
+        }
+        ccw FALSE
+        coordIndex [
+          0, 1, 2, 3, 4, -1
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}
+DEF parking Pose {
+  translation -111.053751 -181.47991 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/light_asphalt.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 62 62
+        }
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0 0 -0.01
+            30.79 -24.58 -0.01
+            35.12 -27.88 -0.01
+            61.64 3.87 -0.01
+            26.37 33.05 -0.01
+            0 0 -0.01
+          ]
+        }
+        coordIndex [
+          0, 1, 2, 3, 4, 5, -1
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}
+DEF parking Pose {
+  translation -180.396818 -148.566481 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/light_asphalt.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+        textureTransform TextureTransform {
+          scale 49 49
+        }
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0 0 -0.01
+            -10.39 -13.18 -0.01
+            28.44 -43.52 -0.01
+            38.83 -30.34 -0.01
+            0 0 -0.01
+          ]
+        }
+        coordIndex [
+          0, 1, 2, 3, 4, -1
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}

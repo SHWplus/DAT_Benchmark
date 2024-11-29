@@ -1,0 +1,3063 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "../protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/Road.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/road/protos/RoadLine.proto"
+IMPORTABLE EXTERNPROTO "../protos/trajectary.proto"
+IMPORTABLE EXTERNPROTO "../protos/M100.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/TruckSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/BusSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/bmw/BmwX5Simple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/toyota/ToyotaPriusSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/lincoln/LincolnMKZSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/mercedes_benz/MercedesBenzSprinterSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/tesla/TeslaModel3Simple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/range_rover/RangeRoverSportSVRSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/citroen/CitroenCZeroSimple.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/protos/SumoInterface.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/TruckTrailerSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/MotorbikeSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/ScooterSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/MotorbikeDriver.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/ScooterDriver.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/generic/TruckTankSimple.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/humans/pedestrian/protos/Pedestrian.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/bluebotics/shrimp/protos/Shrimp.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/irobot/create/protos/Create.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/nasa/protos/Sojourner.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/micromagic/mantis/protos/Mantis.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/sphero/bb8/protos/BB-8.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/sony/aibo/protos/AiboErs7.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/robotis/bioloid/protos/BioloidDog.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/nex/protos/FireBird6.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/micromagic/scout/protos/Scout.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/epfl/biorob/protos/GhostDog.proto"
+IMPORTABLE EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/fujitsu/hoap2/protos/Hoap2.proto"
+IMPORTABLE EXTERNPROTO "../protos/SimpleRobot.proto"
+
+WorldInfo {
+  info [
+    "World generated using the Open Street Map to Webots importer"
+    "Author: "
+  ]
+  basicTimeStep 2
+  FPS 30
+  defaultDamping Damping {
+  }
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        30
+      ]
+      bounce 0
+      bounceVelocity 0
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.2082077125742667 -0.08185897087904177 0.9746530958814092 3.8734856556472557
+  position 1158.2354725843607 1077.5175117600982 713.6144099363707
+  near 3
+}
+DEF tbg TexturedBackground {
+  texture "dawn_cloudy_empty"
+  luminosity 0.3
+}
+DEF tbgl TexturedBackgroundLight {
+  texture "dusk"
+  luminosity 0.7
+}
+DEF land Floor {
+  translation 0 0 -0.1
+  size 7000 5000
+  appearance PBRAppearance {
+    baseColor 0.64 0.44 0.12
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 1
+    metalness 0
+  }
+}
+Road {
+  translation 425.253844 -1741.936544 0.01
+  name "road(1)"
+  id "-2379"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.005085 949.56737 0
+    29.368577 1858.434203 0
+    40.882788 2587.023384 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1165.212848 -1754.190471 0.01
+  name "road(2)"
+  id "-2380"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.323934 974.691823 0
+    29.593624 1883.557291 0
+    41.032627 2612.145377 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -719.572583 -1722.827504 0.01
+  name "road(3)"
+  id "-2381"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.237645 954.37432 0
+    29.746159 1863.23778 0
+    41.376642 2591.824256 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 3016.048185 -1784.506607 0.01
+  name "road(4)"
+  id "-2382"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    14.698154 951.773503 0
+    28.733429 1860.646349 0
+    39.984488 2589.240352 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -392.532897 -1728.304977 0.01
+  name "road(5)"
+  id "-2383"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.253382 957.899719 0
+    29.720457 1866.763526 0
+    41.317715 2595.35028 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1544.171735 -1760.436582 0.01
+  name "road(6)"
+  id "-2384"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    14.914639 953.05504 0
+    29.136373 1861.924149 0
+    40.536928 2590.515154 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -2199.853756 -1697.848322 0.01
+  name "road(7)"
+  id "-2385"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.162393 938.417317 0
+    29.858478 1847.279211 0
+    41.639349 2575.864432 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 2611.454815 -1777.92027 0.01
+  name "road(8)"
+  id "-2386"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    14.820872 955.986091 0
+    28.907392 1864.857423 0
+    40.199537 2593.450213 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -2552.896805 -1691.845741 0.01
+  name "road(9)"
+  id "-2387"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.436837 951.759392 0
+    30.177617 1860.618758 0
+    41.994321 2589.201952 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1871.306596 -1765.812415 0.01
+  name "road(10)"
+  id "-2388"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    14.787935 948.007489 0
+    28.96824 1856.878024 0
+    40.335577 2585.470177 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1821.270869 -1704.265836 0.01
+  name "road(11)"
+  id "-2389"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.328073 951.072226 0
+    29.976165 1859.933441 0
+    41.718558 2588.518118 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -12 -1934 0.01
+  rotation 0 0 1 1.559
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -394.9 -1928 0.01
+  rotation 0 0 1 1.559
+  name "road(42)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -721.95 -1922.7 0.01
+  rotation 0 0 1 1.559
+  name "road(43)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1092.1 -1916.5 0.01
+  rotation 0 0 1 1.559
+  name "road(44)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1470.75 -1910.1 0.01
+  rotation 0 0 1 1.559
+  name "road(45)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1823.63 -1904.2 0.01
+  rotation 0 0 1 1.559
+  name "road(46)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -2202.2 -1897.5 0.01
+  rotation 0 0 1 1.559
+  name "road(47)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -2555.25 -1891.7 0.01
+  rotation 0 0 1 1.559
+  name "road(48)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 422.9 -1941.8 0.01
+  rotation 0 0 1 1.559
+  name "road(33)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 784.45 -1947.6 0.01
+  rotation 0 0 1 1.559
+  name "road(34)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1162.85 -1954 0.01
+  rotation 0 0 1 1.559
+  name "road(35)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1541.8 -1960.4 0.01
+  rotation 0 0 1 1.559
+  name "road(37)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1868.95 -1965.6 0.01
+  rotation 0 0 1 1.559
+  name "road(38)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 2238.95 -1971.8 0.01
+  rotation 0 0 1 1.559
+  name "road(39)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 2609.1 -1977.8 0.01
+  rotation 0 0 1 1.559
+  name "road(40)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 3013.7 -1984.4 0.01
+  rotation 0 0 1 1.559
+  name "road(41)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1162.85 -1954 0.01
+  rotation 0 0 1 1.559
+  name "road(36)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 31.75 873.2 0.01
+  rotation 0 0 1 1.559
+  name "road(17)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -351.2 867 0.01
+  rotation 0 0 1 1.559
+  name "road(26)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -678.2 868.7 0.01
+  rotation 0 0 1 1.559
+  name "road(27)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1048.15 879.76 0.01
+  rotation 0 0 1 1.559
+  name "road(28)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1426.76 882 0.01
+  rotation 0 0 1 1.559
+  name "road(29)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1779.55 884 0.01
+  rotation 0 0 1 1.559
+  name "road(30)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -2158.2 877.5 0.01
+  rotation 0 0 1 1.559
+  name "road(31)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -2510.9 897.2 0.01
+  rotation 0 0 1 1.559
+  name "road(32)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 466.1 845 0.01
+  rotation 0 0 1 1.559
+  name "road(18)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 827.5 834.3 0.01
+  rotation 0 0 1 1.559
+  name "road(19)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1206.25 857.9 0.01
+  rotation 0 0 1 1.559
+  name "road(20)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1584.7 830 0.01
+  rotation 0 0 1 1.559
+  name "road(21)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 1911.65 819.5 0.01
+  rotation 0 0 1 1.559
+  name "road(22)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 2281.7 826 0.01
+  rotation 0 0 1 1.559
+  name "road(23)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 2651.65 815.5 0.01
+  rotation 0 0 1 1.559
+  name "road(24)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation 3056.03 804.7 0.01
+  rotation 0 0 1 1.559
+  name "road(25)"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.3
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    200 0 0
+  ]
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1468.413328 -1710.229279 0.01
+  name "road(12)"
+  id "-2390"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.345785 954.875931 0
+    29.949166 1863.73752 0
+    41.65571 2592.322495 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -1089.73656 -1716.60977 0.01
+  name "road(13)"
+  id "-2391"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.364377 958.957963 0
+    29.919775 1867.819952 0
+    41.587848 2596.405249 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 786.813042 -1747.933601 0.01
+  name "road(14)"
+  id "-2392"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    14.879394 944.89092 0
+    29.197094 1853.759218 0
+    40.67459 2582.349574 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation -9.644949 -1734.698886 0.01
+  name "road(15)"
+  id "-2393"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    15.415042 970.601069 0
+    29.833579 1879.464205 0
+    41.391921 2608.050421 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+Road {
+  translation 2241.287401 -1771.874361 0.01
+  name "road(16)"
+  id "-2394"
+  width 12
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  speedLimit 33.333333
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      type "continuous"
+    }
+    RoadLine {
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  wayPoints [
+    0 0 0
+    14.945558 960.569766 0
+    29.078961 1869.439623 0
+    40.408695 2598.031228 0
+  ]
+  splineSubdivision 0
+  roadBoundingObject TRUE
+}
+DEF ORIGIN BmwX5Simple {
+  translation 30 30 0.4
+}
+DEF SUMO_INTERFACE SumoInterface {
+  gui FALSE
+  maxVehicles 0
+  step 100
+  seed 63
+  networkFiles "../../worlds/simpleway_net"
+}
+Robot {
+  children [
+    Receiver {
+      name "receiverState"
+      channel 12
+    }
+    Emitter {
+      type "serial"
+      channel 1
+    }
+  ]
+  name "global_receiver"
+  controller "global_receiver"
+  customData "local"
+  supervisor TRUE
+}
+Pose {
+  translation 18.05 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 18.05 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 18.05 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 18.05 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 18.05 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 18.05 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 18.05 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 450 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 450 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 450 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 450 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 450 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 450 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 450 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 800 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 800 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 800 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 800 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 800 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 800 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 800 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 1170 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 1170 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1170 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 1170 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1170 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1170 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1170 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 1540 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 1540 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1540 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 1540 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1540 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1540 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1540 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 1870 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 1870 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1870 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 1870 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1870 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1870 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 1870 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 2240 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 2240 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2240 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 2240 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2240 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2240 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2240 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 2610 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 2610 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2610 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 2610 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2610 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2610 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 2610 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation 3015 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation 3015 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 3015 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation 3015 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 3015 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 3015 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation 3015 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation -390 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation -390 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -390 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation -390 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -390 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -390 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -390 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation -720 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation -720 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -720 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation -720 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -720 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -720 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -720 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation -1090 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation -1090 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1090 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation -1090 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1090 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1090 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1090 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation -1470 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation -1470 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1470 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation -1470 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1470 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1470 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1470 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation -1820 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation -1820 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1820 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation -1820 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1820 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1820 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -1820 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation -2200 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation -2200 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2200 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation -2200 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2200 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2200 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2200 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}
+Pose {
+  translation -2550 0 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 10
+      }
+    }
+  ]
+}
+Pose {
+  translation -2550 232.46 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2550 533.98 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 25
+      }
+    }
+  ]
+}
+Pose {
+  translation -2550 -307.53 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2550 -914.49 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2550 816.89 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 15
+      }
+    }
+  ]
+}
+Pose {
+  translation -2550 -1410.29 0.025
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.64 0.44 0.12
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 100 20
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+traffic_project/cache/*.txt
+traffic_project/cache/*.jpeg
+traffic_project/controllers/global_receiver/__pycache__/*
+traffic_project/Files2Alg/*.txt
+traffic_project/Files2Alg/*.jpeg
+traffic_project/logs/*.log
+traffic_project/Videos/*
+!traffic_project/Videos/README.md

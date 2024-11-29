@@ -1,0 +1,24 @@
+*~
+.DS_Store
+logs/*.log
+runs/Benchmark_training/*.0
+runs/Benchmark_training/*.1
+runs/Benchmark_train_vis/*.1
+runs/Benchmark_train_vis/*.0
+
+trained_models/*.dat
+__pycache__/
+
+# zip file
+*.zip
+
+# Conda Environments
+.conda/
+.conda/*
+
+# PPO Model Parameters
+params.pth
+
+# PPO train logs
+PPO_logs/
+PPO_logs/*

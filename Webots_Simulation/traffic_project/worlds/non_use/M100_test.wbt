@@ -1,0 +1,91 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/M100.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/mercedes_benz/MercedesBenzSprinterSimple.proto"
+
+WorldInfo {
+  basicTimeStep 2
+  FPS 30
+  defaultDamping Damping {
+  }
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        30
+      ]
+      bounce 0
+      bounceVelocity 0
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.16180331890399727 0.928369507919943 0.3345889160688594 0.3985716095348566
+  position -14.931866765475736 -1.726010975512186 6.467060706871595
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Robot {
+  name "robot(1)"
+  supervisor TRUE
+}
+MercedesBenzSprinterSimple {
+  translation 6.42 -0.41 0.36
+}
+RectangleArena {
+  floorSize 50 50
+  floorTileSize 5 5
+}
+DEF stepController Robot {
+  controller "cppSocketother"
+  supervisor TRUE
+}
+Robot {
+  children [
+    Receiver {
+      type "serial"
+    }
+    Emitter {
+      type "serial"
+      channel 1
+    }
+  ]
+  name "global_receiver"
+  controller "global_receiver"
+  customData "local"
+  supervisor TRUE
+}
+DEF M100 M100 {
+  translation 0.00014696244471297274 -9.133457185640144e-06 0.3954476326577491
+  rotation -0.06457559097899972 0.9948713260474157 -0.07785266635363211 0.0005065691928890009
+  controller "drone_ctrl2"
+  customData "local"
+  supervisor TRUE
+  bodySlot [
+    DEF GPS GPS {
+    }
+    DEF GYRO Gyro {
+    }
+    DEF INERTIAL_UNIT InertialUnit {
+    }
+    DEF EMITTER Emitter {
+      type "serial"
+      channel 5
+    }
+    DEF RECEIVER Receiver {
+      type "serial"
+      channel 4
+    }
+  ]
+  cameraSlot [
+    Camera {
+      fieldOfView 0.7854
+      width 320
+      height 240
+    }
+  ]
+}
