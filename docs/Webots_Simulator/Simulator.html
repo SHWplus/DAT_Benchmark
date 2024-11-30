@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation Environment &mdash; DAT 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parameters Setting" href="Parameters.html" />
+    <link rel="prev" title="Simulator Section" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DAT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Algorithm/index.html">Algorithm</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Simulator Section</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Simulation Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-introduction">Environment Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operation-flow">Operation Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#demo-mode">demo mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-mode">video mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#training-mode">training mode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#parameter-configuration">Parameter Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-parameters">Basic Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tracker-only-effective-for-drones-generates-a-physical-range-parameter-configuration-of-done">Tracker (only effective for drones) generates a physical range parameter configuration of done</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#built-in-reward-parameter-configuration-valid-for-drones-only-cars-return-reward-1-by-default">Built-in reward parameter configuration (valid for drones only, cars return reward=1 by default)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sumo-traffic-system-parameter-configuration">SUMO Traffic System Parameter Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-object-tracking-parameter-configuration">Other object tracking parameter configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-video-parameter-configuration">Output video parameter configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tracker-control-parameter-configuration">Tracker Control Parameter Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simulation-environment-parameter-configuration">Simulation Environment Parameter Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-parameter-recommendations">Configuration Parameter Recommendations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tracked-objects">Tracked Objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sumo-vehicle">SUMO_VEHICLE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#motorcycle">motorcycle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pedestrian">Pedestrian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wheel-robots">Wheel Robots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legged-robots">Legged Robots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-objects">Custom Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#built-in-reward">Built-in Reward</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reward-function">Reward Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reward-judgment">Reward Judgment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#projection-visualization">Projection Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#customized-parameter-interface">Customized Parameter Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input-actions">Input Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return-parameters">Return Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters.html">Parameters Setting</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DAT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Simulator Section</a></li>
+      <li class="breadcrumb-item active">Simulation Environment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Webots_Simulator/Simulator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simulation-environment">
+<h1>Simulation Environment<a class="headerlink" href="#simulation-environment" title="Link to this heading"></a></h1>
+<blockquote>
+<div><style>
+    #language-switch {
+    display: flex; /* Use Flexbox layout */
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Center buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#language-switch button {
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+}
+</style>
+
+<!-- Language switch buttons -->
+<div id="language-switch" style="background-color: #fae3e3; padding: 15px; border-radius: 5px; border: 2px solid #cb7474;">
+    <b style="font-size: 18px;">You can choose language by </b>
+    <button onclick="switchLanguage('zh')">中文</button>
+    <button onclick="switchLanguage('en')">English</button>
+</div>
+
+<script>
+    function switchLanguage(lang) {
+        if (lang === 'zh') {
+            window.location.href = '../zh/Webots_Simulator/Simulator.html';
+        } else if (lang === 'en') {
+            window.location.href = 'Simulator.html';
+        }
+    }
+</script>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></div></blockquote>
+<section id="environment-introduction">
+<span id="id1"></span><h2>Environment Introduction<a class="headerlink" href="#environment-introduction" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The simulation environment of this project is built based on the open-source simulation software <a class="reference external" href="https://cyberbotics.com/">webots</a>. The background of the simulation environment simulates the target tracking problem in outdoor scenes in real life. For this purpose, six maps have been set up, including city streets, city center, lakeside, countryside, desert, and farmland, each of which evolves into various conditions such as day, night, foggy, and snowy, making a total of 24 environments. To facilitate model training from simple environments, several simple environment maps are also available for use.</p></li>
+<li><p>Schematic diagrams of 24 simulation environments in the project:</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/24Scene_Colorful2.png"><img alt="24个环境示意图" class="align-center" src="../_images/24Scene_Colorful2.png" style="width: 700px;" /></a>
+</br></section>
+<section id="operation-flow">
+<span id="id2"></span><h2>Operation Flow<a class="headerlink" href="#operation-flow" title="Link to this heading"></a></h2>
+<div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+   To accommodate different needs such as training, debugging, etc., this project offers <b>3 different running modes</b>.
+</div>
+</br><a class="reference internal image-reference" href="../_images/ExampleImage.png"><img alt="Example Image" class="align-center" src="../_images/ExampleImage.png" style="width: 700px;" /></a>
+<section id="demo-mode">
+<h3>demo mode<a class="headerlink" href="#demo-mode" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This mode generates a tracker in the map. The tracker can fly through the map by keyboard operation, allowing you to browse the map. Meanwhile, the tracker by default tracks a BmwX5 vehicle near its initial position and outputs the reward parameters in real time on the Console status bar. This object can be used to test whether the built-in reward parameters are reasonable for debugging purposes.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">up</span></code>: Drone forward</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">down</span></code>: Move the drone backward.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">left</span></code>: Drone rotates vertically counterclockwise.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">right</span></code>: Drone rotates vertically clockwise.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">w</span></code> <code class="code docutils literal notranslate"><span class="pre">s</span></code> <code class="code docutils literal notranslate"><span class="pre">a</span></code> <code class="code docutils literal notranslate"><span class="pre">d</span></code>: Controls the rotation of the camera head up, down, left, right, and center.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">up</span></code>: Raise the drone.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">down</span></code>: Drop the drone.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">left</span></code>: Drone pans left.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">right</span></code>: Drone pans right.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+   Note: At this point, rewards include both continuous and discrete rewards, see <b>built-in Reward</b> for details.
+</div>
+</br></section>
+<section id="video-mode">
+<h3>video mode<a class="headerlink" href="#video-mode" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>This mode is mainly used to record the behavior of the tracked object. The environment will automatically schedule the tracker error tracking object and export video images according to the simulation time and configuration parameters, while generating labels corresponding to each image.</p></li>
+<li><p>The data is stored in: <code class="code docutils literal notranslate"><span class="pre">./Webots_Simulation/traffic_project/droneVideos/DRONEX/episodeX</span></code>, with the image format as jpeg and the labels in the <code class="code docutils literal notranslate"><span class="pre">mark.json</span></code> file.</p></li>
+<li><p>At the same time, you can generate multiple sets of video image file structure descriptions through the script by directly executing the <code class="code docutils literal notranslate"><span class="pre">./Webots_Simulation/traffic_project/fileStruct.py</span></code> script, which will generate the description file <code class="code docutils literal notranslate"><span class="pre">dir_info.json</span></code> in the same directory.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="training-mode">
+<h3>training mode<a class="headerlink" href="#training-mode" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This mode is used for algorithm training. You can choose to manually open the Webots simulation first and then run the training script, or you can choose to modify the algorithm configuration file to achieve one-click full startup of the algorithm.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="parameter-configuration">
+<span id="parameter-configuration-of-the-simulation-environment"></span><h2>Parameter Configuration<a class="headerlink" href="#parameter-configuration" title="Link to this heading"></a></h2>
+<blockquote>
+<div><div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+   All settings for the simulation environment in this project can be efficiently configured using <b>1 JSON file</b>.
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    The configuration file for the simulation environment is: <code>Webots_Simulation/traffic_project/config/env_config.json</code>.
+</div></div></blockquote>
+<section id="basic-parameters">
+<h3>Basic Parameters<a class="headerlink" href="#basic-parameters" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;Simulation_Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Tracker_Def&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DRONE&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Drone_Supervisor_Ctrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Socket_Ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Config_Agen_Num_Port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38711</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Train_Total_Steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Init_No_Done_Steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;No_Reward_Done_Steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Control_Frequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Customized_Rewards&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Lidar_Enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Tracking_Object&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SUMO_VEHICLE&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;Verbose&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Simulation_Mode</span></code> : There are three simulation modes: “demo”, “video”, and “train”. The demo and video modes are self-running modes of the simulation (default is demo).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The demo will generate a tracker in the map, which supports direct control via the keyboard. Meanwhile, it will track a stationary vehicle, Bmx, by default. This mode can be used to browse the map or debug the reward parameters.</p></li>
+<li><p>The video mode is the video shooting mode. In this mode, the tracker will automatically track the target object, exporting video images and labels.</p></li>
+<li><p>train is the training mode, where the simulation end interacts with the algorithm end to train the tracking algorithm of the tracker.</p></li>
+<li><p>For the complete system operation flowchart, see: <a class="reference internal" href="#operation-flow"><span class="std std-ref">Operation Flow</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">Tracker_Def</span></code> : Select the tracker, the current options are drone (“DRONE”) and car (“CAR”). Among them, the drone is a simulated drone tracker with physical property detection and constraints, while the car is considered an ideal tracker that ignores its own physical properties and can perform any action under any circumstances.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Drone_Supervisor_Ctrl</span></code> : Whether to use the supervisor to control the tracker. The supervisor is Webots’ super administrator and can directly control any node. If true, the supervisor controls the tracker, and all its actions are real-time and responsive, which simplifies algorithm training. If false, the tracker is controlled using a traditional PID controller. This parameter is only applicable to the drone tracker; the car tracker always uses the supervisor for control.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Socket_Ip</span></code> : The IP address for socket communication, defaults to <strong>“127.0.0.1”</strong> if communicating locally.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Config_Agen_Num_Port</span></code> : Configures the socket communication port, which is used to communicate with the algorithm end to determine the number of trackers (agents) to be set.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Train_Total_Steps</span></code> : The maximum number of training steps. If the steps exceed this number, the simulation returns done.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Init_No_Done_Steps</span></code> : The number of simulation steps without done status during initialization. This prevents the unstable physical properties of the tracker during initialization from triggering the done status. This parameter should be set to a reasonable value.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">No_Reward_Done_Steps</span></code> : The number of simulation steps that result in a done status when the reward is continuously zero, which helps improve training efficiency.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Control_Frequence</span></code> : The control frequency for the control algorithm. During training, the simulation end executes at a fixed control frequency of 500Hz based on the simulation time. This parameter is used to adjust the average control frequency of the algorithm end.</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Customized_Rewards</span></code>: Whether to enable the customized reward parameter. Users can calculate rewards based on the customized reward parameter.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For more details on the customized reward parameter, see: <a class="reference internal" href="#customized-parameter-interface"><span class="std std-ref">Customized Parameter Interface</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Lidar_Enable</span></code>: Whether to enable lidar point cloud data.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For more details on lidar point cloud data, see: <a class="reference internal" href="#customized-parameter-interface"><span class="std std-ref">Customized Parameter Interface</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Tracking_Object</span></code>: The tracked object setting (default is SUMO_VEHICLE). Example tracking objects include “SUMO_VEHICLE”, “Pedestrian”, “Shrimp”, “Create”, “Sojourner”, “Mantis”, etc. Custom tracking objects are also supported. See the project manual.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For detailed descriptions of tracking object types, see: <a class="reference internal" href="#tracked-objects"><span class="std std-ref">Tracked Objects</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Verbose</span></code>: Enable log recording. If set to true, some important parameters will be printed in the Webots terminal window for users to observe. Additionally, program run logs will be generated in the <code class="code docutils literal notranslate"><span class="pre">Webots_Simulation/traffic_project/logs</span></code> folder, mainly for debugging the simulation environment.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/WebotsLogOutput.png"><img alt="webots日志输出（“train”&amp;“video”）" class="align-center" src="../_images/WebotsLogOutput.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">id</span></code> : The name of the tracker.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done</span></code> : Whether to return done.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward</span></code> : The current reward size.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">count</span></code> : The step count of steps.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">time</span></code> : Simulation time.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">carDir</span></code> : The movement direction of the tracked target.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">pitchAngle</span></code> : The pitch axis angle of the camera.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">doneState</span></code> : The reason for generating done, including “height” (unreasonable tracker height), “distance” (the error between the tracker’s target position and the actual position is too large), “velocity” (unreasonable tracker movement speed), “yaw velocity” (unreasonable tracker rotational speed around the vertical axis), “pitch or yaw angle” (unreasonable tracker attitude).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="tracker-only-effective-for-drones-generates-a-physical-range-parameter-configuration-of-done">
+<h3>Tracker (only effective for drones) generates a physical range parameter configuration of done<a class="headerlink" href="#tracker-only-effective-for-drones-generates-a-physical-range-parameter-configuration-of-done" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Done_Range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;max_height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;min_height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;omiga&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.283</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.22</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.22</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;distance_error&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_height</span></code> ：Tracker maximum flight altitude (<span class="math notranslate nohighlight">\(m\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">min_height</span></code> ：Tracker minimum flight altitude (<span class="math notranslate nohighlight">\(m\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">velocity</span></code> ：Tracker maximum flight velocity (<span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">omiga</span></code> ：Tracker maximum angular velocity (<span class="math notranslate nohighlight">\(rad/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">roll</span></code> ：Tracker maximum roll angle (<span class="math notranslate nohighlight">\(rad\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">pitch</span></code> ：Tracker maximum pitch angle (<span class="math notranslate nohighlight">\(rad\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">distance_error</span></code> ：Maximum error between the tracker’s desired position and current position (<span class="math notranslate nohighlight">\(m\)</span>).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="built-in-reward-parameter-configuration-valid-for-drones-only-cars-return-reward-1-by-default">
+<span id="built-in-reward-parameter-configuration"></span><h3>Built-in reward parameter configuration (valid for drones only, cars return reward=1 by default)<a class="headerlink" href="#built-in-reward-parameter-configuration-valid-for-drones-only-cars-return-reward-1-by-default" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Reward_Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;reward_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;view&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;reward_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;reward_cut_off&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;distance_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;distance_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_type</span></code> : The type of reward (default is view). “View” detects based on the quadrilateral projected onto the ground from the camera’s perspective, while “distance” detects based on the distance from the midpoint projection in the camera’s view to the target.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_mode</span></code> : The default mode of reward. “Continuous” produces a continuous floating-point number between [0, 1], while “discrete” produces an integer of 0 or 1.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_cut_off</span></code> : Reward cut-off. When the obtained reward is less than this value, <code class="code docutils literal notranslate"><span class="pre">No_Reward_Done_Steps</span></code> starts counting.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">distance_scale</span></code> : Distance scale (default is continuous). This parameter is only effective in continuous mode and controls the decay rate of the reward due to distance error.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">distance_range</span></code> : The distance error range for generating rewards.</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_scale</span></code> : View scale. This parameter is only effective in continuous mode and view type, controlling the decay rate of the reward due to deviation from the view center.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For specific parameter meanings, see: <a class="reference internal" href="#built-in-reward"><span class="std std-ref">Built-in Reward</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_range</span></code> : The view range for generating rewards. This parameter is used to scale the quadrilateral used for reward calculation, i.e., the size of the quadrilateral box in the camera view. Generally, the range is set to [0,1].</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="sumo-traffic-system-parameter-configuration">
+<h3>SUMO Traffic System Parameter Configuration<a class="headerlink" href="#sumo-traffic-system-parameter-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Sumo_Params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;rou_update&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_sumo_car&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fixed_car_group_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;car_group_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;car_import_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">52.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;car_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;passenger&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fixed_color&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;normalize_color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">     </span><span class="nt">&quot;max_car_speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_car_accel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_car_decel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_rou_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7000</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;min_rou_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;route_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fixed_seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;random_seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">rou_update</span></code> : Whether the traffic simulation route file is updated. If you want to obtain a specific route, set it to false. <strong>Note:</strong> Any change in the parameters of this module will cause the route to refresh automatically.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_sumo_car</span></code> : Maximum number of vehicles in the map.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">fixed_car_group_num</span></code> : Whether to customize the number of vehicles added to the environment in each group.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">car_group_num</span></code> : Custom number of vehicles added to the environment in each group. <strong>Note:</strong> In training and video mode, if this parameter is set unreasonably (&lt; Agent number * 3), the system will automatically set a reasonable parameter (= Agent number * 3), otherwise the environment cannot run stably.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">car_import_interval</span></code> : The interval time (s) between each group of vehicles added to the map.</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">car_type</span></code> : The type of vehicle (default is passenger), including “passenger”, “bus”, “truck”, “trailer”, “motorcycle”.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>All supported vehicle types can be found at: <a class="reference internal" href="#sumo-vehicle"><span class="std std-ref">SUMO_VEHICLE</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">fixed_color</span></code> : Whether to fix the vehicle color.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">normalize_color</span></code> : Normalized RGB color vector.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_car_speed</span></code> : Maximum vehicle speed (<span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_car_accel</span></code> : Maximum vehicle acceleration (<span class="math notranslate nohighlight">\(m/s^2\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_car_decel</span></code> : Maximum vehicle deceleration (<span class="math notranslate nohighlight">\(m/s^2\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_rou_distance</span></code> : Maximum route length (<span class="math notranslate nohighlight">\(m\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">min_rou_distance</span></code> : Minimum route length (<span class="math notranslate nohighlight">\(m\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">route_num</span></code> : Maximum number of routes (note that this is the maximum, <code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_multilateral</span></code> may actually have fewer routes than the set parameter due to the randomization process).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">fixed_seed</span></code> : Whether to use a fixed random seed. If you want to obtain stable routes and vehicle styles, set it to true.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">random_seed</span></code> : The fixed random seed.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="other-object-tracking-parameter-configuration">
+<h3>Other object tracking parameter configuration<a class="headerlink" href="#other-object-tracking-parameter-configuration" title="Link to this heading"></a></h3>
+<p>Only effective when <code class="code docutils literal notranslate"><span class="pre">Tracking_Object</span></code> is not “SUMO_VEHICLE”.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Other_Params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;max_obj_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_import_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;import_group_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_max&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_min&quot;</span><span class="p">:</span><span class="mi">-10</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_obj_num</span></code> ：Maximum number of objects.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_import_interval</span></code> ：Time interval (s) for adding each group of objects to the map.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">import_group_num</span></code> ：Number of objects added per group.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_random</span></code> ：Whether to enable random distribution of objects along the sides of the map roads. If true, objects will be randomly placed in a random direction at random positions on a random path. If false, objects will be placed at a fixed distance in the vertical direction at random positions on a random path.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_multilateral</span></code> ：Whether to enable bilateral distribution. If true, the distribution range will be <code class="code docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max]</span> <span class="pre">∪</span> <span class="pre">[-max,</span> <span class="pre">-min]</span></code> . If false, the distribution range will be <code class="code docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max]</span></code> .</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_fixed</span></code> ：Fixed distance (<span class="math notranslate nohighlight">\(m\)</span>) from the center of the road.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_max</span></code> ：Maximum distance (<span class="math notranslate nohighlight">\(m\)</span>) from the center of the road.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_min</span></code> ：Minimum distance (<span class="math notranslate nohighlight">\(m\)</span>) from the center of the road.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="output-video-parameter-configuration">
+<h3>Output video parameter configuration<a class="headerlink" href="#output-video-parameter-configuration" title="Link to this heading"></a></h3>
+<p>Effective only when <code class="code docutils literal notranslate"><span class="pre">Simulation_Mode</span></code> is not “video”.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Out_Video&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;channels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;total_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;warm_up_steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;output_car_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;random_action&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;forward_speed&quot;</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;backward_speed&quot;</span><span class="p">:</span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;left_speed&quot;</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;right_speed&quot;</span><span class="p">:</span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;cw_omega&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;ccw_omega&quot;</span><span class="p">:</span><span class="mi">-2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">channels</span></code> ：Number of video channels, which corresponds to the number of trackers in the imported map.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">fps</span></code> ：Frames per second calculated based on simulation time (video frames are exported at this frame rate).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">start_time</span></code> ：Simulation time (<span class="math notranslate nohighlight">\(s\)</span>) at which video export begins.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">total_time</span></code> ：Duration of the video in simulation time (<span class="math notranslate nohighlight">\(s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">warm_up_steps</span></code> ：The number of steps after reset during which no data is output. Note that each step has a cycle of 2ms.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">output_car_dir</span></code> ：Whether to output the vehicle direction. If enabled, only the vehicle movement direction is output; otherwise, reward and action are output (Vehicle directions: 0 stop, 1 forward, 2 left turn, 3 right turn).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">random_action</span></code> ：Whether the tracker uses random actions. If enabled, random actions are output based on Control_Frequency. Otherwise, the tracker will precisely follow the vehicle, and the action output will be -1 (meaningless).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">forward_speed</span></code> ：Forward speed of the tracker’s random action (<span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">backward_speed</span></code> ：Backward speed of the tracker’s random action (<span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">left_speed</span></code> ：Leftward speed of the tracker’s random action (<span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">right_speed</span></code> ：Rightward speed of the tracker’s random action (<span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">cw_omega</span></code> ：Clockwise rotation speed of the tracker’s random action (<span class="math notranslate nohighlight">\(rad/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ccw_omega</span></code> ：Counterclockwise rotation speed of the tracker’s random action (<span class="math notranslate nohighlight">\(rad/s\)</span>).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="tracker-control-parameter-configuration">
+<h3>Tracker Control Parameter Configuration<a class="headerlink" href="#tracker-control-parameter-configuration" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This set of parameters is used to randomize the tracking properties of the tracker itself.</p>
+</div></blockquote>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Drone_Random_Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;start_time_bias_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">310</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;view_pitch_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_pitch_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_pitch_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.57</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_pitch_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;height_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;height_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">15.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;height_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;height_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">13.0</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;direction_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_random_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.1</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;horizon_bias_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;verticle_bias_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">start_time_bias_ms</span></code> : Due to the time required for environment initialization, theoretically, the more agents are set, the longer the initialization time. This parameter can adjust the overall initialization time.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Note: The total initialization time will increase with the number of agents set, and it will be longer than the time set by this parameter.</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_random</span></code> : Randomization of the tracker camera pitch angle.</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_fixed</span></code> : If the above parameter is false, the angle defined by this parameter will be used.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the angle is greater than 0, it is a downward pitch; otherwise, it is an upward pitch.</p></li>
+<li><p>In practical usage, a downward pitch is common. Therefore, the parameter range in the simulation environment is limited to <span class="math notranslate nohighlight">\([0.5, 1.57](rad)\)</span>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_random_max</span></code> : Maximum camera downward pitch.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_random_min</span></code> : Minimum camera downward pitch.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">height_random</span></code> : Randomization of tracker flight height. Other parameter meanings are the same as above.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">direction_random</span></code> : Randomization of the tracker’s initial view direction following the object, with a range of <span class="math notranslate nohighlight">\([-pi,pi](rad)\)</span>.</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">direction_random_multilateral</span></code> : Whether to enable bilateral randomization configuration.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">false</span></code>, <span class="math notranslate nohighlight">\([min, max]\)</span> ; <code class="code docutils literal notranslate"><span class="pre">true</span></code>, <span class="math notranslate nohighlight">\([-max, -min] ∪ [min, max]\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">horizon_bias_random</span></code> : Horizontal offset of the initial view tracker tracking object. If the subsequent parameter is positive, the object shifts to the left; if negative, the object shifts to the right. Other parameters are the same as above.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">verticle_bias_random</span></code> : Vertical offset of the initial view tracker tracking object. If the subsequent parameter is positive, the object shifts upward; if negative, the object shifts downward. Other parameters are the same as above.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="simulation-environment-parameter-configuration">
+<h3>Simulation Environment Parameter Configuration<a class="headerlink" href="#simulation-environment-parameter-configuration" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This set of parameters is used to randomize the tracking attributes of the tracker itself.</p>
+</div></blockquote>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Env_Params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;background_luminosity_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bgl_incremental&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bgl_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bgl_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;backgroundLight_luminosity_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bgLl_incremental&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bgLl_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bgLl_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;foggy_use_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;foggy_visibility_range_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;foggy_visibility_range_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;foggy_visibility_range_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;foggy_visibility_range_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Parameter Description</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">background_luminosity_random</span></code>: Whether to randomize the environmental background luminosity.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgl_incremental</span></code>: If the above parameter is <code class="code docutils literal notranslate"><span class="pre">false</span></code>, use this parameter to define a fixed environmental luminosity.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgl_random_max</span></code>: Maximum environmental background luminosity.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgl_random_min</span></code>: Minimum environmental background luminosity.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">backgroundLight_luminosity_random</span></code>: Whether to randomize the environmental background light luminosity.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgLl_incremental</span></code>: If the above parameter is <code class="code docutils literal notranslate"><span class="pre">false</span></code>, use this parameter to define a fixed environmental background light luminosity.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgLl_random_max</span></code>: Maximum environmental background light luminosity.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgLl_random_min</span></code>: Minimum environmental background light luminosity.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_use_default</span></code>: Whether to enable environmental fog.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_random</span></code>: Whether to randomize the visibility range of environmental fog.</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_fixed</span></code>: If the above parameter is <code class="code docutils literal notranslate"><span class="pre">false</span></code>, use this parameter to define a fixed visibility range for environmental fog.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_max</span></code>: Maximum visibility range of environmental fog.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_min</span></code>: Minimum visibility range of environmental fog.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="configuration-parameter-recommendations">
+<h3>Configuration Parameter Recommendations<a class="headerlink" href="#configuration-parameter-recommendations" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>For recommendations on simulator parameter configurations, please refer to the document: <a class="reference internal" href="Parameters.html"><span class="doc">Parameters Setting</span></a>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="tracked-objects">
+<span id="id3"></span><h2>Tracked Objects<a class="headerlink" href="#tracked-objects" title="Link to this heading"></a></h2>
+<blockquote>
+<div><div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+      This project provides 18 types of 24 predefined tracking targets, and offers a plug-and-play interface that supports users in utilizing self-designed models and controllers.
+</div></div></blockquote>
+<section id="sumo-vehicle">
+<span id="id4"></span><h3>SUMO_VEHICLE<a class="headerlink" href="#sumo-vehicle" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>SUMO_VEHICLE is controlled by the SUMO traffic management system to manage the traffic conditions on the map, allowing vehicles to follow planned routes on the map. The type of vehicle can be specified.</p>
+</div></blockquote>
+<p><strong>passenger</strong></p>
+<blockquote>
+<div><p>Passenger cars include common sedans, SUVs, and business vehicles, as shown below:</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/BMWX5.png" alt="Image 1" style="width: 90%;" />
+      <figcaption>BmwX5</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/CITROENCZero.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>CitroenCZero</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/LINKOLNMKZ.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>LinkolnMKZ</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/MERCEDESBENZSprinter.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>MercedesBenzSprinter</figcaption>
+   </figure>
+</div><div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/RANGEROVERSportSVR.png" alt="Image 1" style="width: 90%;" />
+      <figcaption>RangeRoverSportSVR</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/TESLAModel3.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>TeslaModel3</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/TOYOTAPrius.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>ToyotaPrius</figcaption>
+   </figure>
+</div></div></blockquote>
+<p><strong>bus</strong></p>
+<blockquote>
+<div><p>Unified model, large passenger vehicles</p>
+</div></blockquote>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="../_images/BUS.png"><img alt="BUS" src="../_images/BUS.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Bus</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>truck</strong></p>
+<blockquote>
+<div><p>Unified vehicle type, truck without cargo box</p>
+</div></blockquote>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/TRUCK.png"><img alt="TRUCK" src="../_images/TRUCK.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Truck</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>trailer</strong></p>
+<blockquote>
+<div><p>Unified model, truck with cargo box</p>
+</div></blockquote>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="../_images/TRAILER.png"><img alt="TRAILER" src="../_images/TRAILER.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Trailer</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="motorcycle">
+<h3>motorcycle<a class="headerlink" href="#motorcycle" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Two types of vehicles, motorcycles</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/SCOOTER.png" alt="SCOOTER" style="width: 90%;" />
+      <figcaption>Scooter</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/MOTORBIKE.png" alt="MOTORBIKE" style="width: 90%;" />
+      <figcaption>Motorbike</figcaption>
+   </figure>
+</div></div></blockquote>
+</section>
+<section id="pedestrian">
+<h3>Pedestrian<a class="headerlink" href="#pedestrian" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Pedestrian objects will move along a certain path at a certain speed, and the human body will simulate real human gait during motion.</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/PEDESTRIAN.png" alt="PEDESTRIAN " style="width: 90%;" />
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/PEDESTRIAN2.png" alt="PEDESTRIAN2" style="width: 90%;" />
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/PEDESTRIAN3.png" alt="PEDESTRIAN3" style="width: 90%;" />
+   </figure>
+</div>
+<p style="text-align: center;">Pedestrian</p></div></blockquote>
+</section>
+<section id="wheel-robots">
+<h3>Wheel Robots<a class="headerlink" href="#wheel-robots" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Wheel Robots</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/SHRIMP.png" alt="SHRIMP" style="width: 90%;" />
+      <figcaption>Shrimp</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/CREATE.png" alt="CREATE" style="width: 90%;" />
+      <figcaption>Create</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/SOJOURNER.png" alt="SOJOURNER" style="width: 90%;" />
+      <figcaption>Sojourner Rover</figcaption>
+   </figure>
+</div><div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/BB_8.png" alt="BB_8" style="width: 90%;" />
+      <figcaption>BB-8 Spherical Robot</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/FIREBIRD6.png" alt="FIREBIRD6" style="width: 90%;" />
+      <figcaption>FireBird6</figcaption>
+   </figure>
+</div></div></blockquote>
+</section>
+<section id="legged-robots">
+<h3>Legged Robots<a class="headerlink" href="#legged-robots" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/MANTIS.png" alt="MANTIS" style="width: 90%;" />
+      <figcaption>Mantis Large Hexapod Robot</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/AIBOERS7.png" alt="AIBOERS7" style="width: 90%;" />
+      <figcaption>AiboErs7 Quadruped Robot</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/BIOLOIDDOG.png" alt="BIOLOIDDOG" style="width: 90%;" />
+      <figcaption>BioloidDog Quadruped Robot</figcaption>
+   </figure>
+</div><div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/SCOUT.png" alt="SCOUT" style="width: 90%;" />
+      <figcaption>Scout Bipedal Robot</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/GHOSTDOG2.png" alt="GHOSTDOG2" style="width: 90%;" />
+      <figcaption>GhostDog Quadruped Robot</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/HOAP2.png" alt="HOAP2" style="width: 90%;" />
+      <figcaption>Hoap2 Bipedal Robot</figcaption>
+   </figure>
+</div></div></blockquote>
+</section>
+<section id="custom-objects">
+<h3>Custom Objects<a class="headerlink" href="#custom-objects" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This project supports custom tracked objects, and the steps are as follows:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Create a proto file for Webots following <a class="reference external" href="https://cyberbotics.com/doc/reference/proto#:~:text=Webots%20Reference%20Manual.%20R2023b.%20PROTO.">webots wiki</a> . The attributes that must be exposed to the scene tree include “translation”, “rotation”, and “name”. The description file should be stored in <code class="code docutils literal notranslate"><span class="pre">UAV_Follow_Env/Webots_Simulation/traffic_project/protos</span></code></p></li>
+</ol>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="../_images/SceneTreePropertyPack.png"><img alt="场景树属性包" src="../_images/SceneTreePropertyPack.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Scenario Tree Attribute Pack</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>You can choose to write a controller to give the tracked object autonomous behavior.</p></li>
+<li><p>Load the established proto file in the <code class="code docutils literal notranslate"><span class="pre">IMPORTABLE</span> <span class="pre">EXTERNPROTO</span></code> module of webots.</p></li>
+</ol>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <div style="text-align: center; width: 38%;">
+      <img src="../_static/image/IMPORT_PROTO.png" alt="IMPORT_PROTO" style="width: 90%;" />
+   </div>
+   <div style="text-align: center; width: 62%;">
+      <img src="../_static/image/IMPORT_PROTO2.png" alt="IMPORT_PROTO2" style="width: 90%;" />
+   </div>
+</div>
+
+<p style="text-align: center; ">
+   IMPORT PROTO
+</p><ol class="arabic" start="4">
+<li><p>Write the name of the proto into the safety check file <code class="code docutils literal notranslate"><span class="pre">UAV_Follow_Env/Webots_Simulation/traffic_project/config/safetyCheck.py</span></code></p>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="../_images/SafeCheck.png"><img alt="SafeCheck" src="../_images/SafeCheck.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Security Check</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Modify the description of <code class="code docutils literal notranslate"><span class="pre">Tracking_Object</span></code> in the json configuration file so that its description matches the proto name.</p></li>
+<li><p>After the above steps, you can use the tracker to track custom objects.</p></li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+</section>
+</section>
+<section id="built-in-reward">
+<span id="id5"></span><h2>Built-in Reward<a class="headerlink" href="#built-in-reward" title="Link to this heading"></a></h2>
+<blockquote>
+<div><div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+      This project provides both <b>discrete and continuous</b> reward functions, which can be used to design different agent evaluation metrics.
+</div>
+</br></div></blockquote>
+<section id="reward-function">
+<h3>Reward Function<a class="headerlink" href="#reward-function" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="border-left: 4px solid #FFC1C1; padding-left: 10px; margin-left: 0;">
+  Due to the existence of the super intelligent agent in Webots, we can obtain the coordinates of the aircraft and the tracked car at each moment, (x_f, y_f, z_f) and (x_v, y_v, z_v), and directly determine whether the tracking is successful based on the actual pitch angle of the camera and the set camera FOV.
+</div>
+</br><p>For the tracker (drone), there are two options for the reward function. The first option is sparse rewards, where rewards are given when the tracked object enters the tracking range, and no rewards are given when it leaves the range (the reward is 0). The mathematical expression is as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}r_{d} = \begin{cases}
+1 &amp; t \in I, \\
+0 &amp; \text{otherwise}.
+\end{cases}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(I\)</span> represents the tracking range (the area captured by the camera lens), and <span class="math notranslate nohighlight">\(t\)</span> represents the position of the tracked object within the tracking range (the area captured by the camera lens).</p>
+<figure class="align-center" id="id13">
+<span id="discrete-reward-diagram-for-tracking-object"></span><a class="reference internal image-reference" href="../_images/Discrete_reward.png"><img alt="Discrete_reward" src="../_images/Discrete_reward.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Discrete Reward Diagram of the Tracking Object</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The second type is dense reward, which gives a reward that decreases as the distance increases by evaluating the position of the tracking object relative to the center of the tracking range. The higher the reward, the closer the target is to the center point of the range, and vice versa.</p>
+<figure class="align-center" id="id14">
+<span id="dense-reward-calculation-formula"></span><span id="figcontr"></span><span id="continuous-reward-diagram-for-tracking-object"></span><a class="reference internal image-reference" href="../_images/Continuous_reward.png"><img alt="Continuous_reward" src="../_images/Continuous_reward.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Continuous Reward Diagram for Object Tracking</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The figure above is a schematic of a tracking object within the camera frame, note that</p>
+<div class="math notranslate nohighlight">
+\[x = \frac{\mid p_{vc}- I_{OG}\mid}{\mid E_{G_c}- I_{OG}\mid}\]</div>
+<p>Then, the dense reward can be obtained using the following expression:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}r_{c} = \begin{cases}
+\tanh\left(\alpha(1-x)^{3}\right), &amp; t \in I_{clip}, \\
+0 &amp; \text{otherwise}.
+\end{cases}\end{split}\]</div>
+<p>The closer the target is to the center of the range, the closer the reward is to 1; conversely, the farther away, the closer the reward is to 0. <span class="math notranslate nohighlight">\(\alpha\)</span> is a constant, and a recommended value is between 3 and 5.
+In addition, <span class="math notranslate nohighlight">\(I_{clip}\)</span> is the effective reward determination range (as shown in the red box in the figure above <a class="reference internal" href="#figcontr"><span class="std std-ref">Continuous Reward Diagram for Object Tracking</span></a>), and the ratio of its side length <span class="math notranslate nohighlight">\(W_{I_{clip}}\)</span> to the original image side length <span class="math notranslate nohighlight">\(W_{I}\)</span> can be expressed by <span class="math notranslate nohighlight">\(\lambda_{clip}\)</span> as follows.</p>
+<div class="math notranslate nohighlight">
+\[\lambda_{clip} = \frac{W_{I_clip}}{W_{I}}\]</div>
+<p>According to the above definition, the reasonable range of <span class="math notranslate nohighlight">\(\lambda_{clip}\)</span> is <span class="math notranslate nohighlight">\([0,1]\)</span>, and in actual training, it is recommended to set the parameter as <span class="math notranslate nohighlight">\(\lambda_{clip}=0.7\)</span>.</p>
+</div></blockquote>
+</section>
+<section id="reward-judgment">
+<h3>Reward Judgment<a class="headerlink" href="#reward-judgment" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>The acquisition of the above reward function is based on the judgment of the tracked object’s position. In practice, the position of the tracked object in the camera image can be provided through machine vision recognition or manual annotation. However, in simulation training, in order to simplify the calculation and speed up the algorithm, we directly use the coordinates of the tracked object to determine whether it has entered the tracking range.</p>
+<figure class="align-center" id="id15">
+<span id="id6"></span><a class="reference internal image-reference" href="../_images/Reward.png"><img alt="Reward" src="../_images/Reward.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Schematic diagram of reward acquisition</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<section id="principle">
+<h4>Principle<a class="headerlink" href="#principle" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>First, the camera focal length in the simulation needs to be obtained, and the expression is calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[f = \frac{W}{2\tan\left(\frac{1}{2}FoV\right)}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(W\)</span> represents the width of the camera image (in pixels), and <span class="math notranslate nohighlight">\(FoV\)</span> refers to the field of view of the tracker camera, as shown in Figure b of the <a class="reference internal" href="#id6"><span class="std std-ref">Schematic diagram of reward acquisition</span></a> (a).</p>
+<p>Then, as shown in the <a class="reference internal" href="#id6"><span class="std std-ref">Schematic diagram of reward acquisition</span></a> (a), we need to project the camera’s corner points onto the spatial plane where the tracked object is located. Next, as shown in the <a class="reference internal" href="#id6"><span class="std std-ref">Schematic diagram of reward acquisition</span></a> (b), determine the coordinates of the tracked object. Finally, by establishing the camera coordinate system <span class="math notranslate nohighlight">\(\{c\}\)</span> at the optical center of the camera, the coordinates of the four corners of the camera image in the coordinate system <span class="math notranslate nohighlight">\(\{c\}\)</span> can be obtained:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}LU\left(-f,-\frac{1}{2}W,\frac{1}{2}H\right),\\
+LD\left(-f,-\frac{1}{2}W,-\frac{1}{2}H\right),\\
+RU\left(-f,\frac{1}{2}W,\frac{1}{2}H\right),\\
+RD\left(-f,\frac{1}{2}W,-\frac{1}{2}H\right)\end{split}\]</div>
+<p>By associating with the optical center <span class="math notranslate nohighlight">\(C\)</span> <span class="math notranslate nohighlight">\((0,0,0)\)</span>, we can obtain four linear equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}
+l_{LUC}: \frac{x}{-f} = \frac{2y}{-W} = \frac{2z}{H}, \\
+l_{LDC}: \frac{x}{-f} = \frac{2y}{-W} = \frac{2z}{-H}, \\
+l_{RUC}: \frac{x}{-f} = \frac{2y}{W} = \frac{2z}{H}, \\
+l_{RDC}: \frac{x}{-f} = \frac{2y}{W} = \frac{2z}{-H}
+\end{matrix}\end{split}\]</div>
+<p>Then get the equation for the ground (horizontal):</p>
+<div class="math notranslate nohighlight">
+\[G_{w}: z = h\]</div>
+<p><span class="math notranslate nohighlight">\(\{w\}\)</span> represents the world coordinate system, and <span class="math notranslate nohighlight">\(h\)</span> is the ground height.</p>
+<p>Since the pose of the tracker gimbal is known, it is easy to obtain the transformation relationship from the camera coordinate system <span class="math notranslate nohighlight">\(\{c\}\)</span> to the world coordinate system <span class="math notranslate nohighlight">\(\{w\}\)</span>, which is the homogeneous transformation matrix <span class="math notranslate nohighlight">\(T_{ct}\)</span>.</p>
+<p>By transforming the plane equation <span class="math notranslate nohighlight">\(G_{w}\)</span> to the coordinate system <span class="math notranslate nohighlight">\(\{c\}\)</span>, and solving it together with the four line equations, the four ground intersection points <span class="math notranslate nohighlight">\(LU_{G}, LD_{G}, RU_{G}, RD_{G}\)</span> can be obtained. These four points form the four corner points of the tracking range <span class="math notranslate nohighlight">\(I\)</span>, thus determining the tracking area <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<p>Finally, read the tracking object’s coordinate point <span class="math notranslate nohighlight">\(p_{vG}\)</span> from the simulation environment, and convert it along with the image center point <code class="code docutils literal notranslate"><span class="pre">I_{OG}</span></code> to the coordinate system <span class="math notranslate nohighlight">\(\{c\}\)</span>, obtaining <span class="math notranslate nohighlight">\(p_{vc}\)</span>. Using the car’s coordinates <span class="math notranslate nohighlight">\(p_{vc}\)</span>, the four intersection points (<code class="code docutils literal notranslate"><span class="pre">LU_G</span></code>, <code class="code docutils literal notranslate"><span class="pre">LD_G</span></code>, <code class="code docutils literal notranslate"><span class="pre">RU_G</span></code>, and <code class="code docutils literal notranslate"><span class="pre">RD_G</span></code>), and the image center <code class="code docutils literal notranslate"><span class="pre">I_{OG}</span></code>, by utilizing the <a class="reference internal" href="#dense-reward-calculation-formula"><span class="std std-ref">Continuous Reward Diagram for Object Tracking</span></a> , the ratio <span class="math notranslate nohighlight">\(x\)</span> can be calculated. When <span class="math notranslate nohighlight">\(0 \leq x \leq 1\)</span>, the object is within the image, indicating successful tracking.</p>
+<p>The calculation method is similar when the ground is not horizontal.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="projection-visualization">
+<h3>Projection Visualization<a class="headerlink" href="#projection-visualization" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>After implementing the above principle, the effect is as shown in the following video. By placing the block at the intersection point of the ground and the calculated line in the simulation, the camera’s view range can be seen in real time:</p>
+<video width="640" height="360" controls>
+   <source src="../_static/video/GetReward_Video.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+   Note: The upper limit of the field of view cannot exceed the horizon, otherwise the calculation results will be meaningless.
+</div></div></blockquote>
+</br></section>
+</section>
+<section id="customized-parameter-interface">
+<span id="id7"></span><h2>Customized Parameter Interface<a class="headerlink" href="#customized-parameter-interface" title="Link to this heading"></a></h2>
+<div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+      This project provides common <b>6 types of sensor data</b>, which can be used for subsequent multi-sensor collaborative task design.
+</div>
+</br><section id="input-actions">
+<h3>Input Actions<a class="headerlink" href="#input-actions" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>The input actions are used to control the movement of the tracker. Currently, the tracker has four actions: move forward, move backward, move left, move right, plus the reset data, totaling 5 floating-point numbers.</p>
+</div></blockquote>
+</section>
+<section id="return-parameters">
+<h3>Return Parameters<a class="headerlink" href="#return-parameters" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>The return parameters mainly include three parts: the basic data packet, the custom reward data packet, and the radar data packet.</p>
+</div></blockquote>
+<p><strong>Basic Data Packet</strong></p>
+<blockquote>
+<div><p>The basic data packet consists of 22 floating-point numbers, as shown below:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_Odometry</span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="c1">// simulation steps (not simulation time)</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">position</span><span class="p">;</span><span class="c1">// three-axis position m</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">linear</span><span class="p">;</span><span class="c1">// three-axis linear velocity m/s</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">acc</span><span class="p">;</span><span class="c1">// three-axis acceleration m/s^2</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">angular</span><span class="p">;</span><span class="c1">// three-axis angular velocity rad</span>
+<span class="w">  </span><span class="n">vector4</span><span class="w"> </span><span class="n">orientation</span><span class="p">;</span><span class="c1">// quaternion</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">angle</span><span class="p">;</span><span class="c1">// Euler angles</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">reward</span><span class="p">;</span><span class="c1">// reward</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">done</span><span class="p">;</span><span class="c1">// whether simulation ends</span>
+<span class="p">}</span><span class="n">Odometry</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<html>
+
+<head>
+
+    <style>
+
+
+        table {
+
+            border-collapse: collapse;
+
+            width: 100%; /* 根据需要设置宽度 */
+
+        }
+
+
+        th {
+
+            border-top: 2px solid black; /* 或者使用你想要的任何颜色和粗细 */
+
+            border-bottom: 2px solid black; /* 底部边框，如果需要的话 */
+
+            padding: 8px; /* 设置内边距以改善可读性 */
+
+        }
+
+
+        td {
+
+            padding: 6px; /* 设置内边距以改善可读性 */
+
+        }
+
+
+        td, th {
+
+            border-left: none;
+
+            border-right: none;
+
+        }
+
+
+        .vision-row {
+
+            background-color: #FFC1C1;
+
+        }
+
+
+
+        .motion-row {
+
+            background-color: #87CEEB;
+
+        }
+
+
+        .row-line {
+
+            border-bottom: 2px solid black; /* 底部边框，如果需要的话 */
+
+        }
+
+        .merged-cell {
+            text-align: center; /* 水平居中 */
+            vertical-align: middle; /* 垂直居中，虽然对于td来说这通常是默认的 */
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<table>
+ <tr class="merged-cell">
+     <th>Category</th>
+     <th>Sensor</th>
+     <th>Parameter</th>
+     <th>Type</th>
+     <th>Description</th>
+     <th>Potential Tasks</th>
+ </tr>
+ <tr class="merged-cell">
+     <td rowspan="2" class="vision-row merged-cell">Vision</td>
+     <td>Camera</td>
+     <td>Image</td>
+     <td>Mat</td>
+     <td>Images captured by the camera</td>
+     <td>Default sensor</td>
+ </tr>
+ <tr class="row-line merged-cell">
+     <td>Lidar</td>
+     <td>LidarCloud</td>
+     <td>vector2000</td>
+     <td>Point cloud from RpLidarA2(m)</td>
+     <td>Obstacle avoidance</td>
+ </tr>
+ <tr class="merged-cell">
+     <td rowspan="6" class="motion-row merged-cell">Motion</td>
+     <td rowspan="2" class="merged-cell">GPS</td>
+     <td>Position</td>
+     <td>vector3</td>
+     <td>Position (m)</td>
+     <td>Visual navigation</td>
+ </tr>
+ <tr class="merged-cell">
+     <td>Linear</td>
+     <td>vector3</td>
+     <td>Linear velocity (m/s)</td>
+     <td>Visual navigation</td>
+ </tr>
+ <tr class="merged-cell">
+     <td>Accelerometer</td>
+     <td>Acc</td>
+     <td>vector3</td>
+     <td>Acceleration (m/s^2)</td>
+     <td>Visual navigation</td>
+ </tr>
+ <tr class="merged-cell">
+     <td>Gyroscope</td>
+     <td>Angular</td>
+     <td>vector3</td>
+     <td>Angular velocity (rad/s)</td>
+     <td>Robot posture stabilization</td>
+ </tr>
+ <tr class="merged-cell">
+     <td rowspan="2" class="merged-cell">IMU</td>
+     <td>Angle</td>
+     <td>vector3</td>
+     <td>Eular angles (rad)</td>
+     <td>Robot posture stabilization</td>
+ </tr>
+ <tr class="row-line merged-cell">
+     <td>Orientation</td>
+     <td>vector4</td>
+     <td>Quaternion representation</td>
+     <td>Robot posture stabilization</td>
+ </tr>
+</table>
+</body>
+</html>
+</br><p><strong>Custom Reward Data Packet</strong></p>
+<blockquote>
+<div><p>The custom reward data packet consists of 59 floating point numbers + 1 string, including the following parts</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_rewardData</span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraWidth</span><span class="p">;</span><span class="c1">// Image width (pixels)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraHeight</span><span class="p">;</span><span class="c1">// Image height (pixels)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraFov</span><span class="p">;</span><span class="c1">// Camera field of view (rad) [0,pi]</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraF</span><span class="p">;</span><span class="c1">// Camera focal length estimate (pixels)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraPitch</span><span class="p">;</span><span class="c1">// Camera pitch angle (rad)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">trackerHeight</span><span class="p">;</span><span class="c1">// Tracker height (m)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">T_ct</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="c1">// Homogeneous transformation matrix from camera to world coordinate system</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">T_tw</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="c1">// Homogeneous transformation matrix from vehicle to world coordinate system</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">cameraMidGlobalPos</span><span class="p">;</span><span class="c1">// 3D coordinates of the camera center mapped to the ground in the world coordinate system</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">carMidGlobalPos</span><span class="p">;</span><span class="c1">// 3D coordinates of the vehicle center in the world coordinate system</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">cameraMidPos</span><span class="p">;</span><span class="w"> </span><span class="c1">// Camera center coordinates in the world coordinate system</span>
+<span class="w">  </span><span class="n">vector4</span><span class="w"> </span><span class="n">carDronePosOri</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1D pose + 3D coordinates of the vehicle center in the tracker coordinate system (the first element is the pose)</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">carDroneVel</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3D velocity of the vehicle center in the drone coordinate system</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">carDroneAcc</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3D acceleration of the vehicle center in the drone coordinate system</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">crash</span><span class="p">;</span><span class="w"> </span><span class="c1">// Whether the tracker has collided with a building</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">carDir</span><span class="p">;</span><span class="c1">// Vehicle running direction (0 stop, 1 straight, 2 left turn, 3 right turn)</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">carTypename</span><span class="p">;</span><span class="c1">// Object type</span>
+<span class="p">}</span><span class="n">rewardData</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Among them, the parameter <code class="code docutils literal notranslate"><span class="pre">carCameraPosOri</span></code> defines the tracker coordinate system and pose angles as follows:</p></li>
+</ul>
+<figure class="align-center" id="id16">
+<a class="reference internal image-reference" href="../_images/DroneCoordinates.png"><img alt="无人机坐标系" src="../_images/DroneCoordinates.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-text">Definition of Drone Coordinate System</span><a class="headerlink" href="#id16" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p><strong>Radar Data Packet</strong></p>
+<blockquote>
+<div><p>Radar point cloud data. The tracker in this environment is equipped with RpLidarA2 single-line radar, and its point cloud data will output an array with a length of 2000.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Simulator Section" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Parameters.html" class="btn btn-neutral float-right" title="Parameters Setting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>概述 &mdash; DAT 1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f115507d"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=beaddf03"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="安装" href="Installation.html" />
+    <link rel="prev" title="DAT documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DAT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1 主动视觉跟踪</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vat">VAT 任务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">VAT 方案</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark">2 Benchmark呈现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">场景复杂多样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">跟踪器与目标丰富多元</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">任务设置自由灵活</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Algorithm/index.html">算法部分</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Webots_Simulator/index.html">仿真器部分</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DAT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">概述</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Overview.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>概述<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+ <style>
+     #language-switch {
+        display: flex; /* Use Flexbox layout */
+        justify-content: center; /* Center buttons horizontally */
+        align-items: center; /* Center buttons vertically */
+        gap: 10px; /* Space between buttons */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #language-switch button {
+        width: 180px;
+        height: 40px;
+        font-size: 16px;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center; /* Center text vertically */
+        justify-content: center; /* Center text horizontally */
+    }
+</style>
+
+ <!-- Language switch buttons -->
+ <div id="language-switch" style="background-color: #fae3e3; padding: 15px; border-radius: 5px; border: 2px solid #cb7474;">
+     <b style="font-size: 18px;">You can choose language by </b>
+     <button onclick="switchLanguage('zh')">中文</button>
+     <button onclick="switchLanguage('en')">English</button>
+ </div>
+
+ <script>
+     function switchLanguage(lang) {
+         if (lang === 'zh') {
+             window.location.href = 'Overview.html';
+         } else if (lang === 'en') {
+             window.location.href = '../Overview.html';
+         }
+     }
+ </script>
+ </br>
+ <hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+ </br>
+ </br><section id="id2">
+<h2>1 主动视觉跟踪<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="vat">
+<h3>VAT 任务<a class="headerlink" href="#vat" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>现实任务</strong>：在现实视觉任务中，目标具有高动态特性，主动控制相机以提升视觉准确率是主要挑战。</p></li>
+<li><p><strong>现有方法</strong>：现有 PVT(Passive Visual Tracking)方法基于目标在预设镜头内的假设，仅在视频中进行跟踪。</p></li>
+<li><p><strong>VAT任务</strong>：VAT(Visual Active Tracking)同时建模视觉跟踪和控制，做到主动控制相机以追踪动态目标，更具现实意义。</p></li>
+</ul>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/VisualActiveTracking.png"><img alt="Visual Active Tracking" src="_images/VisualActiveTracking.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">VAT任务与PVT设定区别</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</br></section>
+<section id="id3">
+<h3>VAT 方案<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>现有VAT方案</strong>: 直接串联目标跟踪模型与控制模型进行VAT(如：siamask+PID)</p>
+<blockquote>
+<div><p><strong>局限1</strong>: 视觉模型需要大量人力进行标签批注</p>
+<p><strong>局限2</strong>: 控制模型对于参数敏感，需要对于每个不同场景进行参数微调</p>
+</div></blockquote>
+</li>
+<li><p><strong>本项目 VAT 方案</strong>: 利用MDP(Markov Decision Process)同时对于视觉与控制任务进行建模，用单模型解决视觉与控制任务</p>
+<blockquote>
+<div><p><strong>优势</strong>：端到端RL效率更高、更适合跨场景任务</p>
+</div></blockquote>
+</li>
+</ul>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="_images/1_2stages.png"><img alt="VAT Model" src="_images/1_2stages.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">单阶段与两阶段VAT方案示意图</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="benchmark">
+<h2>2 Benchmark呈现<a class="headerlink" href="#benchmark" title="Link to this heading"></a></h2>
+<figure class="align-center" id="id10">
+<span id="dat"></span><a class="reference internal image-reference" href="_images/statistics.png"><img alt="VAT Model" src="_images/statistics.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">DAT 的统计和仿真器元素示意图</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id4">
+<h3>场景复杂多样<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>场景设置多样</strong>：具备6种场景4种天气共计24个环境，如图 <a class="reference internal" href="#id5"><span class="std std-ref">24个开放场景示意图</span></a> 所示。</p></li>
+<li><p><strong>场景元素复杂</strong>：从7个方面构建真实场景的复杂性，包含场景面积(<span class="math notranslate nohighlight">\(km^{2}\)</span>)、建筑物密度(<span class="math notranslate nohighlight">\(km^{-2}\)</span>)、颜色丰富度、道路密度(<span class="math notranslate nohighlight">\(km^{-2}\)</span>)、地形密度(<span class="math notranslate nohighlight">\(km^{-2}\)</span>)、树木密度(<span class="math notranslate nohighlight">\(km^{-2}\)</span>)和隧道密度(<span class="math notranslate nohighlight">\(km^{-2}\)</span>)。6场景统计信息见上图 (a) 所示，困难元素如上图 (b) 所示。
+具体来说，场景面积是指场景的范围，建筑密度是建筑数量与场景面积的比率，色彩丰富度是场景中主要色彩的数量。这三个方面主要描绘了视觉背景的复杂性。道路密度是通过评估转弯、交叉口和人行横道等复杂元素的密度来测量的，而地形密度是通过估算场景中山脉等特殊地形特征的密度来确定的。这两个方面主要描述了跟踪目标行为的复杂性。此外，树木密度和隧道密度分别为树木和隧道数量与场景面积的比率，用于测量场景内的视觉遮挡水平。</p></li>
+</ul>
+</div></blockquote>
+<figure class="align-center" id="id11">
+<span id="id5"></span><a class="reference internal image-reference" href="_images/24Scene_Colorful2.png"><img alt="24 Scenes" src="_images/24Scene_Colorful2.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">24个开放场景示意图</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id6">
+<h3>跟踪器与目标丰富多元<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Tracker多样</strong>：可选择地面机器人与无人机作为Tracker，支持地面机器人自主模型接入</p></li>
+<li><p><strong>Target多样</strong>：预设24种可选target,支持自主模型接入，如图 <a class="reference internal" href="#dat"><span class="std std-ref">DAT 的统计和仿真器元素示意图</span></a> 中 (d) 所示，详见：<a class="reference internal" href="Webots_Simulator/Simulator.html#id15"><span class="std std-ref">跟踪对象</span></a></p></li>
+<li><p><strong>行为管理真实丰富</strong>：接入交通仿真器SUMO以统一管理车辆， 确保环境中的Target行为的真实性和随机性</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id7">
+<h3>任务设置自由灵活<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>多传感器</strong>：提供6种常见视觉和运动传感器，如图 <a class="reference internal" href="#dat"><span class="std std-ref">DAT 的统计和仿真器元素示意图</span></a> 中 (c) 所示</p></li>
+<li><p><strong>任务设置自定义</strong>：提供附加参数用于reward设计及任务拓展，参数详见 <a class="reference internal" href="Webots_Simulator/Simulator.html#id29"><span class="std std-ref">定制化参数接口</span></a></p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="DAT documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="Installation.html" class="btn btn-neutral float-right" title="安装" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>环境封装 &mdash; DAT 1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f115507d"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=beaddf03"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="模型搭建" href="Model.html" />
+    <link rel="prev" title="算法部分介绍" href="Introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DAT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">安装</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法部分</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">算法部分介绍</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">环境封装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#benchenv-multi">1 底层环境类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part-1">Part 1 接口详解</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part-2">Part 2 配置文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part-3">Part 3 构造函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gym">2 Gym环境类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part1-uav-vat-gym">Part1 UAV_VAT(适配Gym库)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part2-uav-vat-gymnasium-gymnasium">Part2 UAV_VAT_Gymnasium(适配Gymnasium库)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part3">Part3 并行环境封装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part4">Part4 调用接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel">3 并行环境类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part1-envs">Part1 Envs()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part2">Part2 封装前后数据格式变化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">4 性能评价指标</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cr-cumulative-reward">1.累计奖励 CR(Cumulative Reward)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tsr-tracking-success-rate">2.追踪成功率 TSR(TrackIng Success Rate)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Model.html">模型搭建</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Webots_Simulator/index.html">仿真器部分</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DAT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">算法部分</a></li>
+      <li class="breadcrumb-item active">环境封装</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Algorithm/Environment.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>环境封装<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<blockquote>
+<div> <style>
+     #language-switch {
+        display: flex; /* Use Flexbox layout */
+        justify-content: center; /* Center buttons horizontally */
+        align-items: center; /* Center buttons vertically */
+        gap: 10px; /* Space between buttons */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #language-switch button {
+        width: 180px;
+        height: 40px;
+        font-size: 16px;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center; /* Center text vertically */
+        justify-content: center; /* Center text horizontally */
+    }
+</style>
+
+ <!-- Language switch buttons -->
+ <div id="language-switch" style="background-color: #fae3e3; padding: 15px; border-radius: 5px; border: 2px solid #cb7474;">
+     <b style="font-size: 18px;">You can choose language by </b>
+     <button onclick="switchLanguage('zh')">中文</button>
+     <button onclick="switchLanguage('en')">English</button>
+ </div>
+
+ <script>
+     function switchLanguage(lang) {
+         if (lang === 'zh') {
+             window.location.href = 'Environment.html';
+         } else if (lang === 'en') {
+             window.location.href = '../../Algorithm/Environment.html';
+         }
+     }
+ </script>
+ </br>
+ <hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+ </br>
+ </br><p>本项目提供3种形式的环境(路径： <code class="code docutils literal notranslate"><span class="pre">Alg_Base/rl_a3c_pytorch_benchmark/envs</span></code> ): 底层环境类 <code class="code docutils literal notranslate"><span class="pre">BenchEnv_Multi()</span></code>，OpenAI Gym(Gynasium)封装的环境类 <code class="code docutils literal notranslate"><span class="pre">gym()</span></code><code class="code docutils literal notranslate"><span class="pre">gynasium()</span></code>，以及我们自主实现的并行环境类</p>
+<p>上述3种环境的关系如下图所示：</p>
+<blockquote>
+<div><figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="../_images/Environment3Types.png"><img alt="3种环境类关系图" src="../_images/Environment3Types.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">3种环境类示意图</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</div></blockquote>
+<section id="benchenv-multi">
+<span id="id2"></span><h2>1 底层环境类<a class="headerlink" href="#benchenv-multi" title="Link to this heading"></a></h2>
+<section id="part-1">
+<h3>Part 1 接口详解<a class="headerlink" href="#part-1" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      底层环境类是<b>算法端与仿真器端进行直接通信的类</b>，主要承担与仿真器进行多进程通信与数据传输的功能。
+      如果仅调用类进行测试，可以直接跳转至： <a href="#config">配置文件</a>以及<a href="#makeenv">构造函数</a>
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/environment.py</code>中的<code>BenchEnv_Multi()</code>
+</div>
+</br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      1. <code>__init__</code> ：用于初始化通信接口，进程数等环境必备参数
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">Action_dim(int)</span></code> ：智能体动作维度</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">action_list(list)</span></code> ：用于将离散的动作指令转化成连续的运动指令</p>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">action_list</span></code> 的存储顺序为： <code class="code docutils literal notranslate"><span class="pre">[Forward,Backward,Left,Right,CCW,CW]</span></code>，即分别代表“前后左右逆顺”的运动指令</p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_state(function)</span></code> ：用于对图像进行后处理的函数</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">arg_worker(int)</span></code> ： 系统并行数</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_idx(int)</span></code> ：当前环境的并行索引号</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Other_State(bool)</span></code> ：是否启用仿真器端的其他状态选项 <code class="code docutils literal notranslate"><span class="pre">Other_State</span></code> 具体数据详见 <a class="reference internal" href="../Webots_Simulator/Simulator.html#id6"><span class="std std-ref">参数配置</span></a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">CloudPoint(bool)</span></code> ： 是否启用仿真器端的点云选项 <code class="code docutils literal notranslate"><span class="pre">CloudPoint</span></code> 具体数据详见 <a class="reference internal" href="../Webots_Simulator/Simulator.html#id6"><span class="std std-ref">参数配置</span></a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">RewardParams(bool)</span></code> ： 是否启用仿真器端的其他奖励参数选项 <code class="code docutils literal notranslate"><span class="pre">RewardParams</span></code> 具体数据详见 <a class="reference internal" href="../Webots_Simulator/Simulator.html#id6"><span class="std std-ref">参数配置</span></a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">port_process(int)</span></code> ： 指定用于传输进程数的端口</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">end_reward(bool)</span></code> ： 是否开启追加结束奖励(若末尾reward为0,则追加惩罚；若末尾reward不为0,则追加奖励)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">end_reward_list(list)</span></code> ： 追加结束奖励列表（在 <code class="code docutils literal notranslate"><span class="pre">end_reward</span></code> 开启时才有效）</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">scene(str)</span></code> ： 确定当前的实验场景(在 <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> 开启时才有效)</p>
+<ul>
+<li><p>合法场景包括： <code class="code docutils literal notranslate"><span class="pre">[&quot;citystreet&quot;,&quot;downtown&quot;,&quot;lake&quot;,&quot;village&quot;,&quot;desert&quot;,&quot;farmland&quot;,None]</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">weather(str)</span></code> ： 确定当前实验场景的天气(在 <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> 开启时才有效)</p>
+<ul>
+<li><p>合法天气包括： <code class="code docutils literal notranslate"><span class="pre">[&quot;day&quot;,&quot;night&quot;,&quot;foggy&quot;,&quot;snow&quot;,None]</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">auto_start(bool)</span></code> ： 是否自动启动仿真端</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">delay(int)</span></code>: 配置系统等待地图加载的时长，仅当 <code class="code docutils literal notranslate"><span class="pre">auto_start(bool)</span></code> 启用时生效</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Control_Frequence(int)</span></code> ： 指定系统控制频率</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_type(str)</span></code> ： 指定reward类别(可以选择不同baseline算法的reward)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">verbose(bool)</span></code>: 配置环境是否输出log文件</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>step</code> ：用于环境的推演
+</div>
+</br><p><strong>输入参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">action(numpy.int64)</span></code> ： 智能体采取的动作</p></li>
+</ul>
+</br><p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">image(numpy.ndarray)</span></code> ：返回的下一时刻图像(已经利用 <code class="code docutils literal notranslate"><span class="pre">process_state</span></code> 进行后处理)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward(float)</span></code> ：当前时间步奖励</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done(bool)</span></code> ： 当前环境是否结束</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">self.SuppleInfo(list)</span></code> ：补充信息(如果启用了 <code class="code docutils literal notranslate"><span class="pre">Other_State</span></code> 或 <code class="code docutils literal notranslate"><span class="pre">CloudPoint</span></code> 或 <code class="code docutils literal notranslate"><span class="pre">RewardParams</span></code> ，就在此取出)</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>reset</code> 用于环境的重启
+</div>
+</br><p><strong>输入参数：</strong></p>
+<p>None</p>
+<p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">image(numpy.ndarray)</span></code> ：解释同上</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">self.SuppleInfo(list)</span></code> ：解释同上</p></li>
+</ul>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part-2">
+<span id="config"></span><h3>Part 2 配置文件<a class="headerlink" href="#part-2" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      上述环境接口较多，因此，为了便于后期的封装调用，<b>本工程提供了配置文件</b>，简化配置流程。配置文件内容如下:
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/config.json</code>
+</div>
+</br><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Benchmark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Need_render&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Action_dim&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;State_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;State_channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Norm_Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Forward_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Backward_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Left_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Right_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CW_omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CCW_omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Control_Frequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;port_process&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">33727</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;end_reward&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;end_reward_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="mi">-20</span><span class="p">,</span>
+<span class="w">            </span><span class="mi">20</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;scene&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;weather&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;auto_start&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Other_State&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CloudPoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RewardParams&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RewardType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DVAT&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;verbose&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;delay&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;LunarLander&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Need_render&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Action_dim&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;State_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;State_channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Norm_Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>其中， <code class="code docutils literal notranslate"><span class="pre">&quot;Benchmark&quot;</span></code> ：对应的参数即为本工程提出的仿真环境的配置参数</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;LunarLander&quot;</span></code> ：对应Gym环境 <code class="code docutils literal notranslate"><span class="pre">LunarLander</span></code> 的参数配置，仅作兼容性测试用途使用</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Need_render&quot;</span></code> ：选择渲染模式(gym的环境需要选择渲染模式， <strong>本工程环境默认为0即可</strong> )</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Action_dim&quot;</span></code> ：智能体动作空间维度</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;State_size&quot;</span></code> ：环境输出的图像大小</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;State_channel&quot;</span></code> ：环境输出的图像通道数目(=3:RGB图，=1:灰度图)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Norm_Type&quot;</span></code> ：图像归一化方式(默认归一化到 <code class="code docutils literal notranslate"><span class="pre">[0,1]</span></code>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Forward_Speed&quot;</span></code> ：智能体输出前进动作时对应的速度( <span class="math notranslate nohighlight">\(m/s\)</span>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Backward_Speed&quot;</span></code> ：智能体输出后退动作时对应的速度( <span class="math notranslate nohighlight">\(m/s\)</span>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Left_Speed&quot;</span></code> ：智能体输出左移动作时对应的速度( <span class="math notranslate nohighlight">\(m/s\)</span>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Right_Speed&quot;</span></code> ：智能体输出右移动作时对应的速度( <span class="math notranslate nohighlight">\(m/s\)</span>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;CW_omega&quot;</span></code> ：智能体输出顺时针动作时对应的速度( <span class="math notranslate nohighlight">\(rad/s\)</span>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;CCW_omega&quot;</span></code> ：智能体输出逆时针动作时对应的速度( <span class="math notranslate nohighlight">\(rad/s\)</span>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Control_Frequence&quot;</span></code> ：智能体运行的频率(仿真器以500Hz运行，算法端默认以125Hz运行)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;port_process&quot;</span></code> ：指定用于传输进程数的端口</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;end_reward&quot;</span></code> ：是否开启追加结束奖励</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;end_reward_list&quot;</span></code> ：追加结束奖励列表（在 <code class="code docutils literal notranslate"><span class="pre">end_reward</span></code> 开启时才有效）</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;scene&quot;</span></code> ：确定当前的实验场景(在 <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> 开启时才有效)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;weather&quot;</span></code> ：确定当前实验场景的天气(在 <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> 开启时才有效)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;auto_start&quot;</span></code> ： 是否自动启动仿真端</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Other_State&quot;</span></code> ：是否启用仿真器端的其他状态选项</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;CloudPoint&quot;</span></code> ：是否启用仿真器端的点云选项</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;RewardParams&quot;</span></code> ：是否启用仿真器端的其他奖励参数选项</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;RewardType&quot;</span></code> ：指定reward类别(可以选择不同baseline算法的reward)</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>包括 <code class="code docutils literal notranslate"><span class="pre">&quot;default&quot;,&quot;E2E&quot;,&quot;D-VAT&quot;</span></code> 分别对应 <a class="reference internal" href="../Webots_Simulator/Simulator.html#id19"><span class="std std-ref">内置Reward</span></a> , <a class="footnote-reference brackets" href="#id10" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> , <a class="footnote-reference brackets" href="#id11" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> 中的reward设置</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;verbose&quot;(bool)</span></code>: 配置环境是否输出log文件</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;delay&quot;(int)</span></code>: 配置系统等待地图加载的时长</p></li>
+</ul>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part-3">
+<span id="makeenv"></span><h3>Part 3 构造函数<a class="headerlink" href="#part-3" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      基于上述配置文件，<b>本工程直接提供了构造函数，获取初始化好的环境</b>，该函数使用方法如下：
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/environment.py</code>中的<code>general_env()</code>
+</div>
+</br><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成单进程的环境(env_conf为config.json的路径)</span>
+<span class="n">env</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">general_env</span><span class="p">(</span><span class="n">env_id</span><span class="o">=</span><span class="s2">&quot;Benchmark&quot;</span><span class="p">,</span><span class="n">env_conf</span><span class="o">=</span><span class="n">env_conf</span><span class="p">,</span><span class="n">arg_worker</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">process_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <code>general_env</code> ：根据config.json文件生成初始化好的环境
+</div>
+</br><p><strong>输入参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_id(str)</span></code> ：当前环境的名称(<code class="code docutils literal notranslate"><span class="pre">&quot;Benchmark&quot;</span></code> 或 <code class="code docutils literal notranslate"><span class="pre">&quot;LunarLander&quot;</span></code> )</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_conf(str)</span></code> ：配置文件 <code class="code docutils literal notranslate"><span class="pre">config.json</span></code> 的路径</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">arg_worker(int)</span></code> ：环境总进程数</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_idx(int)</span></code> ：当前环境的进程编号</p></li>
+</ul>
+<p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">env</span></code> ：环境类</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_func</span></code> ：环境后处理函数(对于 <code class="code docutils literal notranslate"><span class="pre">&quot;Benchmark&quot;</span></code> 而言，无后处理操作)</p></li>
+</ul>
+</br></div></blockquote>
+</section>
+</section>
+<section id="gym">
+<span id="gymnasium-gym"></span><h2>2 Gym环境类<a class="headerlink" href="#gym" title="Link to this heading"></a></h2>
+<p>考虑到用户常常基于 <a class="reference external" href="https://github.com/openai/gym">Gym</a> 和 <a class="reference external" href="https://github.com/openai/gym">Gymnasium</a> 环境接口搭建强化学习算法，或利用如 <a class="reference external" href="https://github.com/DLR-RM/stable-baselines3">stable-baselines3</a> 库或 <a class="reference external" href="https://github.com/thu-ml/tianshou">tianshou</a> 库进行算法验证，本工程将上述底层环境类进行封装，提供完全适配 <a class="reference external" href="https://github.com/openai/gym">Gym</a> 和 <a class="reference external" href="https://github.com/openai/gym">Gymnasium</a> 的环境类</p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>
+</div>
+</br><section id="part1-uav-vat-gym">
+<h3>Part1 UAV_VAT(适配Gym库)<a class="headerlink" href="#part1-uav-vat-gym" title="Link to this heading"></a></h3>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/gym_envs.py</code>中的<code>UAV_VAT(gym.Env)</code>类
+</div>
+</br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      1. <code>__init__</code> ：初始化gym环境(包括 <code>action_space</code> 和 <code>observation_space</code>的初始化)
+</div>
+</br><p><strong>输入参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">arg_worker(int)</span></code> ：进程数</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">conf_path(list)</span></code> ：环境端配置文件路径</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_conf_path(list)</span></code> ：仿真器端配置文件路径</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_idx(list)</span></code> ：当前进程序号</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>reset</code> ：重置环境,返回初始状态
+</div>
+</br><p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">state(np.ndarray)</span></code> ：返回状态(图像)</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      3. <code>step</code> ：环境交互,输入动作，获取状态信息
+</div>
+</br><p><strong>输入参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">action(torch.tensor)</span></code> ：动作</p></li>
+</ul>
+<p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">state(np.ndarray)</span></code> ：返回状态(图像)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward(float)</span></code> ：奖励</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done(int)</span></code> ：环境是否结束</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">info(dict)</span></code> ：信息，其中包括 <code class="code docutils literal notranslate"><span class="pre">info[&quot;TimeLimit.truncated&quot;]</span></code> 说明是否由于step结束带来的reset</p></li>
+</ul>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part2-uav-vat-gymnasium-gymnasium">
+<h3>Part2 UAV_VAT_Gymnasium(适配Gymnasium库)<a class="headerlink" href="#part2-uav-vat-gymnasium-gymnasium" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Gymnasium环境与Gym环境大体兼容，以下仅说明与gym环境的 <strong>区别</strong></p>
+</div></blockquote>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/gym_envs.py</code>中的<code>UAV_VAT_Gymnasium(gymnasium.Env)</code>类
+</div>
+</br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      1. <code>reset</code> ：重置环境,返回初始状态
+</div>
+</br><p><strong>输入参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">seed(int)</span></code> ：随机种子</p></li>
+</ul>
+<p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">reset_info(dict)</span></code> ：重置环境信息(默认为空)</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>step</code> ：环境交互,输入动作，获取状态信息
+</div>
+</br><p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">truncated(bool)</span></code> ：是否由于step结束带来的reset(相当于gym环境中的 <code class="code docutils literal notranslate"><span class="pre">info[&quot;TimeLimit.truncated&quot;]</span></code> )</p></li>
+</ul>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part3">
+<h3>Part3 并行环境封装<a class="headerlink" href="#part3" title="Link to this heading"></a></h3>
+<p>我们通过 <strong>堆叠环境实现并行计算</strong> ，实现多个环境并行与多个Agent交互</p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    对stable-baseline3库的具体实现代码见 <code> Alg_Base/rl_a3c_pytorch_benchmark/envs/async_vecenv.py </code>中的<code> ASYNC_SubprocVecEnv </code>类<br>
+    对tianshou库的具体实现代码见 <code> Alg_Base/rl_a3c_pytorch_benchmark/envs/async_vecenv_ts.py </code>中的<code> SubprocVecEnv_TS </code>类
+</div>
+</br><p><strong>现有强化学习库并行类特性与本工程修改</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>现有直接适配gym环境的强化学习库，如 <code class="code docutils literal notranslate"><span class="pre">stable-baselines3</span></code> 和 <code class="code docutils literal notranslate"><span class="pre">tianshou</span></code> 库提供并行环境类 <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> 供给用户直接将gym环境封装成并行环境</p></li>
+<li><p>上述 <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> 环境类在运行 <code class="code docutils literal notranslate"><span class="pre">step</span></code> 后立即判断是否执行 <code class="code docutils literal notranslate"><span class="pre">reset</span></code> ，会导致 <code class="code docutils literal notranslate"><span class="pre">step</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">reset</span></code> 同一周期执行的现象。(与本工程环境要求 <code class="code docutils literal notranslate"><span class="pre">step</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">reset</span></code> 严格对齐不符)</p></li>
+<li><p>本工程修改：将 <code class="code docutils literal notranslate"><span class="pre">step</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">reset</span></code> 严格对齐，保持各个环境操作的同步。</p></li>
+<li><p>将 <code class="docutils literal notranslate"><span class="pre">stable-baselines3</span></code> 库中的 <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> 类修改成 <code class="code docutils literal notranslate"><span class="pre">Async_SubprocVecEnv</span></code> 类，将 <code class="docutils literal notranslate"><span class="pre">tianshou</span></code> 库中的 <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> 类和 <code class="code docutils literal notranslate"><span class="pre">Collector</span></code> 类分别修改成 <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv_TS</span></code> 类和 <code class="code docutils literal notranslate"><span class="pre">TS_Collector</span></code> 类</p></li>
+<li><p>修改前后的区别见下图所示。</p></li>
+</ul>
+</div></blockquote>
+<img src="../_static/image/subprovecenv.png" alt="Async_SubprocVecEnv修改前后对比">
+<center>SubprocVecEnv修改前后对比示意图</center></br></br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part4">
+<h3>Part4 调用接口<a class="headerlink" href="#part4" title="Link to this heading"></a></h3>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>中的<code>make_env()</code>函数
+</div>
+</br><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      <code>make_env</code> ：初始化多个gym环境
+</div>
+</br><p><strong>输入参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">n_envs(int)</span></code> ：环境数量</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">rank(int)</span></code> ：当前环境序号</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">gym(bool)</span></code> ： 如果为 <code class="code docutils literal notranslate"><span class="pre">True</span></code> 则生成gym库的环境； 如果为 <code class="code docutils literal notranslate"><span class="pre">False</span></code> 则生成gymnasium库的环境</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">monitor(bool)</span></code> ：是否需要封装成 <code class="code docutils literal notranslate"><span class="pre">stable_baselines3.common.monitor.Monitor</span></code> 类</p></li>
+</ul>
+<p><strong>测试代码：</strong></p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>中的<code>gym_test()</code>函数和<code>stableparallel_test()</code>函数
+</div>
+</br><p>如果希望快速测试对上述环境类的实现是否正确，可以用如下的代码：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>单进程(仅使用gym环境)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gym.envs.registration</span> <span class="kn">import</span> <span class="n">register</span>
+
+<span class="n">register</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;UAVVAT-v0&#39;</span><span class="p">,</span>
+    <span class="n">entry_point</span><span class="o">=</span><span class="s1">&#39;gym_envs:UAV_VAT&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">gym_test</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>利用stable-baselines3进行算法测试</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stableparallel_test</span><span class="p">(</span><span class="n">n_envs</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">gym</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="border-left: 4px solid #FFC1C1; padding-left: 10px; margin-left: 0;">
+  <b>注意：</b>在使用stable-baselines3库并行训练的时候，调用上述<b>Async_SubprocVecEnv</b>类
+</div></div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>利用tianshou进行算法测试</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_tianshou_env</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="border-left: 4px solid #FFC1C1; padding-left: 10px; margin-left: 0;">
+  <b>注意：</b>在使用tianshou库并行训练的时候，需要调用上述<b>SubprocVecEnv_TS</b>类
+</div></br></div></blockquote>
+</div></blockquote>
+</section>
+</section>
+<section id="parallel">
+<span id="id8"></span><h2>3 并行环境类<a class="headerlink" href="#parallel" title="Link to this heading"></a></h2>
+<div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+  <blockquote>
+  <p>上述底层环境类(BenchEnv_Multi)设计目标是 <strong>多进程异步计算</strong> (例如A3C算法)，在单独进程内调用环境类获取数据</p>
+  <p>为了更好利用显卡并行加速，将上述类数据同步、同指令并行，使算法可以 <strong>单进程工作在同步并行的数据流上</strong>，引申出本类(Envs)</p>
+  <p>本环境主要适配 <strong>用户的自主算法设计需求</strong> (不使用stable-baselines3等基于Gym环境进行算法实现的情况)</p>
+  </blockquote>
+</div>
+</br>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>中的<code>Envs</code>类
+</div>
+</br><section id="part1-envs">
+<h3>Part1 Envs()<a class="headerlink" href="#part1-envs" title="Link to this heading"></a></h3>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    具体代码见 <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>中的<code>Envs</code>类
+</div>
+</br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      1. <code>__init__</code> ：初始化Envs并行环境(包括 <code>action_space</code> 和 <code>observation_space</code>的初始化)
+</div>
+</br><dl class="simple">
+<dt><strong>输入参数：</strong></dt><dd><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">num_envs(int)</span></code> ：表示并发量n</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_list(list(env))</span></code> ： 通过 <code class="code docutils literal notranslate"><span class="pre">GE(n)</span></code> 函数返回的列表，将已预构造完成的若干个环境类存入列表中，进行初始化</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">logs_show(bool)</span></code> ：是否在其中一个环境中采集reward数据绘制训练曲线</p></li>
+</ul>
+</dd>
+</dl>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>reset</code> ：重置环境,返回初始状态
+</div>
+</br><p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">states</span></code> ：返回各个环境的状态(图像)集合</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      3. <code>step</code> ：环境交互,输入动作，获取状态信息
+</div>
+</br><p><strong>输入参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">actions</span></code> ：各个Agent动作</p></li>
+</ul>
+<p><strong>返回参数：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">states</span></code> ：返回各个环境的状态(图像)的集合</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">rewards</span></code> ：各个Agent的奖励堆叠</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done</span></code> ：各个环境是否结束状态</p></li>
+</ul>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part2">
+<h3>Part2 封装前后数据格式变化<a class="headerlink" href="#part2" title="Link to this heading"></a></h3>
+<p><strong>封装前后数据格式对比：</strong></p>
+<ul>
+<li><p>封装前(BenchEnv_Multi):</p>
+<p>数据采样： <code class="code docutils literal notranslate"><span class="pre">state:ndarray,reward:float,done:float=</span> <span class="pre">env.step(action:int)</span></code></p>
+<p>环境重置： <code class="code docutils literal notranslate"><span class="pre">state:ndarray</span> <span class="pre">=</span> <span class="pre">env.reset()</span></code></p>
+</li>
+<li><p>封装后(Envs),设并行数n：</p>
+<p>数据采样： <code class="code docutils literal notranslate"><span class="pre">states:ndarray(n,),rewards:ndarray(n),done:ndarray(n)=</span> <span class="pre">env.step(action:ndarray(n))</span></code></p>
+<p>环境重置： <code class="code docutils literal notranslate"><span class="pre">states:ndarray(n,)</span> <span class="pre">=</span> <span class="pre">envs.reset()</span></code></p>
+</li>
+</ul>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+</section>
+<section id="id9">
+<h2>4 性能评价指标<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<section id="cr-cumulative-reward">
+<h3>1.累计奖励 CR(Cumulative Reward)<a class="headerlink" href="#cr-cumulative-reward" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>累积奖励使用连续奖励，进行累加计算以评估智能体将目标保持在图像中心的性能，计算公式如下所示：</p>
+</div></blockquote>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>C</mi><mi>R</mi><mo>=</mo><munderover><mo data-mjx-texclass="OP">∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mrow><msub><mi>E</mi><mi>l</mi></msub></mrow></munderover><msub><mi>r</mi><mrow><mi>c</mi><mi>t</mi></mrow></msub></math>
+</br><p>上述公式中 <span class="math notranslate nohighlight">\(r_{ct}\)</span> 代表在步骤 <span class="math notranslate nohighlight">\(t\)</span> 中的连续奖励值， <span class="math notranslate nohighlight">\(E_l\)</span> 代表轨迹长度。
+连续奖励计算图解见 <a class="reference internal" href="../Webots_Simulator/Simulator.html#id23"><span class="std std-ref">跟踪对象连续奖励示意图</span></a></p>
+</section>
+<section id="tsr-tracking-success-rate">
+<h3>2.追踪成功率 TSR(TrackIng Success Rate)<a class="headerlink" href="#tsr-tracking-success-rate" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>追踪成功率使用离散奖励，对智能体将目标保持在视野范围的能力进行评估，计算公式如下所示：</p>
+</div></blockquote>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>T</mi><mi>S</mi><mi>R</mi><mo>=</mo><mfrac><mn>1</mn><msub><mi>E</mi><mrow><mi>m</mi><mi>l</mi></mrow></msub></mfrac><munderover><mo data-mjx-texclass="OP">∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mrow><msub><mi>E</mi><mi>t</mi></msub></mrow></munderover><msub><mi>r</mi><mrow><mi>d</mi><mi>t</mi></mrow></msub><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></math>
+</br><p>上述公式中 <span class="math notranslate nohighlight">\(r_{dt}\)</span> 代表在步骤 <span class="math notranslate nohighlight">\(t\)</span> 中的离散奖励值， <span class="math notranslate nohighlight">\(E_{ml}\)</span> 为最大轨迹长度， <span class="math notranslate nohighlight">\(E_t\)</span> 代表本轨迹长度。参数配置详见： <a class="reference internal" href="../Webots_Simulator/Simulator.html#reward"><span class="std std-ref">内置reward的参数配置（注：内置reward仅对无人机有效，如使用CAR需利用 返回数据参数 自主设计reward）</span></a>
+离散奖励计算图解见 <a class="reference internal" href="../Webots_Simulator/Simulator.html#id22"><span class="std std-ref">跟踪对象离散奖励示意图</span></a></p>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br><p>引用：</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id10" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>Luo, Wenhan, et al. “End-to-end active object tracking and its real-world deployment via reinforcement learning.” IEEE transactions on pattern analysis and machine intelligence 42.6 (2019): 1317-1332.</p>
+</aside>
+<aside class="footnote brackets" id="id11" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
+<p>Dionigi, Alberto, et al. “D-VAT: End-to-End Visual Active Tracking for Micro Aerial Vehicles.” IEEE Robotics and Automation Letters (2024).</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="Introduction.html" class="btn btn-neutral float-left" title="算法部分介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="Model.html" class="btn btn-neutral float-right" title="模型搭建" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

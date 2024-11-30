@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>仿真环境 &mdash; DAT 1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f115507d"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=beaddf03"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="建议参数设置" href="Parameters.html" />
+    <link rel="prev" title="仿真器部分" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DAT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Algorithm/index.html">算法部分</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">仿真器部分</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">仿真环境</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">环境介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">运行流程</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#demo">demo模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video">video模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#train">train模式</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">参数配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">基础参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#done">跟踪器（仅无人机有效）产生done的物理范围参数配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reward-reward-car-reward">内置reward的参数配置（注：内置reward仅对无人机有效，如使用CAR需利用 <span class="xref std std-ref">返回数据参数</span> 自主设计reward）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sumo">SUMO交通系统参数配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">其他对象追踪的参数配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">输出视频的参数配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">跟踪器控制的参数配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">仿真环境的参数配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">部分配置参数建议</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">跟踪对象</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sumo-vehicle">SUMO_VEHICLE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#motorcycle">motorcycle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pedestrian">Pedestrian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wheel-robots">Wheel Robots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legged-robots">Legged Robots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">自定义对象</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">内置Reward</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id21">奖励函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">奖励获取</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">投影可视化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">定制化参数接口</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id31">输入动作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">返回参数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters.html">建议参数设置</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DAT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">仿真器部分</a></li>
+      <li class="breadcrumb-item active">仿真环境</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Webots_Simulator/Simulator.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>仿真环境<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<blockquote>
+<div><style>
+    #language-switch {
+    display: flex; /* Use Flexbox layout */
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Center buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#language-switch button {
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+}
+</style>
+
+<!-- Language switch buttons -->
+<div id="language-switch" style="background-color: #fae3e3; padding: 15px; border-radius: 5px; border: 2px solid #cb7474;">
+    <b style="font-size: 18px;">You can choose language by </b>
+    <button onclick="switchLanguage('zh')">中文</button>
+    <button onclick="switchLanguage('en')">English</button>
+</div>
+
+<script>
+    function switchLanguage(lang) {
+        if (lang === 'zh') {
+            window.location.href = 'Simulator.html';
+        } else if (lang === 'en') {
+            window.location.href = '../../Webots_Simulator/Simulator.html';
+        }
+    }
+</script>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></div></blockquote>
+<section id="id2">
+<span id="id3"></span><h2>环境介绍<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>该项目的仿真环境基于开源仿真软件 <a class="reference external" href="https://cyberbotics.com/">webots</a> 搭建，模拟现实中的开放场景主动视觉跟踪问题。为此，设立了包括城市街道、市中心、湖边、乡村、沙漠、农田6种场景，其中每种场景包含白天、夜晚、雾天、雪天等4种天气，总共24张环境地图。</p></li>
+<li><p>该项目24个仿真环境示意图：</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/24Scene_Colorful2.png"><img alt="24个环境示意图" class="align-center" src="../_images/24Scene_Colorful2.png" style="width: 700px;" /></a>
+</br></section>
+<section id="id4">
+<span id="id5"></span><h2>运行流程<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+   为适配训练，调试等不同需求，本工程提供了<b>3种不同的运行模式</b>。
+</div>
+</br><a class="reference internal image-reference" href="../_images/RunningProcess.png"><img alt="仿真环境运行流程示意图" class="align-center" src="../_images/RunningProcess.png" style="width: 700px;" /></a>
+<section id="demo">
+<h3>demo模式<a class="headerlink" href="#demo" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>该模式在地图中生成一个跟踪器。可以通过键盘操作跟踪器在地图中飞行，浏览地图。同时该跟踪器默认跟踪其初始位置附近的一辆BmwX5车辆，同时可以通过手动操纵无人机进行跟踪，并实时把reward参数输出在webots的Console状态栏，实时可视化reward参数。从而实现快速高效调节reward参数，用该对象测试内置reward参数是否合理，进行调试。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">up</span></code>: 无人机前进</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">down</span></code>: 无人机后退</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">left</span></code>: 无人机绕垂直方向逆时针转动</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">right</span></code>: 无人机绕垂直方向顺时针转动</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">w</span></code> <code class="code docutils literal notranslate"><span class="pre">s</span></code> <code class="code docutils literal notranslate"><span class="pre">a</span></code> <code class="code docutils literal notranslate"><span class="pre">d</span></code>: 控制相机云台的上下左右旋转</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">up</span></code>: 无人机上升(起飞)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">down</span></code>: 无人机下降</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">left</span></code>: 无人机向左平移</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">shift</span></code> + <code class="code docutils literal notranslate"><span class="pre">right</span></code>: 无人机向右平移</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+   注：此时reward包括连续与离散两种类型的reward，详见<b>内置Reward</b>。
+</div>
+</br></section>
+<section id="video">
+<h3>video模式<a class="headerlink" href="#video" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>该模式可用于离线数据采集，进行模型预训练等工作。环境将自动调度跟踪器无差跟踪对象，并且按照仿真时间和配置参数导出视频图像，同时生成对应每张图像的标签。</p></li>
+<li><p>数据存储的位置为： <code class="code docutils literal notranslate"><span class="pre">./Webots_Simulation/traffic_project/droneVideos/DRONEX/episodeX</span></code> ，图像格式为jpeg，标签为 <code class="code docutils literal notranslate"><span class="pre">mark.json</span></code> 文件。</p></li>
+<li><p>同时还可以通过脚本遍历指定路径下的所有目录和文件，并统计每个目录（包括其子目录）中的文件总数。并将这些信息以一种特定的JSON格式写入dir_info.json的文件中。直接执行 <code class="code docutils literal notranslate"><span class="pre">./Webots_Simulation/traffic_project/fileStruct.py</span></code> 脚本，在相同目录下生成描述文件 <code class="code docutils literal notranslate"><span class="pre">dir_info.json</span></code>。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="train">
+<h3>train模式<a class="headerlink" href="#train" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>该模式用于算法的训练和测试，可以选择先手动打开webots仿真软件，再运行训练脚本，也可以选择通过修改算法端配置文件实现仿真环境和算法一键启动。</p>
+</div></blockquote>
+</section>
+</section>
+<section id="id6">
+<span id="id7"></span><h2>参数配置<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<blockquote>
+<div><div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+   本工程仿真环境部分的所有设置可以利用<b>单个JSON文件</b>进行高效配置。
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    仿真环境的配置文件为: <code>Webots_Simulation/traffic_project/config/env_config.json</code>。
+</div></div></blockquote>
+<section id="id8">
+<h3>基础参数<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w"> </span><span class="nt">&quot;Simulation_Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Tracker_Def&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DRONE&quot;</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Drone_Supervisor_Ctrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Socket_Ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Config_Agen_Num_Port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">33727</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Train_Total_Steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Init_No_Done_Steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;No_Reward_Done_Steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Control_Frequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Customized_Rewards&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Lidar_Enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Tracking_Object&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SUMO_VEHICLE&quot;</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;Verbose&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Simulation_Mode</span></code> ：仿真模式有三种:”demo”、”video”、”train”。demo与video模式是仿真端自动运行的模式（默认为”train”）。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>demo会在地图中生成一个跟踪器，支持键盘直接控制，同时默认追踪地图中一辆静置车辆BmwX5，可以通过该模式浏览地图或者调试reward参数。</p></li>
+<li><p>video模式是视频拍摄模式，在该模式下跟踪器会自动跟踪目标对象，导出视频图像和标签。</p></li>
+<li><p>train是训练模式，仿真端与算法端进行交互，对跟踪器的追踪算法进行训练。</p></li>
+<li><p>完整系统运行流程图见： <a class="reference internal" href="#id4"><span class="std std-ref">运行流程</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">Tracker_Def</span></code> ：选择跟踪器种类，当前的选择参数有 <code class="code docutils literal notranslate"><span class="pre">DRONE</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">CAR</span></code> 。其中，<code class="code docutils literal notranslate"><span class="pre">DRONE</span></code> 是一个仿真无人机跟踪器，带有物理属性检测和约束，相比之下， <code class="code docutils literal notranslate"><span class="pre">CAR</span></code> 被认为是一个理想的跟踪器，不考虑自身物理属性，能够在任何情况下执行任何动作。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Drone_Supervisor_Ctrl</span></code> ：是否使用supervisor控制跟踪器，supervisor是webots的超级管理员，可以直接控制任何节点。如果为true，则使用supervisor控制跟踪器。如果为false，则使用传统PID控制器(默认无人机控制器参考 <a class="reference external" href="https://github.com/TaoYibo1866/uav_simulator/tree/master?tab=readme-ov-file">工程</a> 进行实现)控制跟踪器的运动。该参数仅适用于无人机跟踪器，车跟踪器仅使用supervisor进行控制。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Socket_Ip</span></code> ：socket通信的ip地址，如果为本机通信，则设置为 <strong>“127.0.0.1”</strong>。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Config_Agen_Num_Port</span></code> ：配置socket通信端口，该端口用于与算法端进行通信，以确定并行智能体数量。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Train_Total_Steps</span></code> ：训练的最大步长数，如果步长超出则截断轨迹。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Init_No_Done_Steps</span></code> ：初始化后不返回 <code class="code docutils literal notranslate"><span class="pre">done=True</span></code> 的仿真步数量，为了防止跟踪器在初始化的时候物理属性不稳定导致done状态的触发，因此需设置该参数在合理大小内。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">No_Reward_Done_Steps</span></code> ：连续reward为0时产生done状态的仿真步长，有利于提高有效数据的比例。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Control_Frequence</span></code> ：控制算法控制频率。仿真端始终以500Hz运行，若 <code class="code docutils literal notranslate"><span class="pre">Control_Frequency=125</span></code> ,则每隔4个仿真步返回1次状态。该参数用于调整算法端的平均控制频率。</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Customized_Rewards</span></code> ：是否启用定制化reward参数。用户可以根据定制化reward参数，自行计算reward。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>定制化Reward参数的详细内容见： <a class="reference internal" href="#id29"><span class="std std-ref">定制化参数接口</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Lidar_Enable</span></code> ：是否启用雷达点云数据。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>雷达点云数据的详细内容见： <a class="reference internal" href="#id29"><span class="std std-ref">定制化参数接口</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Tracking_Object</span></code> ：被跟踪对象设置（默认SUMO_VEHICLE）。可以使用示例跟踪对象，包括“SUMO_VEHICLE”、“Pedestrian”、“Shrimp”、“Create”、“Sojourner”、“Mantis”等等。也可以自定义跟踪对象。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>追踪对象类型的具体描述见： <a class="reference internal" href="#id15"><span class="std std-ref">跟踪对象</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Verbose</span></code> ：使能日志记录。如果设置为true，则会在webots终端窗口打印部分重要参数，可供使用者观察。同时在 <code class="code docutils literal notranslate"><span class="pre">Webots_Simulation/traffic_project/logs</span></code> 文件夹下产生程序运行日志，这部分多用于调试仿真环境。</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/WebotsLogOutput.png"><img alt="webots日志输出（“train”&amp;“video”）" class="align-center" src="../_images/WebotsLogOutput.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">id</span></code> ：跟踪器的名称。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done</span></code> ：当前episode是否结束。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward</span></code> ：当前step获取的reward大小。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">count</span></code> ：当前episode运行的step步数。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">time</span></code> ：仿真时间。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">carDir</span></code> ：被跟踪目标运动方向。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">pitchAngle</span></code> ：摄像头pitch轴角度。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done_state</span></code> ：产生done的原因，包括“height”（跟踪器高度不合理），“distance”（跟踪器目标位置和实际位置误差过大），“velocity”（跟踪器运动速度不合理），“yaw velocity”（跟踪器绕竖直方向旋转速度不合理），“pitch or yaw angle”（跟踪器姿态不合理）。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="done">
+<h3>跟踪器（仅无人机有效）产生done的物理范围参数配置<a class="headerlink" href="#done" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Done_Range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;max_height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;min_height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;velocity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;omiga&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.283</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.22</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;pitch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.22</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;distance_error&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_height</span></code> ：跟踪器最大飞行高度 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">min_height</span></code> ：跟踪器最小飞行高度 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">velocity</span></code> ：跟踪器最大飞行速度 (<span class="math notranslate nohighlight">\(m/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">omiga</span></code> ：跟踪器最大飞行角速度 (<span class="math notranslate nohighlight">\(rad/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">roll</span></code> ：跟踪器最大飞行roll角度 (<span class="math notranslate nohighlight">\(rad\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">pitch</span></code> ：跟踪器最大飞行pitch角度 (<span class="math notranslate nohighlight">\(rad\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">distance_error</span></code> ：跟踪器期望位置和当前位置的最大误差 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="reward-reward-car-reward">
+<span id="reward"></span><h3>内置reward的参数配置（注：内置reward仅对无人机有效，如使用CAR需利用 <a class="reference internal" href="#id32"><span class="std std-ref">返回参数</span></a> 自主设计reward）<a class="headerlink" href="#reward-reward-car-reward" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Reward_Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;reward_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;view&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;reward_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuous&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;reward_cut_off&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;distance_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;distance_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_type</span></code> ：reward的类型（默认view）。view在图像平面进行reward构造，而distance是按照摄像头视角中点投影点到目标的距离进行检测。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_mode</span></code> ：默认reward的模式。continuous产生的是[0，1]之间的连续浮点数 ，而discrete产生的是0或1的整数。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_cut_off</span></code> ：奖励截断。当获得的奖励小于这个值时，<code class="code docutils literal notranslate"><span class="pre">No_Reward_Done_Steps</span></code> 开始计数。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">distance_scale</span></code> ：距离比例（默认continuous）。该参数只对 distance 种类下的 continuous reward 有效，控制reward因距离误差而衰减的速度。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">distance_range</span></code> ：产生reward的距离误差范围(仅对 distance 种类下的 continuous reward 有效)。</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_scale</span></code> ：视角比例。该参数只对continuous模式、view类型有效，控制reward距视角中心误差而衰减的速度。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>具体参数含义见： <a class="reference internal" href="#id19"><span class="std std-ref">内置Reward</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_range</span></code> ：产生reward的视角范围。该参数用于缩放计算reward所用的四边形，也就是摄像头画面中四边形框的大小(见图 <a class="reference internal" href="#id22"><span class="std std-ref">跟踪对象离散奖励示意图</span></a> 中的红色矩形区域)。一般设置范围为[0,1]。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="sumo">
+<h3>SUMO交通系统参数配置<a class="headerlink" href="#sumo" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Sumo_Params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;rou_update&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_sumo_car&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fixed_car_group_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;car_group_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;car_import_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">52.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;car_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;passenger&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fixed_color&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;normalize_color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">     </span><span class="nt">&quot;max_car_speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_car_accel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_car_decel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;max_rou_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7000</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;min_rou_distance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;route_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fixed_seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;random_seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">rou_update</span></code> ：交通仿真路径文件是否更新，如果希望获得确定的路径，请设置为false。 <strong>注意：</strong> 该模块的所有参数改动都会导致路径自动刷新。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_sumo_car</span></code> ：地图中最大载具数量。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">fixed_car_group_num</span></code> ：是否自定义每组加入环境中车辆的数量。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">car_group_num</span></code> ：自定义每组加入环境中车辆的数量。 <strong>注意：</strong> 在训练和视频模式下如果该参数设置不合理（＜Agent数量*3），系统会自动设置合理的参数（＝Agent数量*3），否则环境无法稳定运行, 并且仅当 <code class="code docutils literal notranslate"><span class="pre">fixed_car_group_num</span></code> 为 <code class="code docutils literal notranslate"><span class="pre">true</span></code> 时有效。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">car_import_interval</span></code> ：加入地图每组载具的间隔时间 (<span class="math notranslate nohighlight">\(s\)</span>)。</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">car_type</span></code> ：载具的类型（默认passenger），包括 <code class="code docutils literal notranslate"><span class="pre">[“passenger”、“bus”、“truck”、“trailer”、“motorcycle”]</span></code>。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>所有支持的载具类型见： <a class="reference internal" href="#sumo-vehicle"><span class="std std-ref">SUMO_VEHICLE</span></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">fixed_color</span></code> ：是否固定载具颜色。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">normalize_color</span></code> ：归一化的RGB颜色向量。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_car_speed</span></code> ：最大载具移动速度 (<span class="math notranslate nohighlight">\(m/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_car_accel</span></code> ：最大载具加速度 (<span class="math notranslate nohighlight">\(m/s^2\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_car_decel</span></code> ：最大载具减速度 (<span class="math notranslate nohighlight">\(m/s^2\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_rou_distance</span></code> ：最大路径长度 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">min_rou_distance</span></code> ：最小路径长度 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">route_num</span></code> ：路径最大数量（注意是最大， <code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_multilateral</span></code> 实际由于随机化的过程不一定完全成功，会比设置的参数要少）。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">fixed_seed</span></code> ：是否使用固定的随机种子，如果希望获得稳定的路径和车辆样式，请设置为true。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">random_seed</span></code> ：固定的随机种子。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id10">
+<h3>其他对象追踪的参数配置<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>只有 <code class="code docutils literal notranslate"><span class="pre">Tracking_Object</span></code> 为非“SUMO_VEHICLE”时生效。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Other_Params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;max_obj_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_import_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;import_group_num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_max&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;obj_edge_distribution_min&quot;</span><span class="p">:</span><span class="mi">-10</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">max_obj_num</span></code> ：最大对象数量。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_import_interval</span></code> ：每组对象加入地图的时间间隔 (<span class="math notranslate nohighlight">\(s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">import_group_num</span></code> ：每组加入对象的数量。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_random</span></code> ：是否使能对象沿着地图道路两旁随机分布。 <code class="code docutils literal notranslate"><span class="pre">true</span></code> 则会在随机路径随机位置的垂直方向随机放置。 <code class="code docutils literal notranslate"><span class="pre">false</span></code> 则会在随机路径的随机位置垂直方向固定距离放置。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_multilateral</span></code> ：是否使能双边分布。 <code class="code docutils literal notranslate"><span class="pre">true</span></code> 则分布范围为 <code class="code docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max]</span> <span class="pre">∪</span> <span class="pre">[-max,</span> <span class="pre">-min]</span></code> 。 <code class="code docutils literal notranslate"><span class="pre">false</span></code> 则分布范围为 <code class="code docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max]</span></code> 。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_fixed</span></code> ：距离道路中心固定的距离 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_max</span></code> ：距离道路中心最大的距离 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">obj_edge_distribution_min</span></code> ：距离道路中心最小的距离 (<span class="math notranslate nohighlight">\(m\)</span>)。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id11">
+<h3>输出视频的参数配置<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>只有 <code class="code docutils literal notranslate"><span class="pre">Simulation_Mode</span></code> 为“video”时生效。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Out_Video&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;channels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;total_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;warm_up_steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;output_car_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;random_action&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;forward_speed&quot;</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;backward_speed&quot;</span><span class="p">:</span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;left_speed&quot;</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;right_speed&quot;</span><span class="p">:</span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;cw_omega&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;ccw_omega&quot;</span><span class="p">:</span><span class="mi">-2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">channels</span></code> ：视频通道数量，也就是导入地图中的跟踪器数量。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">fps</span></code> ：根据仿真时间计算的每秒帧数（按照该帧数导出视频图像）。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">start_time</span></code> ：视频开始导出的仿真时间 (<span class="math notranslate nohighlight">\(s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">total_time</span></code> ：视频持续的仿真时间 (<span class="math notranslate nohighlight">\(s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">warm_up_steps</span></code> ：reset后开始多少个step不输出数据。(注意，每个step的周期为 <span class="math notranslate nohighlight">\(2ms\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">output_car_dir</span></code> ：是否输出车辆方向，如果使能，则只输出车辆运动方向，否则，输出reward和action。（车辆方向：0停止，1直行，2左转，3右转）</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">random_action</span></code> ：跟踪器是否使用随机动作，如果使能，则根据Control_Frequence输出随机动作，否则，跟踪器将无差跟随车辆，此时输出action为-1（无意义）</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">forward_speed</span></code> ：跟踪器随机动作的前进速度 (<span class="math notranslate nohighlight">\(m/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">backward_speed</span></code> ：跟踪器随机动作的后退速度 (<span class="math notranslate nohighlight">\(m/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">left_speed</span></code> ：跟踪器随机动作的左移速度 (<span class="math notranslate nohighlight">\(m/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">right_speed</span></code> ：跟踪器随机动作的右移速度 (<span class="math notranslate nohighlight">\(m/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">cw_omega</span></code> ：跟踪器随机动作的顺时针旋转速度 (<span class="math notranslate nohighlight">\(rad/s\)</span>)。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ccw_omega</span></code> ：跟踪器随机动作的逆时针旋转速度 (<span class="math notranslate nohighlight">\(rad/s\)</span>)）。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id12">
+<h3>跟踪器控制的参数配置<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>此组参数用于随机化跟踪器自身的跟踪属性。</p>
+</div></blockquote>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Drone_Random_Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;start_time_bias_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">310</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;view_pitch_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_pitch_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_pitch_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.57</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;view_pitch_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;height_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;height_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">15.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;height_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;height_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">13.0</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;direction_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_random_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;direction_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.1</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;horizon_bias_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;horizon_bias_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+
+<span class="w">     </span><span class="nt">&quot;verticle_bias_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_multilateral&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;verticle_bias_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">start_time_bias_ms</span></code> ：由于环境初始化需要时间，因此设置的智能体越多，初始化的时间会越长，该参数可以整体调整初始化时间的大小。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>注意：总的初始化时间会根据智能体的数量的增加而增加，长于参数设置时间。</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_random</span></code> ：是否对跟踪器摄像头俯仰角随机化。</p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_fixed</span></code> ：若上述参数为 <code class="code docutils literal notranslate"><span class="pre">false</span></code>，则采用该参数定义固定的俯仰角度。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>若角度＞0则为俯角，反之为仰角。</p></li>
+<li><p>在使用场景中，俯角是常态。因此仿真环境中该参数的范围限制在 <span class="math notranslate nohighlight">\([0.5, 1.57](rad)\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_random_max</span></code> ：最大摄像头俯角。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">view_pitch_random_min</span></code> ：最小摄像头俯角。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">height_random</span></code> ：跟踪器飞行高度随机化。其余参数意义同上。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">direction_random</span></code> ：初始视角跟踪器跟随对象方向随机化，范围 <span class="math notranslate nohighlight">\([-\pi, \pi](rad)\)</span></p></li>
+</ul>
+<ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">direction_random_multilateral</span></code> ：是否启用双边随机化配置。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">false</span></code>, <span class="math notranslate nohighlight">\([min, max]\)</span> ; <code class="code docutils literal notranslate"><span class="pre">true</span></code>, <span class="math notranslate nohighlight">\([-max, -min] ∪ [min, max]\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">horizon_bias_random</span></code> ：初始视角跟踪器跟踪对象水平偏移位置。如果后续参数为正，则对象向左偏移，如果后续参数为负，则对象向右偏移。其余参数同上。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">verticle_bias_random</span></code> ：初始视角跟踪器跟踪对象竖直偏移位置。如果后续参数为正，则对象向上偏移，如果后续参数为负，则对象向下偏移。其余参数同上。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id13">
+<h3>仿真环境的参数配置<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>此组参数用于随机化跟踪器自身的跟踪属性。</p>
+</div></blockquote>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Env_Params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;background_luminosity_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;bgl_incremental&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;bgl_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;bgl_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;backgroundLight_luminosity_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;bgLl_incremental&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;bgLl_random_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;bgLl_random_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;foggy_use_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;foggy_visibility_range_random&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;foggy_visibility_range_fixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;foggy_visibility_range_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;foggy_visibility_range_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数说明</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">background_luminosity_random</span></code> ：是否对环境背景光照随机化。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgl_incremental</span></code> ：若上述参数为 <code class="code docutils literal notranslate"><span class="pre">false</span></code>，则采用该参数定义固定的环境光照。</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgl_random_max</span></code> ：最大环境背景光照。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgl_random_min</span></code> ：最小环境背景光照。</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">backgroundLight_luminosity_random</span></code> ：是否对环境背景光源光照随机化。</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgLl_incremental</span></code> ：若上述参数为 <code class="code docutils literal notranslate"><span class="pre">false</span></code>，则采用该参数定义固定的环境背景光源光照。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgLl_random_max</span></code> ：最大环境背景光源光照。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bgLl_random_min</span></code> ：最小环境背景光源光照。</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_use_default</span></code> ：是否启用环境雾。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_random</span></code> ：是否对环境雾可见度随机化。</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_fixed</span></code> ：若上述参数为 <code class="code docutils literal notranslate"><span class="pre">false</span></code>，则采用该参数定义固定的环境雾可见度。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_max</span></code> ：最大环境雾可见度。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">foggy_visibility_range_min</span></code> ：最小环境雾可见度。</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id14">
+<h3>部分配置参数建议<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>由于24张场景地图的复杂度/大小并不相同，因而本工程提供了每张地图的建议配置参数，请参考文档： <a class="reference internal" href="Parameters.html"><span class="doc">建议参数设置</span></a>。</p>
+</div></blockquote>
+</section>
+</section>
+<section id="id15">
+<span id="id16"></span><h2>跟踪对象<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<blockquote>
+<div><div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+      本工程提供了18种共24个预定义的跟踪目标，并提供即插即用的接口，支持用户利用自主设计的模型和控制器。
+</div></div></blockquote>
+<section id="sumo-vehicle">
+<span id="id17"></span><h3>SUMO_VEHICLE<a class="headerlink" href="#sumo-vehicle" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>SUMO_VEHICLE由SUMO交通管理系统控制地图中的交通状态，使载具在地图上按照规划的路径行驶。其中，载具的类型可以进行指定。</p>
+</div></blockquote>
+<p><strong>passenger</strong></p>
+<blockquote>
+<div><p>客运小型车辆，passenger类型中包含了常见的轿车、SUV、商务车，样式如下：</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/BMWX5.png" alt="Image 1" style="width: 90%;" />
+      <figcaption>BmwX5</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/CITROENCZero.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>CitroenCZero</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/LINKOLNMKZ.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>LinkolnMKZ</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 25%;">
+      <img src="../_static/image/MERCEDESBENZSprinter.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>MercedesBenzSprinter</figcaption>
+   </figure>
+</div><div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/RANGEROVERSportSVR.png" alt="Image 1" style="width: 90%;" />
+      <figcaption>RangeRoverSportSVR</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/TESLAModel3.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>TeslaModel3</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/TOYOTAPrius.png" alt="Image 2" style="width: 90%;" />
+      <figcaption>ToyotaPrius</figcaption>
+   </figure>
+</div></div></blockquote>
+<p><strong>bus</strong></p>
+<blockquote>
+<div><p>统一车型，大型载客车辆</p>
+</div></blockquote>
+<figure class="align-center" id="id34">
+<a class="reference internal image-reference" href="../_images/BUS.png"><img alt="BUS" src="../_images/BUS.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Bus</span><a class="headerlink" href="#id34" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>truck</strong></p>
+<blockquote>
+<div><p>统一车型，不带货箱的货车</p>
+</div></blockquote>
+<figure class="align-center" id="id35">
+<a class="reference internal image-reference" href="../_images/TRUCK.png"><img alt="TRUCK" src="../_images/TRUCK.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Truck</span><a class="headerlink" href="#id35" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>trailer</strong></p>
+<blockquote>
+<div><p>统一车型，带货箱的货车</p>
+</div></blockquote>
+<figure class="align-center" id="id36">
+<a class="reference internal image-reference" href="../_images/TRAILER.png"><img alt="TRAILER" src="../_images/TRAILER.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Trailer</span><a class="headerlink" href="#id36" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="motorcycle">
+<h3>motorcycle<a class="headerlink" href="#motorcycle" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>两种车型，摩托车</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/SCOOTER.png" alt="SCOOTER" style="width: 90%;" />
+      <figcaption>Scooter</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/MOTORBIKE.png" alt="MOTORBIKE" style="width: 90%;" />
+      <figcaption>Motorbike</figcaption>
+   </figure>
+</div></div></blockquote>
+</section>
+<section id="pedestrian">
+<h3>Pedestrian<a class="headerlink" href="#pedestrian" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>行人对象会按照一定的路线和一定的速度行进，同时人体会模仿真人步态进行运动</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/PEDESTRIAN.png" alt="PEDESTRIAN " style="width: 90%;" />
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/PEDESTRIAN2.png" alt="PEDESTRIAN2" style="width: 90%;" />
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/PEDESTRIAN3.png" alt="PEDESTRIAN3" style="width: 90%;" />
+   </figure>
+</div>
+<p style="text-align: center;">Pedestrian</p></div></blockquote>
+</section>
+<section id="wheel-robots">
+<h3>Wheel Robots<a class="headerlink" href="#wheel-robots" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>轮式机器人</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/SHRIMP.png" alt="SHRIMP" style="width: 90%;" />
+      <figcaption>Shrimp</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/CREATE.png" alt="CREATE" style="width: 90%;" />
+      <figcaption>Create</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/SOJOURNER.png" alt="SOJOURNER" style="width: 90%;" />
+      <figcaption>Sojourner</figcaption>
+   </figure>
+</div><div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/BB_8.png" alt="BB_8" style="width: 90%;" />
+      <figcaption>BB-8</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 50%;">
+      <img src="../_static/image/FIREBIRD6.png" alt="FIREBIRD6" style="width: 90%;" />
+      <figcaption>FireBird6</figcaption>
+   </figure>
+</div></div></blockquote>
+</section>
+<section id="legged-robots">
+<h3>Legged Robots<a class="headerlink" href="#legged-robots" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>足式机器人</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/MANTIS.png" alt="MANTIS" style="width: 90%;" />
+      <figcaption>Mantis</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/AIBOERS7.png" alt="AIBOERS7" style="width: 90%;" />
+      <figcaption>AiboErs7</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/BIOLOIDDOG.png" alt="BIOLOIDDOG" style="width: 90%;" />
+      <figcaption>BioloidDog</figcaption>
+   </figure>
+</div><div style="display: flex; align-items: center; justify-content: space-between;">
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/SCOUT.png" alt="SCOUT" style="width: 90%;" />
+      <figcaption>Scout</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/GHOSTDOG2.png" alt="GHOSTDOG2" style="width: 90%;" />
+      <figcaption>GhostDog</figcaption>
+   </figure>
+   <figure style="text-align: center; width: 33%;">
+      <img src="../_static/image/HOAP2.png" alt="HOAP2" style="width: 90%;" />
+      <figcaption>Hoap2</figcaption>
+   </figure>
+</div></div></blockquote>
+</section>
+<section id="id18">
+<h3>自定义对象<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>该工程支持自定义被跟踪对象，实现步骤如下：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>按照 <a class="reference external" href="https://cyberbotics.com/doc/reference/proto#:~:text=Webots%20Reference%20Manual.%20R2023b.%20PROTO.">webots wiki标准</a> ，建立webots使用的描述文件proto文件，其中必须开放到场景树的属性包括”translation”，”rotation”，”name”。描述文件示例格式如下，存放在 <code class="code docutils literal notranslate"><span class="pre">UAV_Follow_Env/Webots_Simulation/traffic_project/protos</span></code></p></li>
+</ol>
+<figure class="align-center" id="id37">
+<a class="reference internal image-reference" href="../_images/SceneTreePropertyPack.png"><img alt="场景树属性包" src="../_images/SceneTreePropertyPack.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">场景树属性包</span><a class="headerlink" href="#id37" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>可以选择编写控制器，让被跟踪对象有自主的行为</p></li>
+<li><p>在webots的 <code class="code docutils literal notranslate"><span class="pre">IMPORTABLE</span> <span class="pre">EXTERNPROTO</span></code> 模块中载入已经建立的proto文件</p></li>
+</ol>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+   <div style="text-align: center; width: 38%;">
+      <img src="../_static/image/IMPORT_PROTO.png" alt="IMPORT_PROTO" style="width: 90%;" />
+   </div>
+   <div style="text-align: center; width: 62%;">
+      <img src="../_static/image/IMPORT_PROTO2.png" alt="IMPORT_PROTO2" style="width: 90%;" />
+   </div>
+</div>
+
+<p style="text-align: center; ">
+   IMPORT PROTO
+</p><ol class="arabic" start="4">
+<li><p>把proto的名称写进安全检查文件 <code class="code docutils literal notranslate"><span class="pre">UAV_Follow_Env/Webots_Simulation/traffic_project/config/safetyCheck.py</span></code></p>
+<figure class="align-center" id="id38">
+<a class="reference internal image-reference" href="../_images/SafeCheck.png"><img alt="SafeCheck" src="../_images/SafeCheck.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">安全检查</span><a class="headerlink" href="#id38" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>在json配置文件中修改 <code class="code docutils literal notranslate"><span class="pre">Tracking_Object</span></code> 的描述，其描述应当与proto名称相同</p></li>
+<li><p>经过上述步骤就能够使用跟踪器跟踪自定义对象</p></li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+</section>
+</section>
+<section id="id19">
+<span id="id20"></span><h2>内置Reward<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<blockquote>
+<div><div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+      本工程提供了<b>离散型和连续型</b>两种奖励函数，可用于设计不同的智能体评价指标。
+</div>
+</br></div></blockquote>
+<section id="id21">
+<h3>奖励函数<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="border-left: 4px solid #FFC1C1; padding-left: 10px; margin-left: 0;">
+  由于Webots中超级智能体的存在，我们可以在每个时刻获取飞机以及被跟踪小车的坐标(x_f,y_f,z_f)以及(x_v,y_v,z_v)，并根据实际摄像头的Pitch角度以及设定的摄像头FOV直接判断出跟踪是否成功
+</div>
+</br><p>对于跟踪器（无人机），奖励函数有2种选择，第一种选择是离散奖励，当跟踪对象进入跟踪范围时给予奖励，离开范围时不给予奖励（奖励为0），数学表达式如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}r_{d} = \begin{cases}
+1 &amp; t \in I, \\
+0 &amp; \text{otherwise}.
+\end{cases}\end{split}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(I\)</span> 代表跟踪范围（相机镜头获取的画面范围）， <span class="math notranslate nohighlight">\(t\)</span> 代表跟踪对象在跟踪范围（相机镜头获取的画面范围）内的位置。</p>
+<figure class="align-center" id="id39">
+<span id="id22"></span><a class="reference internal image-reference" href="../_images/Discrete_reward.png"><img alt="Discrete_reward" src="../_images/Discrete_reward.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">跟踪对象离散奖励示意图</span><a class="headerlink" href="#id39" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>第二种是连续奖励，通过判断跟踪对象相对跟踪范围中心的位置，给予一个随着距离增大而减小的奖励。奖励越高代表目标离范围中心点越近，反之越远。</p>
+<figure class="align-center" id="id40">
+<span id="id24"></span><span id="figcontr"></span><span id="id23"></span><a class="reference internal image-reference" href="../_images/Continuous_reward.png"><img alt="Continuous_reward" src="../_images/Continuous_reward.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">跟踪对象连续奖励示意图</span><a class="headerlink" href="#id40" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>上图是一个跟踪对象处于相机画面中的示意图，记</p>
+<div class="math notranslate nohighlight">
+\[x = \frac{\mid p_{vc}- I_{OG}\mid}{\mid E_{G_c}- I_{OG}\mid}\]</div>
+<p>那么，密集奖励可以使用下面的表达式获得：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}r_{c} = \begin{cases}
+\tanh\left(\alpha(1-x)^{3}\right), &amp; t \in I_{clip}, \\
+0 &amp; \text{otherwise}.
+\end{cases}\end{split}\]</div>
+<p>目标离范围中心点越近时，奖励会越接近1，反之越接近0。 <span class="math notranslate nohighlight">\(\alpha\)</span> 为常数，建议取值为3~5。
+此外， <span class="math notranslate nohighlight">\(I_{clip}\)</span> 为有效reward判定范围(如 <a class="reference internal" href="#figcontr"><span class="std std-ref">跟踪对象连续奖励示意图</span></a> 中红色方框所示)，其边长 <span class="math notranslate nohighlight">\(W_{I_{clip}}\)</span> 与原图边长 <span class="math notranslate nohighlight">\(W_{I}\)</span> 的比值可以用 <span class="math notranslate nohighlight">\(\lambda_{clip}\)</span> 表示如下。</p>
+<div class="math notranslate nohighlight">
+\[\lambda_{clip} = \frac{W_{I_{clip}}}{W}\]</div>
+<p>根据上述定义式， <span class="math notranslate nohighlight">\(\lambda_{clip}\)</span> 的合理范围为： <span class="math notranslate nohighlight">\([0,1]\)</span> ，在实际训练中，建议参数为 <span class="math notranslate nohighlight">\(\lambda_{clip}=0.7\)</span> 。</p>
+</div></blockquote>
+</section>
+<section id="id25">
+<h3>奖励获取<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>上述奖励函数的获取基于跟踪对象位置的判断。在实际中，跟踪对象在相机图像中的位置，可以通过视觉识别或者人工标注的方法获取。而在仿真训练中，为了简化获取流程，我们直接使用了跟踪对象的坐标判断跟踪对象是否进入跟踪范围。</p>
+<figure class="align-center" id="id41">
+<span id="id26"></span><a class="reference internal image-reference" href="../_images/Reward.png"><img alt="Reward" src="../_images/Reward.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">奖励获取示意图</span><a class="headerlink" href="#id41" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<section id="id27">
+<h4>原理<a class="headerlink" href="#id27" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>首先需要获取仿真中的相机焦距，利用小孔成像原理计算表达式如下：</p>
+<div class="math notranslate nohighlight">
+\[f = \frac{W}{2\tan\left(\frac{1}{2}FoV\right)}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(W\)</span> 代表相机画面宽度（像素数）， <span class="math notranslate nohighlight">\(FoV\)</span> 指跟踪器相机视场角，如 <a class="reference internal" href="#id26"><span class="std std-ref">奖励获取示意图</span></a> (a) 所示。</p>
+<p>然后如 <a class="reference internal" href="#id26"><span class="std std-ref">奖励获取示意图</span></a> (a) 所示，我们需要将相机画面角点投影到跟踪对象所处的空间平面上。接着如 <a class="reference internal" href="#id26"><span class="std std-ref">奖励获取示意图</span></a> (b) 所示对跟踪对象坐标进行判断。最后在相机光心建立相机坐标系 <span class="math notranslate nohighlight">\(\{c\}\)</span>，就可以获得相机画面4个角点在坐标系 <span class="math notranslate nohighlight">\(\{c\}\)</span> 下的坐标：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}LU\left(-f,-\frac{1}{2}W,\frac{1}{2}H\right),\\
+LD\left(-f,-\frac{1}{2}W,-\frac{1}{2}H\right),\\
+RU\left(-f,\frac{1}{2}W,\frac{1}{2}H\right),\\
+RD\left(-f,\frac{1}{2}W,-\frac{1}{2}H\right)\end{split}\]</div>
+<p>再与光心 <span class="math notranslate nohighlight">\(C\)</span> <span class="math notranslate nohighlight">\((0,0,0)\)</span> 联立可得4个直线方程：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}
+l_{LUC}: \frac{x}{-f} = \frac{2y}{-W} = \frac{2z}{H}, \\
+l_{LDC}: \frac{x}{-f} = \frac{2y}{-W} = \frac{2z}{-H}, \\
+l_{RUC}: \frac{x}{-f} = \frac{2y}{W} = \frac{2z}{H}, \\
+l_{RDC}: \frac{x}{-f} = \frac{2y}{W} = \frac{2z}{-H}
+\end{matrix}\end{split}\]</div>
+<p>接着获取地面（水平）的方程为：</p>
+<div class="math notranslate nohighlight">
+\[G_{w}: z = h\]</div>
+<p><span class="math notranslate nohighlight">\(\{w\}\)</span> 代表世界坐标系， <span class="math notranslate nohighlight">\(h\)</span> 为地面高度。</p>
+<p>由于跟踪器云台姿态已知，易得到相机坐标系 <span class="math notranslate nohighlight">\(\{c\}\)</span> 到世界坐标系 <span class="math notranslate nohighlight">\(\{w\}\)</span> 的齐次变换矩阵 <span class="math notranslate nohighlight">\(T_{ct}\)</span>。</p>
+<p>利用 <span class="math notranslate nohighlight">\(T_{ct}\)</span> 可以将平面方程 <span class="math notranslate nohighlight">\(G_{w}\)</span> 转换到坐标系 <span class="math notranslate nohighlight">\(\{c\}\)</span> 下。如图A所示，联立地面方程与4个直线方程，即可求得相机角点在地面的映射坐标 <span class="math notranslate nohighlight">\(LU_{G}, LD_{G}, RU_{G}, RD_{G}\)</span>，该4个点组成了跟踪范围 <span class="math notranslate nohighlight">\(I\)</span> 的4个角点，从而确定跟踪区域 <span class="math notranslate nohighlight">\(I\)</span>。</p>
+<p>最后从仿真环境中读取跟踪对象的坐标点 <span class="math notranslate nohighlight">\(p_{vG}\)</span> ，并将其与图像中心点 <code class="code docutils literal notranslate"><span class="pre">I_{OG}</span></code> 转换到坐标系 <span class="math notranslate nohighlight">\(\{c\}\)</span> 下，得到 <span class="math notranslate nohighlight">\(p_{vc}\)</span>。利用汽车的坐标 <span class="math notranslate nohighlight">\(p_{vc}\)</span>，四个交叉点（ <code class="code docutils literal notranslate"><span class="pre">LU_G</span></code>、<code class="code docutils literal notranslate"><span class="pre">LD_G</span></code> 、<code class="code docutils literal notranslate"><span class="pre">RU_G</span></code> 和 <code class="code docutils literal notranslate"><span class="pre">RD_G</span></code> ）和图像中心 <code class="code docutils literal notranslate"><span class="pre">I_{OG}</span></code> ，
+利用 <a class="reference internal" href="#id24"><span class="std std-ref">跟踪对象连续奖励示意图</span></a> ,即可求得比例 <span class="math notranslate nohighlight">\(x\)</span>，当 <span class="math notranslate nohighlight">\(0 \leq x \leq 1\)</span> 时对象在图像内，成功跟踪。</p>
+<p>当地面非水平时计算方法类似。</p>
+</div></blockquote>
+</section>
+</section>
+<section id="id28">
+<h3>投影可视化<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>按照上述原理实现之后相机角点到地面的映射效果如下视频所示，在仿真中将方块放置到地面与直线计算出来的交点处，即可实时观察相机画面的范围：</p>
+<video width="640" height="360" controls>
+   <source src="../_static/video/GetReward_Video.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+   注意：视场角上限不能超过地平线，否则计算结果没有意义。
+</div></div></blockquote>
+</br></section>
+</section>
+<section id="id29">
+<span id="id30"></span><h2>定制化参数接口<a class="headerlink" href="#id29" title="Link to this heading"></a></h2>
+<div style="background-color: #e5f3e5; padding: 15px; border-radius: 5px; border: 2px solid #66CD00;">
+      本工程提供了常用的<b>6种传感器数据</b>，可以用于多传感器协同任务设计。
+</div>
+</br><section id="id31">
+<h3>输入动作<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>输入动作用于控制跟踪器的运动，目前跟踪器支持离散及连续的动作空间。连续的动作空间为5个浮点数，包括前进/后退、左移/右移、上移/下移、顺/逆时针旋转及是否reset。离散的动作空间包含前进、后退、左平移、右平移、逆时针旋转、顺时针旋转和停止。</p>
+</div></blockquote>
+</section>
+<section id="id32">
+<span id="id33"></span><h3>返回参数<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>返回参数主要包括三个部分，基础数据包，自定义奖励数据包，雷达数据包</p>
+</div></blockquote>
+<p><strong>基础数据包</strong></p>
+<blockquote>
+<div><p>基础数据包共22个浮点数，如下所示：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_Odometry</span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="c1">// 仿真步数（不是仿真时间）</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">position</span><span class="p">;</span><span class="c1">//三轴位置m</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">linear</span><span class="p">;</span><span class="c1">//三轴线速度m/s</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">acc</span><span class="p">;</span><span class="c1">//三轴加速度m/s^2</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">angular</span><span class="p">;</span><span class="c1">//三轴角速度rad</span>
+<span class="w">  </span><span class="n">vector4</span><span class="w"> </span><span class="n">orientation</span><span class="p">;</span><span class="c1">//四元数</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">angle</span><span class="p">;</span><span class="c1">//欧拉角</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">reward</span><span class="p">;</span><span class="c1">//reward</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">done</span><span class="p">;</span><span class="c1">//是否结束仿真</span>
+<span class="p">}</span><span class="n">Odometry</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<html>
+
+<head>
+
+    <style>
+
+
+        table {
+
+            border-collapse: collapse;
+
+            width: 100%; /* 根据需要设置宽度 */
+
+        }
+
+
+        th {
+
+            border-top: 2px solid black; /* 或者使用你想要的任何颜色和粗细 */
+
+            border-bottom: 2px solid black; /* 底部边框，如果需要的话 */
+
+            padding: 8px; /* 设置内边距以改善可读性 */
+
+        }
+
+
+        td {
+
+            padding: 6px; /* 设置内边距以改善可读性 */
+
+        }
+
+
+        td, th {
+
+            border-left: none;
+
+            border-right: none;
+
+        }
+
+
+        .vision-row {
+
+            background-color: #FFC1C1;
+
+        }
+
+
+
+        .motion-row {
+
+            background-color: #87CEEB;
+
+        }
+
+
+        .row-line {
+
+            border-bottom: 2px solid black; /* 底部边框，如果需要的话 */
+
+        }
+
+        .merged-cell {
+            text-align: center; /* 水平居中 */
+            vertical-align: middle; /* 垂直居中，虽然对于td来说这通常是默认的 */
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<table>
+ <tr class="merged-cell">
+     <th>类别</th>
+     <th>传感器</th>
+     <th>参数</th>
+     <th>类型</th>
+     <th>描述</th>
+     <th>潜在任务</th>
+ </tr>
+ <tr class="merged-cell">
+     <td rowspan="2" class="vision-row merged-cell">Vision</td>
+     <td>Camera</td>
+     <td>Image</td>
+     <td>Mat</td>
+     <td>Images captured by the camera</td>
+     <td>Default sensor</td>
+ </tr>
+ <tr class="row-line merged-cell">
+     <td>Lidar</td>
+     <td>LidarCloud</td>
+     <td>vector2000</td>
+     <td>Point cloud from RpLidarA2(m)</td>
+     <td>Obstacle avoidance</td>
+ </tr>
+ <tr class="merged-cell">
+     <td rowspan="6" class="motion-row merged-cell">Motion</td>
+     <td rowspan="2" class="merged-cell">GPS</td>
+     <td>Position</td>
+     <td>vector3</td>
+     <td>Position (m)</td>
+     <td>Visual navigation</td>
+ </tr>
+ <tr class="merged-cell">
+     <td>Linear</td>
+     <td>vector3</td>
+     <td>Linear velocity (m/s)</td>
+     <td>Visual navigation</td>
+ </tr>
+ <tr class="merged-cell">
+     <td>Accelerometer</td>
+     <td>Acc</td>
+     <td>vector3</td>
+     <td>Acceleration (m/s^2)</td>
+     <td>Visual navigation</td>
+ </tr>
+ <tr class="merged-cell">
+     <td>Gyroscope</td>
+     <td>Angular</td>
+     <td>vector3</td>
+     <td>Angular velocity (rad/s)</td>
+     <td>Robot posture stabilization</td>
+ </tr>
+ <tr class="merged-cell">
+     <td rowspan="2" class="merged-cell">IMU</td>
+     <td>Angle</td>
+     <td>vector3</td>
+     <td>Eular angles (rad)</td>
+     <td>Robot posture stabilization</td>
+ </tr>
+ <tr class="row-line merged-cell">
+     <td>Orientation</td>
+     <td>vector4</td>
+     <td>Quaternion representation</td>
+     <td>Robot posture stabilization</td>
+ </tr>
+</table>
+</body>
+</html>
+</br><p><strong>自定义奖励数据包</strong></p>
+<blockquote>
+<div><p>自定义奖励数据包共60个浮点数+1个字符串，具体内容如下：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_rewardData</span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraWidth</span><span class="p">;</span><span class="c1">// 图像宽度（像素）</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraHeight</span><span class="p">;</span><span class="c1">// 图像高度（像素）</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraFov</span><span class="p">;</span><span class="c1">// 摄像头视场角（rad）[0,pi]</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraF</span><span class="p">;</span><span class="c1">// 摄像头焦距估算（像素）</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraPitch</span><span class="p">;</span><span class="c1">// 摄像头俯仰角 (rad)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">trackerHeight</span><span class="p">;</span><span class="c1">// 跟踪器高度 (m)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">initDirection</span><span class="p">;</span><span class="c1">// 初始跟踪角度 (rad)</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">T_ct</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="c1">// 摄像头相对于世界坐标系的齐次变换矩阵</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">T_tw</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="c1">// 车辆相对于世界坐标系的齐次变换矩阵</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">cameraMidGlobalPos</span><span class="p">;</span><span class="c1">// 摄像头中心映射到地面在世界坐标系下的三维坐标</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">carMidGlobalPos</span><span class="p">;</span><span class="c1">// 车辆中心在世界坐标系下的三维坐标</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">cameraMidPos</span><span class="p">;</span><span class="w"> </span><span class="c1">// 摄像头中心在世界坐标系下的坐标</span>
+<span class="w">  </span><span class="n">vector4</span><span class="w"> </span><span class="n">carDronePosOri</span><span class="p">;</span><span class="w"> </span><span class="c1">// 车辆中心在跟踪器坐标系下的1D姿态+3D坐标 [w, x, y, z]</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">carDroneVel</span><span class="p">;</span><span class="w"> </span><span class="c1">// 车辆中心在无人机坐标系下的3D速度</span>
+<span class="w">  </span><span class="n">vector3</span><span class="w"> </span><span class="n">carDroneAcc</span><span class="p">;</span><span class="w"> </span><span class="c1">// 车辆中心在无人机坐标系下的3D加速度</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">crash</span><span class="p">;</span><span class="w"> </span><span class="c1">// 跟踪器是否与建筑物碰撞</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">carDir</span><span class="p">;</span><span class="c1">// 车辆运行方向(0停止，1直行，2左转，3右转)</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">carTypename</span><span class="p">;</span><span class="c1">// 对象类型</span>
+<span class="p">}</span><span class="n">rewardData</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>其中，参数 <code class="code docutils literal notranslate"><span class="pre">carCameraPosOri</span></code> 中跟踪器坐标系定义和姿态角定义如下：</p></li>
+</ul>
+<figure class="align-center" id="id42">
+<a class="reference internal image-reference" href="../_images/DroneCoordinates.png"><img alt="无人机坐标系" src="../_images/DroneCoordinates.png" style="height: 350px;" /></a>
+<figcaption>
+<p><span class="caption-text">无人机坐标系定义</span><a class="headerlink" href="#id42" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p><strong>雷达数据包</strong></p>
+<blockquote>
+<div><p>雷达点云数据。该环境中的跟踪器搭载了RpLidarA2单线雷达，其点云数据将输出一个长度为2000的数组。</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="仿真器部分" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="Parameters.html" class="btn btn-neutral float-right" title="建议参数设置" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

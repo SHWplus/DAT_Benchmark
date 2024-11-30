@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithm Introduction &mdash; DAT 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Environment Wrapping" href="Environment.html" />
+    <link rel="prev" title="Algorithm" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DAT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Algorithm</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Algorithm Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-start-running-baseline-algorithms">Quick Start (Running baseline algorithms)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#baseline1-benchenv-multi-environment-a3clstm-e2e-algorithm">Baseline1: <code class="code docutils literal notranslate"><span class="pre">BenchEnv_Multi</span></code> environment +  <code class="code docutils literal notranslate"><span class="pre">A3CLSTM-E2E</span></code> algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#baseline2-uav-vat-gymnasium-environment-d-vat-algorithm">Baseline2: <code class="code docutils literal notranslate"><span class="pre">UAV_VAT_Gymnasium</span></code> environment +  <code class="code docutils literal notranslate"><span class="pre">D-VAT</span></code> algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#baseline3-ours-envs-environment-r-vat-algorithm">Baseline3(Ours): <code class="code docutils literal notranslate"><span class="pre">Envs</span></code> Environment +  <code class="code docutils literal notranslate"><span class="pre">R-VAT</span></code> Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Environment.html">Environment Wrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Model.html">Model Construction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Webots_Simulator/index.html">Simulator Section</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DAT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Algorithm</a></li>
+      <li class="breadcrumb-item active">Algorithm Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Algorithm/Introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="algorithm-introduction">
+<h1>Algorithm Introduction<a class="headerlink" href="#algorithm-introduction" title="Link to this heading"></a></h1>
+<blockquote>
+<div><style>
+    #language-switch {
+    display: flex; /* Use Flexbox layout */
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Center buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#language-switch button {
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+}
+</style>
+
+<!-- Language switch buttons -->
+<div id="language-switch" style="background-color: #fae3e3; padding: 15px; border-radius: 5px; border: 2px solid #cb7474;">
+    <b style="font-size: 18px;">You can choose language by </b>
+    <button onclick="switchLanguage('zh')">中文</button>
+    <button onclick="switchLanguage('en')">English</button>
+</div>
+
+<script>
+    function switchLanguage(lang) {
+        if (lang === 'zh') {
+            window.location.href = '../zh/Algorithm/Introduction.html';
+        } else if (lang === 'en') {
+            window.location.href = 'Introduction.html';
+        }
+    }
+</script>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      This project provides <b>3 types of environment implementations, and 3 baseline algorithms</b> for users to design algorithms and compare their performance.
+      For detailed documentation on environment classes, see: <a href="Environment.html">Environment Wrapping</a>; for detailed documentation on algorithm classes, see: <a href="Model.html">Model Construction</a>
+</div>
+</br></div></blockquote>
+<section id="quick-start-running-baseline-algorithms">
+<h2>Quick Start (Running baseline algorithms)<a class="headerlink" href="#quick-start-running-baseline-algorithms" title="Link to this heading"></a></h2>
+<section id="baseline1-benchenv-multi-environment-a3clstm-e2e-algorithm">
+<h3>Baseline1: <code class="code docutils literal notranslate"><span class="pre">BenchEnv_Multi</span></code> environment +  <code class="code docutils literal notranslate"><span class="pre">A3CLSTM-E2E</span></code> algorithm<a class="headerlink" href="#baseline1-benchenv-multi-environment-a3clstm-e2e-algorithm" title="Link to this heading"></a></h3>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+    Environment code is located at <code>Alg_Base/DAT_Benchmark/envs/environment.py</code>
+    Algorithm code is located at <code>Alg_Base/DAT_Benchmark/models/A3CLSTM_E2E/</code>
+</div>
+</br><p>You can run the following code to quickly start the algorithm:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+<span class="c1"># Test mode</span>
+<span class="c1"># Test using Cumulative Reward (CR)</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Test_Param<span class="w"> </span><span class="s2">&quot;CityStreet-d&quot;</span><span class="w"> </span>--Test_Mode<span class="w"> </span>AR
+<span class="c1"># Test using Tracking Success Rate (TSR)</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Test_Param<span class="w"> </span><span class="s2">&quot;CityStreet-d&quot;</span><span class="w"> </span>--Test_Mode<span class="w"> </span>TSR
+<span class="c1"># New training mode</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--workers<span class="w"> </span><span class="m">35</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Freq<span class="w"> </span><span class="m">125</span><span class="w"> </span>--New_Train
+<span class="c1"># Resuming training mode</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--workers<span class="w"> </span><span class="m">35</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Freq<span class="w"> </span><span class="m">125</span>
+</pre></div>
+</div>
+</section>
+<section id="baseline2-uav-vat-gymnasium-environment-d-vat-algorithm">
+<h3>Baseline2: <code class="code docutils literal notranslate"><span class="pre">UAV_VAT_Gymnasium</span></code> environment +  <code class="code docutils literal notranslate"><span class="pre">D-VAT</span></code> algorithm<a class="headerlink" href="#baseline2-uav-vat-gymnasium-environment-d-vat-algorithm" title="Link to this heading"></a></h3>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+    Environment code can be found at <code>Alg_Base/DAT_Benchmark/models/D_VAT/DVAT_envs.py</code>
+    Algorithm code can be found at <code>Alg_Base/DAT_Benchmark/models/D_VAT/</code>
+</div>
+</br><p>You can run the following code to quickly start the algorithm:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+<span class="c1"># Test mode</span>
+<span class="c1"># Test using Cumulative Reward (CR)</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>CR
+<span class="c1"># Test using Tracking Success Rate (TSR)</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>TSR
+<span class="c1"># New training mode</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--New_Train
+<span class="c1"># Resume training mode</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="baseline3-ours-envs-environment-r-vat-algorithm">
+<h3>Baseline3(Ours): <code class="code docutils literal notranslate"><span class="pre">Envs</span></code> Environment +  <code class="code docutils literal notranslate"><span class="pre">R-VAT</span></code> Algorithm<a class="headerlink" href="#baseline3-ours-envs-environment-r-vat-algorithm" title="Link to this heading"></a></h3>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+    Environment code can be found at <code>Alg_Base/DAT_Benchmark/envs/envs_parallel.py</code>
+    Algorithm code can be found at <code>Alg_Base/DAT_Benchmark/models/R_VAT/</code>
+</div>
+</br><p>You can run the following code to quickly start the algorithm:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+<span class="c1"># Test mode</span>
+<span class="c1"># Test using Cumulative Reward (CR)</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>AR
+<span class="c1"># Test using Tracking Success Rate (TSR)</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>TSR
+<span class="c1"># New training mode</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--New_Train
+<span class="c1"># Resume training mode</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Algorithm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Environment.html" class="btn btn-neutral float-right" title="Environment Wrapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Construction &mdash; DAT 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simulator Section" href="../Webots_Simulator/index.html" />
+    <link rel="prev" title="Environment Wrapping" href="Environment.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DAT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Algorithm</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Algorithm Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Environment.html">Environment Wrapping</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model Construction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#baseline1-a3clstm-e2e">Baseline1 A3CLSTM-E2E</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-start">Quick-Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#program-entry-point">Program entry point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-files">log files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#baseline2-d-vat">Baseline2 D-VAT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Quick-Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#program-entry">Program Entry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-encapsulation-and-modification-details">Code Encapsulation and Modification Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-file">log file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#baseline3-r-vat">Baseline3 R-VAT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Quick-Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Program Entry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#curriculum-learning">Curriculum Learning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">log file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Webots_Simulator/index.html">Simulator Section</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DAT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Algorithm</a></li>
+      <li class="breadcrumb-item active">Model Construction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Algorithm/Model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="model-construction">
+<h1>Model Construction<a class="headerlink" href="#model-construction" title="Link to this heading"></a></h1>
+<style>
+    #language-switch {
+    display: flex; /* Use Flexbox layout */
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Center buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#language-switch button {
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+}
+</style>
+
+<!-- Language switch buttons -->
+<div id="language-switch" style="background-color: #fae3e3; padding: 15px; border-radius: 5px; border: 2px solid #cb7474;">
+    <b style="font-size: 18px;">You can choose language by </b>
+    <button onclick="switchLanguage('zh')">中文</button>
+    <button onclick="switchLanguage('en')">English</button>
+</div>
+
+<script>
+    function switchLanguage(lang) {
+        if (lang === 'zh') {
+            window.location.href = '../zh/Algorithm/Model.html';
+        } else if (lang === 'en') {
+            window.location.href = 'Model.html';
+        }
+    }
+</script></br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 2px solid #CD6839;">
+    This project provides algorithm implementations of three baseline methods, namely <code>A3CLSTM-E2E</code> [1], <code>D-VAT</code> [2], and <code>R-VAT(Ours)</code>.
+</div>
+</br><p>Among these baseline methods, <a class="footnote-reference brackets" href="#id8" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id9" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> and <code class="code docutils literal notranslate"><span class="pre">R-VAT(Ours)</span></code> respectively call the three environments implemented in this project( <a class="reference internal" href="Environment.html"><span class="doc">Environment Wrapping</span></a> ), providing templates for different algorithm implementation needs.</p>
+<ul class="simple">
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">A3CLSTM-E2E</span></code> algorithm calls the underlying environment class ( <a class="reference internal" href="Environment.html#benchenv-multi"><span class="std std-ref">1 Base Environment Class</span></a> )</p></li>
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">D-VAT</span></code> algorithm calls the Gym environment class ( <a class="reference internal" href="Environment.html#gymnasium-gym"><span class="std std-ref">2 Gym Environment class</span></a> )</p></li>
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">R-VAT</span></code> algorithm calls the parallel environment class ( <a class="reference internal" href="Environment.html#parallel"><span class="std std-ref">3 Parallel Environment Classes</span></a> )</p></li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/classes.png"><img alt="3种环境类关系图" src="../_images/classes.png" style="width: 600px;" /></a>
+</figure>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br><section id="baseline1-a3clstm-e2e">
+<h2>Baseline1 A3CLSTM-E2E<a class="headerlink" href="#baseline1-a3clstm-e2e" title="Link to this heading"></a></h2>
+<p>This project refers to the paper <code class="code docutils literal notranslate"><span class="pre">AD-VAT+</span></code> <a class="footnote-reference brackets" href="#id10" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> for reproducing the <code class="code docutils literal notranslate"><span class="pre">A3CLSTM-E2E</span></code> method based on the repository <a class="reference external" href="https://github.com/dgriff777/rl_a3c_pytorch">rl_a3c_pytorch</a>.</p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    The specific code can be found in the <code>Alg_Base/DAT_Benchmark/models/A3CLSTM_E2E</code> folder
+</div>
+</br><section id="quick-start">
+<h3>Quick-Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+<span class="c1"># Test mode</span>
+<span class="c1"># Testing with Cumulative Reward (CR)</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Test_Param<span class="w"> </span><span class="s2">&quot;CityStreet-d&quot;</span><span class="w"> </span>--Test_Mode<span class="w"> </span>CR
+<span class="c1"># Testing with Tracking Success Rate (TSR)</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Test_Param<span class="w"> </span><span class="s2">&quot;CityStreet-d&quot;</span><span class="w"> </span>--Test_Mode<span class="w"> </span>TSR
+<span class="c1"># New training mode</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--workers<span class="w"> </span><span class="m">35</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Freq<span class="w"> </span><span class="m">125</span><span class="w"> </span>--New_Train
+<span class="c1"># Resumed training mode</span>
+python<span class="w"> </span>./models/A3CLSTM_E2E/main.py<span class="w"> </span>--Mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--workers<span class="w"> </span><span class="m">35</span><span class="w"> </span>--Scene<span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="w"> </span>--Weather<span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="w"> </span>--delay<span class="w"> </span><span class="m">20</span><span class="w"> </span>--Freq<span class="w"> </span><span class="m">125</span>
+</pre></div>
+</div>
+</section>
+<section id="program-entry-point">
+<h3>Program entry point<a class="headerlink" href="#program-entry-point" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">main.py</span></code> is the entry point of the entire program, primarily providing two operating modes: <code class="code docutils literal notranslate"><span class="pre">train</span></code> and <code class="code docutils literal notranslate"><span class="pre">test</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>In <code class="code docutils literal notranslate"><span class="pre">train</span></code> mode, a testing process is also provided (e.g., if the program runs with 24 processes, the last process with ID 23 will be used for testing). This process is mainly used for <code class="code docutils literal notranslate"><span class="pre">tensorboard</span></code> visualization during the training process.</p></li>
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">test</span></code> mode is mainly used to test the model weights after training is completed. This mode runs in a single process and tests the weights of individual models.</p></li>
+<li><p>The configuration variable for the above modes is the <code class="code docutils literal notranslate"><span class="pre">MODE</span></code> variable.</p></li>
+</ul>
+</div></blockquote>
+<p>In addition, the <code class="code docutils literal notranslate"><span class="pre">main.py</span></code> file also accepts user parameter configurations, with the meanings and default values of the parameters as follows:</p>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>1. Runtime parameters:</b> Configure system mode, runtime frequency, device settings, etc.
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--Mode(int)=1</span></code> : Configure whether the running mode is training mode (<code class="code docutils literal notranslate"><span class="pre">--Mode=1</span></code> for training mode, <code class="code docutils literal notranslate"><span class="pre">--Mode=0</span></code> for testing mode)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--workers(int)=35</span></code> : The number of parallel training processes in the environment (should be determined based on the actual memory/GPU capacity of the computer)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--gpu-ids(list)=[-1]</span></code> : Used to set the GPU IDs, default is -1, which means no GPU will be used</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--Freq(int)=125</span></code> : The running frequency of the algorithm side (the environment side runs at 500Hz and is unchangeable), so the default <code class="code docutils literal notranslate"><span class="pre">--Freq(int)=125</span></code> means the environment side transmits data back every 4 steps</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--delay(int)=20</span></code> : Waiting time for Webots map to load (training can only start normally after the Webots map has been fully loaded)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--New_Train(bool)=False</span></code> : Whether to start a new training session, default is <code class="code docutils literal notranslate"><span class="pre">--New_Train=False</span></code>, which will load the pre-trained weights from <code class="code docutils literal notranslate"><span class="pre">A3CLSTM_E2E/trained_models/Benchmark.dat</span></code> (if available) for training, and the tensorboard curves will continue from the last training session</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--Port(int)=-1</span></code> : The communication port between the environment side and the algorithm side, default <code class="code docutils literal notranslate"><span class="pre">--Port=-1</span></code> will randomly use an available port, and manual <strong>modification is not recommended</strong></p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>2. Environment parameters:</b> Configure the selected environment
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--map(str)=&quot;citystreet-day.wbt&quot;</span></code> : Configure the training/testing environment scene type, choose from <code class="code docutils literal notranslate"><span class="pre">[citystreet-day.wbt,downtown-day.wbt,lake-day.wbt,village-day.wbt,desert-day.wbt,farmland-day.wbt,citystreet-night.wbt,downtown-night.wbt,lake-night.wbt,village-night.wbt,desert-night.wbt,farmland-night.wbt,citystreet-foggy.wbt,downtown-foggy.wbt,lake-foggy.wbt,village-foggy.wbt,desert-foggy.wbt,farmland-foggy.wbt,citystreet-snow.wbt,downtown-snow.wbt,lake-snow.wbt,village-snow.wbt,desert-snow.wbt,farmland-snow.wbt]</span></code></p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>3. Model parameters:</b> Configure parameters related to model weight loading and saving
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--load(bool)=True</span></code> : Whether to load an existing model for further training (only when <code class="code docutils literal notranslate"><span class="pre">--load=True</span></code> and the model weights <code class="code docutils literal notranslate"><span class="pre">A3CLSTM_E2E/trained_models/Benchmark.dat</span></code> exist will the model be loaded)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--save-max(bool)=False</span></code> : Whether to save the model weights when the testing process reaches the highest reward, default is <code class="code docutils literal notranslate"><span class="pre">False</span></code>, meaning only the model weights at the last moment will be saved</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--model_type(str)=&quot;E2E&quot;</span></code> : Specify the type of model currently being used, if the user implements their own model, they can add the configuration here</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--save-model-dir(str)=&quot;./models/A3CLSTM_E2E/trained_models/&quot;</span></code> : The path for saving the model</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--Test_Param(str)=&quot;CityStreet-d&quot;</span></code> : Specifies which weights to load for testing(only enabled when <code class="code docutils literal notranslate"><span class="pre">--Mode(int)=0</span></code>), default is <code class="code docutils literal notranslate"><span class="pre">--Test_Param=&quot;CityStreet-d&quot;</span></code>, which will load the weights <code class="code docutils literal notranslate"><span class="pre">A3CLSTM_E2E/trained_models/CityStreet-d.dat</span></code> for testing</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>4. Visualization parameters:</b> Configure parameters related to visualization files
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--tensorboard-logger(bool)=True</span></code> : Whether to enable <code class="code docutils literal notranslate"><span class="pre">tensorboard</span></code> for model visualization</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--log-dir(str)=&quot;./models/A3CLSTM_E2E/logs/&quot;</span></code> : If <code class="code docutils literal notranslate"><span class="pre">tensorboard</span></code> is enabled, the location to store the log files</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="log-files">
+<h3>log files<a class="headerlink" href="#log-files" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This project provides two types of log recording methods. The first is to directly output log files (configured through <code class="code docutils literal notranslate"><span class="pre">config.json</span></code> in <code class="code docutils literal notranslate"><span class="pre">[&quot;Benchmark&quot;][&quot;verbose&quot;]</span></code>), and the second is to use TensorBoard to record performance changes during the training process.</p>
+<p><strong>Mode 1: Directly output log files</strong></p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    Log files can be found in the folder <code>Alg_Base/DAT_Benchmark/logs</code>
+</div>
+</br><ul class="simple">
+<li><p>This mode is mainly used for program debugging and data transmission verification, essentially replacing the terminal <code class="code docutils literal notranslate"><span class="pre">print</span></code> function.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Agent${n}.log</span></code> is mainly used to save the data transmitted from the environment. For example, if you want to observe the custom reward parameters <code class="code docutils literal notranslate"><span class="pre">RewardParams</span></code> obtained from the environment, you can view them in this file.</p></li>
+</ul>
+<p><strong>Mode 2: Directly output tensorboard-logger files</strong></p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    TensorBoard-logger files can be found in the folder <code>Alg_Base/DAT_Benchmark/models/A3CLSTM_E2E/runs/Benchmark_training</code>
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">TensorBoard</span></code> is a commonly used visualization platform during the training process of neural networks. Therefore, this project also provides corresponding support.</p></li>
+<li><p>During multi-process training, this project reserves one process for testing. For example, if the user selects 24 parallel agents, then during the actual training, there will be 23 training processes and 1 testing process. The testing process synchronizes the weights of the shared_model at the beginning of each episode and conducts tests.</p></li>
+<li><p>The data recorded in the <code class="code docutils literal notranslate"><span class="pre">tensorboard-logger</span></code> file is from the testing process, mainly the <code class="code docutils literal notranslate"><span class="pre">value</span></code> during training, which is used to evaluate the training status of the agents.</p></li>
+<li><p>Additionally, if the program is interrupted due to external reasons, this project provides an uninterrupted <code class="code docutils literal notranslate"><span class="pre">tensorboard-logger</span></code> function. It uses <code class="code docutils literal notranslate"><span class="pre">num_test.txt</span></code> to store the current data entry count and continues recording when a new training session starts.</p></li>
+<li><p><strong>Note:</strong> If the user wishes to re-record the training curve, they need to add <code class="code docutils literal notranslate"><span class="pre">--</span> <span class="pre">New_Train</span></code> to the command that starts the training.</p></li>
+<li><p>After completing all configurations, simply run the following code to view the <code class="code docutils literal notranslate"><span class="pre">TensorBoard</span></code> visualization records on <code class="code docutils literal notranslate"><span class="pre">localhost:xxxx</span></code>.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/models/A3CLSTM_E2E/runs
+tensorboard<span class="w"> </span>--logdir<span class="w"> </span>Benchmark_training
+</pre></div>
+</div>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+</section>
+<section id="baseline2-d-vat">
+<h2>Baseline2 D-VAT<a class="headerlink" href="#baseline2-d-vat" title="Link to this heading"></a></h2>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    The specific code can be found in the <code>Alg_Base/DAT_Benchmark/models/D_VAT</code> folder.
+</div>
+</br><section id="id4">
+<h3>Quick-Start<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+<span class="c1"># Test mode</span>
+<span class="c1"># Test using Cumulative Reward (CR)</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>AR
+<span class="c1"># Test using Tracking Success Rate (TSR)</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>TSR
+<span class="c1"># New training mode</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--New_Train
+<span class="c1"># Resume training mode after interruption</span>
+python<span class="w"> </span>./models/D_VAT/DVAT_main.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="program-entry">
+<h3>Program Entry<a class="headerlink" href="#program-entry" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">DVAT_main.py</span></code> is the entry point of the entire program, providing both training and testing modes (specific configurations can be found in the parameters section below).</p>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>1. Run Parameters:</b> Configure system mode, run frequency, device, and other parameters.
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--workers(int)=35</span></code> : The number of parallel training environments (this should be decided based on the actual memory/GPU of the computer).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--train_mode(int)=1</span></code> : Configure whether the operation mode is training mode (<code class="code docutils literal notranslate"><span class="pre">--train_mode=1</span></code> is training mode, <code class="code docutils literal notranslate"><span class="pre">--train_mode=0</span></code> is testing mode).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--port(int)=-1</span></code> : Communication port between the environment and algorithm end. By default, <code class="code docutils literal notranslate"><span class="pre">--port=-1</span></code> uses a randomly available port. Manual modification is not recommended.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--New_Train(bool)=False</span></code> : Whether to start a new training session. The default is <code class="code docutils literal notranslate"><span class="pre">--New_Train=False</span></code>, which will load <code class="code docutils literal notranslate"><span class="pre">params.pth</span></code> pretrained weights (if available) for training, and the tensorboard curve will also load from the last training session.</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>2. Environment Parameters:</b> Configure the selected environment.
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--map(str)=&quot;citystreet-day.wbt&quot;</span></code> : Configure the training/testing environment scene type, selected from <code class="code docutils literal notranslate"><span class="pre">./Webots_Simulation/traffic_project/worlds/*.wbt</span></code>.</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>3. Model Parameters:</b> Configure parameters related to model weight import and saving.
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--savepath(str)=&quot;params.pth&quot;</span></code> : Path where the model will be saved.</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>4. Visualization Parameters:</b> Configure parameters related to visualization files.
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--tensorboard_port(int)=1</span></code> : Whether to use tensorboard-logger. If <code class="code docutils literal notranslate"><span class="pre">--tensorboard_port(int)!=-1</span></code>, a random available port will be assigned; otherwise, it will not be enabled (not enabled in testing mode).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="code-encapsulation-and-modification-details">
+<h3>Code Encapsulation and Modification Details<a class="headerlink" href="#code-encapsulation-and-modification-details" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>D-VAT adopts an Actor-Critic asymmetric framework. The schematic diagrams of the Actor-Critic symmetric and asymmetric architectures are as follows:</p>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="../_images/sym_asym.png"><img alt="Asymmetric_and_Symmetrical_Structure" src="../_images/sym_asym.png" style="width: 700px;" /></a>
+<figcaption>
+<p><span class="caption-text">Schematic diagrams of the Actor-Critic symmetric and asymmetric architectures</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>The D-VAT code mainly implements the following:</strong></p>
+<ol class="arabic simple">
+<li><p>Custom Environment Class</p></li>
+</ol>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    The environment class is modeled after the <a href="./Environment.html#gym">Gym environment class</a> to independently implement the <code>DVAT_ENV</code> environment class, with the specific code seen in <code>Alg_Base/DAT_Benchmark/models/D_VAT/DVAT_envs.py</code><br>
+    To support the Actor-Critic asymmetric architecture, the state space of the <code>DVAT_ENV</code> environment class includes two parts: <code>actor_obs</code> and <code>critic_obs</code>:
+</div>
+</br><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">({</span>
+    <span class="s2">&quot;actor_obs&quot;</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">obs_buffer_len</span><span class="p">,)</span><span class="o">+</span><span class="n">image_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+    <span class="s2">&quot;critic_obs&quot;</span><span class="p">:</span> <span class="n">gymnasium</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>In the original gymnasium environment, the actor and critic share the same state space:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">obs_buffer_len</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">env_conf</span><span class="p">[</span><span class="s2">&quot;State_channel&quot;</span><span class="p">],</span> <span class="n">env_conf</span><span class="p">[</span><span class="s2">&quot;State_size&quot;</span><span class="p">],</span> <span class="n">env_conf</span><span class="p">[</span><span class="s2">&quot;State_size&quot;</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">obs_buffer_len</span><span class="p">,</span> <span class="n">env_conf</span><span class="p">[</span><span class="s2">&quot;State_channel&quot;</span><span class="p">],</span> <span class="n">env_conf</span><span class="p">[</span><span class="s2">&quot;State_size&quot;</span><span class="p">],</span> <span class="n">env_conf</span><span class="p">[</span><span class="s2">&quot;State_size&quot;</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Custom Implemented Policy</p></li>
+</ol>
+<p>To support the Actor-Critic asymmetric architecture, the <code class="code docutils literal notranslate"><span class="pre">DVAT_SACDPolicy</span></code> is implemented by inheriting from <strong>Tianshou</strong>’s <code class="code docutils literal notranslate"><span class="pre">DiscreteSACPolicy</span></code>.</p>
+<ol class="arabic simple" start="3">
+<li><p>Custom Implemented Parallel Class and Collector</p></li>
+</ol>
+<p>Custom parallel environment classes and collectors are implemented by referring to <a class="reference external" href="Environment.html#part3-async-subprocvecenv-subprocvecenv-ts">Async_SubprocVecEnv &amp; SubprocVecEnv_TS</a>.</p>
+</div></blockquote>
+</section>
+<section id="log-file">
+<h3>log file<a class="headerlink" href="#log-file" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    See the tensorboard-logger file in the folder <code>Alg_Base/DAT_Benchmark/models/D_VAT/DVAT_logs</code>
+</div>
+</br><ul class="simple">
+<li><p>During the model training process, as long as the parameter <code class="code docutils literal notranslate"><span class="pre">--tensorboard_port(int)!=-1</span></code> is set, the tensorboard-logger will automatically start when the program is launched.</p></li>
+<li><p>However, if you want to manually start tensorboard, you can also use the following command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/models/D_VAT/
+tensorboard<span class="w"> </span>--logdir<span class="w"> </span>DVAT_logs
+</pre></div>
+</div>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+</section>
+<section id="baseline3-r-vat">
+<h2>Baseline3 R-VAT<a class="headerlink" href="#baseline3-r-vat" title="Link to this heading"></a></h2>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    For specific code, see <code>Alg_Base/DAT_Benchmark/models/R_VAT</code> folder
+</div>
+</br><section id="id5">
+<h3>Quick-Start<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+<span class="c1"># Test mode</span>
+<span class="c1"># Test with Cumulative Reward (CR)</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>AR
+<span class="c1"># Test with Tracking Success Rate (TSR)</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>TSR
+<span class="c1"># New training mode</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--New_Train
+<span class="c1"># Resume training mode</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>Program Entry<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">RVAT.py</span></code> is the entry point for the entire program, providing both training and testing modes (for specific configurations, refer to the parameter settings below).</p>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>1. Runtime Parameters:</b> Configure system mode, execution frequency, device, and other parameters
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--workers(int)=35</span></code> : The number of parallel environments for training (should be determined by the actual memory/VRAM of the computer).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--train_mode(int)=1</span></code> : Configure whether the mode is training mode ( <code class="code docutils literal notranslate"><span class="pre">--train_mode=1</span></code> is training mode, <code class="code docutils literal notranslate"><span class="pre">--train_mode=0</span></code> is testing mode).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--port(int)=-1</span></code> : Communication port between environment and algorithm, default <code class="code docutils literal notranslate"><span class="pre">--port=-1</span></code> will randomly use an available port, manual modification is not recommended.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--New_Train(bool)=False</span></code> : Whether to start a completely new training, default is <code class="code docutils literal notranslate"><span class="pre">--New_Train=False</span></code>, which loads <code class="code docutils literal notranslate"><span class="pre">params.pth</span></code> pre-trained weights (if available) for training, and tensorboard curves will be loaded from the last training session.</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>2. Environment Parameters:</b> Configure the selected environment
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--map(str)=&quot;citystreet-day.wbt&quot;</span></code> : Configure the training/testing environment scene type, selected from <code class="code docutils literal notranslate"><span class="pre">./Webots_Simulation/traffic_project/worlds/*.wbt</span></code>.</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>3. Model Parameters:</b> Configure model weight import and save related parameters
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--savepath(str)=&quot;./models/R_VAT/params.pth&quot;</span></code> : Path where the model will be saved.</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <b>4. Visualization Parameters:</b> Configure parameters related to visualization files
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">--tensorboard_port(int)=1</span></code> : Whether to use tensorboard-logger, <code class="code docutils literal notranslate"><span class="pre">--tensorboard_port(int)!=-1</span></code> will randomly assign an available port, otherwise it will not be enabled (not enabled in testing mode).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="curriculum-learning">
+<h3>Curriculum Learning<a class="headerlink" href="#curriculum-learning" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Our method adds curriculum learning based on R-VAT, and in the first and second stages of curriculum learning, the intelligent experience tracks monochrome and colored cars respectively under simple settings (unobstructed situation, car only travels straight)</p></li>
+<li><p>For convenience, we extracted the simple settings as maps, i.e. <code class="code docutils literal notranslate"><span class="pre">./Webots_Simulation/traffic_project/worlds/simpleway-*.wbt</span></code> maps.</p></li>
+<li><p>Therefore, the third stage is trained on the corresponding <code class="code docutils literal notranslate"><span class="pre">simpleway-*.wbt</span></code>.</p></li>
+<li><p>After completing task understanding, the third stage of training can be conducted on visually challenging maps to learn complex visual features.</p></li>
+<li><p>For example, for the map <code class="code docutils literal notranslate"><span class="pre">citystreet-day.wbt</span></code>, the commands for the third stages are as follows:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+<span class="c1"># Stage2: Task Understanding</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>simpleway-grass.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span><span class="w"> </span>--New_Train
+<span class="c1"># Stage3: Visual Generalization</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">35</span><span class="w"> </span>-m<span class="w"> </span>citystreet-day.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">1</span>
+<span class="c1"># Testing Mode</span>
+<span class="c1"># Test with Cumulative Reward (CR)</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-night.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>AR
+<span class="c1"># Test with Tracking Success Rate (TSR)</span>
+python<span class="w"> </span>./models/R_VAT/RVAT.py<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>citystreet-night.wbt<span class="w"> </span>--train_mode<span class="w"> </span><span class="m">0</span><span class="w"> </span>--Test_Mode<span class="w"> </span>TSR
+</pre></div>
+</div>
+</div></blockquote>
+<blockquote id="table-cf">
+<div><ul>
+<li><p>The comparison table of the two-stage maps is as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Origin Map</p></th>
+<th class="head"><p>Simple Map</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>citystreet-day</p></td>
+<td><p>simpleway-grass_day</p></td>
+</tr>
+<tr class="row-odd"><td><p>citystreet-night</p></td>
+<td><p>simpleway-grass_night</p></td>
+</tr>
+<tr class="row-even"><td><p>citystreet-foggy</p></td>
+<td><p>simpleway-grass_foggy</p></td>
+</tr>
+<tr class="row-odd"><td><p>citystreet-snow</p></td>
+<td><p>simpleway-city_snow</p></td>
+</tr>
+<tr class="row-even"><td><p>desert-day</p></td>
+<td><p>simpleway-desert_day</p></td>
+</tr>
+<tr class="row-odd"><td><p>desert-night</p></td>
+<td><p>simpleway-desert_night</p></td>
+</tr>
+<tr class="row-even"><td><p>desert-foggy</p></td>
+<td><p>simpleway-desert_foggy</p></td>
+</tr>
+<tr class="row-odd"><td><p>desert-snow</p></td>
+<td><p>simpleway-desert_snow</p></td>
+</tr>
+<tr class="row-even"><td><p>downtown-day</p></td>
+<td><p>simpleway-clinker_day</p></td>
+</tr>
+<tr class="row-odd"><td><p>downtown-night</p></td>
+<td><p>simpleway-clinker_night</p></td>
+</tr>
+<tr class="row-even"><td><p>downtown-foggy</p></td>
+<td><p>simpleway-clinker_foggy</p></td>
+</tr>
+<tr class="row-odd"><td><p>downtown-snow</p></td>
+<td><p>simpleway-city_snow</p></td>
+</tr>
+<tr class="row-even"><td><p>farmland-day</p></td>
+<td><p>simpleway-farm_day</p></td>
+</tr>
+<tr class="row-odd"><td><p>farmland-night</p></td>
+<td><p>simpleway-farm_night</p></td>
+</tr>
+<tr class="row-even"><td><p>farmland-foggy</p></td>
+<td><p>simpleway-farm_foggy</p></td>
+</tr>
+<tr class="row-odd"><td><p>farmland-snow</p></td>
+<td><p>simpleway-farm_snow</p></td>
+</tr>
+<tr class="row-even"><td><p>lake-day</p></td>
+<td><p>simpleway-lake_day</p></td>
+</tr>
+<tr class="row-odd"><td><p>lake-night</p></td>
+<td><p>simpleway-lake_night</p></td>
+</tr>
+<tr class="row-even"><td><p>lake-foggy</p></td>
+<td><p>simpleway-lake_foggy</p></td>
+</tr>
+<tr class="row-odd"><td><p>lake-snow</p></td>
+<td><p>simpleway-lake_snow</p></td>
+</tr>
+<tr class="row-even"><td><p>village-day</p></td>
+<td><p>simpleway-village_day</p></td>
+</tr>
+<tr class="row-odd"><td><p>village-night</p></td>
+<td><p>simpleway-village_night</p></td>
+</tr>
+<tr class="row-even"><td><p>village-foggy</p></td>
+<td><p>simpleway-village_foggy</p></td>
+</tr>
+<tr class="row-odd"><td><p>village-snow</p></td>
+<td><p>simpleway-village_snow</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id7">
+<h3>log file<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    The tensorboard-logger file can be found in the folder <code>Alg_Base/DAT_Benchmark/models/${model_name}_logs</code>
+</div>
+</br><ul class="simple">
+<li><p>During the model training process, as long as the parameter <code class="code docutils literal notranslate"><span class="pre">--tensorboard_port(int)!=-1</span></code> is set, the tensorboard-logger will automatically start when the program is launched.</p></li>
+<li><p>However, if you wish to start tensorboard manually, you can use the following command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Alg_Base/DAT_Benchmark/
+tensorboard<span class="w"> </span>--logdir<span class="w"> </span>models/<span class="si">${</span><span class="nv">model_name</span><span class="si">}</span>_logs
+</pre></div>
+</div>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br><p>Reference:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id8" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Luo, Wenhan, et al. “End-to-end active object tracking and its real-world deployment via reinforcement learning.” IEEE transactions on pattern analysis and machine intelligence 42.6 (2019): 1317-1332.</p>
+</aside>
+<aside class="footnote brackets" id="id9" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Dionigi, Alberto, et al. “D-VAT: End-to-End Visual Active Tracking for Micro Aerial Vehicles.” IEEE Robotics and Automation Letters (2024).</p>
+</aside>
+<aside class="footnote brackets" id="id10" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>Zhong, Fangwei, et al. “Ad-vat+: An asymmetric dueling mechanism for learning and understanding visual active tracking.” IEEE transactions on pattern analysis and machine intelligence 43.5 (2019): 1467-1482.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Environment.html" class="btn btn-neutral float-left" title="Environment Wrapping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Webots_Simulator/index.html" class="btn btn-neutral float-right" title="Simulator Section" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

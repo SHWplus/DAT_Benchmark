@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment Wrapping &mdash; DAT 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model Construction" href="Model.html" />
+    <link rel="prev" title="Algorithm Introduction" href="Introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DAT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Algorithm</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Algorithm Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Environment Wrapping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#base-environment-class">1 Base Environment Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part-1-interface-details">Part 1 Interface Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part-2-configuration-file">Part 2 Configuration File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part-3-constructor">Part 3 Constructor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gym-environment-class">2 Gym Environment class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part1-uav-vat-adapting-to-gym-library">Part1 UAV_VAT (Adapting to Gym Library)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part-2-uav-vat-gymnasium-adapting-to-gymnasium-library">Part 2 UAV_VAT_Gymnasium (Adapting to Gymnasium Library)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part3-parallel-environment-encapsulation">Part3 Parallel Environment Encapsulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part-4-interface-invocation">Part 4 Interface Invocation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-environment-classes">3 Parallel Environment Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part-1-envs">Part 1 Envs()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part2-data-format-changes-before-and-after-encapsulation">Part2 Data format changes before and after encapsulation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-evaluation-metrics">4 Performance Evaluation Metrics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cumulative-reward-cr">1. Cumulative Reward CR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tracking-success-rate-tsr">2. Tracking Success Rate TSR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Model.html">Model Construction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Webots_Simulator/index.html">Simulator Section</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DAT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Algorithm</a></li>
+      <li class="breadcrumb-item active">Environment Wrapping</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Algorithm/Environment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="environment-wrapping">
+<h1>Environment Wrapping<a class="headerlink" href="#environment-wrapping" title="Link to this heading"></a></h1>
+<blockquote>
+<div> <style>
+     #language-switch {
+        display: flex; /* Use Flexbox layout */
+        justify-content: center; /* Center buttons horizontally */
+        align-items: center; /* Center buttons vertically */
+        gap: 10px; /* Space between buttons */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #language-switch button {
+        width: 180px;
+        height: 40px;
+        font-size: 16px;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center; /* Center text vertically */
+        justify-content: center; /* Center text horizontally */
+    }
+</style>
+
+ <!-- Language switch buttons -->
+ <div id="language-switch" style="background-color: #fae3e3; padding: 15px; border-radius: 5px; border: 2px solid #cb7474;">
+     <b style="font-size: 18px;">You can choose language by </b>
+     <button onclick="switchLanguage('zh')">中文</button>
+     <button onclick="switchLanguage('en')">English</button>
+ </div>
+
+ <script>
+     function switchLanguage(lang) {
+         if (lang === 'zh') {
+             window.location.href = '../zh/Algorithm/Environment.html';
+         } else if (lang === 'en') {
+             window.location.href = 'Environment.html';
+         }
+     }
+ </script>
+ </br>
+ <hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+ </br>
+ </br></div></blockquote>
+<p>This project provides three forms of Environment (Path: <code class="code docutils literal notranslate"><span class="pre">Alg_Base/rl_a3c_pytorch_benchmark/envs</span></code>): the base Environment class <code class="code docutils literal notranslate"><span class="pre">BenchEnv_Multi()</span></code>, the Environment class wrapped by OpenAI Gym (Gynasium) <code class="code docutils literal notranslate"><span class="pre">gym()</span></code><code class="code docutils literal notranslate"><span class="pre">gynasium()</span></code>, and our own implementation of the parallel Environment class.</p>
+<p>The relationships among these three Environment types are shown in the figure below:</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/Environment3Types.png"><img alt="Relationship diagram of three types of environment classes" src="../_images/Environment3Types.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Diagram of the three environment classes</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="base-environment-class">
+<span id="benchenv-multi"></span><h2>1 Base Environment Class<a class="headerlink" href="#base-environment-class" title="Link to this heading"></a></h2>
+<section id="part-1-interface-details">
+<h3>Part 1 Interface Details<a class="headerlink" href="#part-1-interface-details" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      The base environment class is the <b>class for direct communication between the algorithm side and the simulator side</b>, mainly responsible for multi-process communication and data transmission with the simulator.
+      If you only need to call the class for testing, you can directly jump to: <a href="#config">configuration file</a> and <a href="#makeenv">constructor</a>
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    See the specific code in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/environment.py</code> in <code>BenchEnv_Multi()</code>
+</div>
+</br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      1. <code>__init__</code>: Used to initialize the communication interface, number of processes, and other essential parameters for the environment.
+</div>
+</br><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">Action_dim(int)</span></code>: Agent action dimension</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">action_list(list)</span></code>: Used to convert discrete action commands into continuous movement commands</p>
+<ul>
+<li><p>The storage order of <code class="code docutils literal notranslate"><span class="pre">action_list</span></code> is: <code class="code docutils literal notranslate"><span class="pre">[Forward,</span> <span class="pre">Backward,</span> <span class="pre">Left,</span> <span class="pre">Right,</span> <span class="pre">CCW,</span> <span class="pre">CW]</span></code>, representing the movement commands “forward, backward, left, right, counterclockwise, clockwise.”</p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_state(function)</span></code>: Function for post-processing the images</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">arg_worker(int)</span></code>: System parallelism count</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_idx(int)</span></code>: Current environment’s parallel index</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Other_State(bool)</span></code>: Whether to enable additional state options on the simulator side: <code class="code docutils literal notranslate"><span class="pre">Other_State</span></code>, detail see: <a class="reference internal" href="../Webots_Simulator/Simulator.html#parameter-configuration-of-the-simulation-environment"><span class="std std-ref">Parameter Configuration</span></a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">CloudPoint(bool)</span></code>: Whether to enable the point cloud option on the simulator side: <code class="code docutils literal notranslate"><span class="pre">CloudPoint</span></code>, detail see: <a class="reference internal" href="../Webots_Simulator/Simulator.html#parameter-configuration-of-the-simulation-environment"><span class="std std-ref">Parameter Configuration</span></a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">RewardParams(bool)</span></code>: Whether to enable additional reward parameters options on the simulator side: <code class="code docutils literal notranslate"><span class="pre">RewardParams</span></code>, detail see: <a class="reference internal" href="../Webots_Simulator/Simulator.html#parameter-configuration-of-the-simulation-environment"><span class="std std-ref">Parameter Configuration</span></a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">port_process(int)</span></code>: Port specified for data transmission between processes</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">end_reward(bool)</span></code>: Whether to enable additional end rewards(additional penalties if end reward is 0; additional rewards if end reward is not 0)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">end_reward_list(list)</span></code>: Additional end rewards list (valid only when <code class="code docutils literal notranslate"><span class="pre">end_reward</span></code> is enabled)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">scene(str)</span></code>: Determines the current experimental scene (valid only when <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> is enabled)</p>
+<ul>
+<li><p>Valid scenes include: <code class="code docutils literal notranslate"><span class="pre">[&quot;citystreet&quot;,</span> <span class="pre">&quot;downtown&quot;,</span> <span class="pre">&quot;lake&quot;,</span> <span class="pre">&quot;village&quot;,</span> <span class="pre">&quot;desert&quot;,</span> <span class="pre">&quot;farmland&quot;,</span> <span class="pre">None]</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">weather(str)</span></code>: Determines the weather of the current experimental scene (valid only when <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> is enabled)</p>
+<ul>
+<li><p>Valid weathers include: <code class="code docutils literal notranslate"><span class="pre">[&quot;day&quot;,</span> <span class="pre">&quot;night&quot;,</span> <span class="pre">&quot;foggy&quot;,</span> <span class="pre">&quot;snow&quot;,</span> <span class="pre">None]</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">auto_start(bool)</span></code>: Whether to automatically start the simulator</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">delay(int)</span></code>: Configure how long the system waits for the map to load, only works if <code class="code docutils literal notranslate"><span class="pre">auto_start(bool)</span></code> is enabled.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Control_Frequence(int)</span></code>: Specifies the system control frequency</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward_type(str)</span></code>: Specifies the type of reward (can choose different baseline algorithms for reward)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">verbose(bool)</span></code>: Configure the environment to output log files or not</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>step</code>: Used for the environment's simulation
+</div>
+</br><p><strong>Input Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">action(numpy.int64)</span></code>: Action taken by the agent</p></li>
+</ul>
+</br><p><strong>Return Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">image(numpy.ndarray)</span></code>: The image returned for the next time step (already post-processed using <code class="code docutils literal notranslate"><span class="pre">process_state</span></code>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward(float)</span></code>: Reward for the current time step</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done(bool)</span></code>: Whether the current environment has ended</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">self.SuppleInfo(list)</span></code>: Supplementary information (if <code class="code docutils literal notranslate"><span class="pre">Other_State</span></code> or <code class="code docutils literal notranslate"><span class="pre">CloudPoint</span></code> or <code class="code docutils literal notranslate"><span class="pre">RewardParams</span></code> is enabled, it will be retrieved here)</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>reset</code>: Used to restart the environment
+</div>
+</br><p><strong>Input Parameters:</strong></p>
+<p>None</p>
+<p><strong>Return Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">image(numpy.ndarray)</span></code>: Same explanation as above</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">self.SuppleInfo(list)</span></code>: Same explanation as above</p></li>
+</ul>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part-2-configuration-file">
+<span id="config"></span><h3>Part 2 Configuration File<a class="headerlink" href="#part-2-configuration-file" title="Link to this heading"></a></h3>
+<blockquote>
+<div><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      Since the above environment interface has many parameters, <b>this project provides a configuration file</b> to simplify the configuration process. The content of the configuration file is as follows:
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    See the specific code in <code>Alg_Base/rl_a3c_pytorch_benchmark/config.json</code>
+</div>
+</br><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;Benchmark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Need_render&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Action_dim&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;State_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;State_channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Norm_Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Forward_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Backward_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Left_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Right_Speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-40</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CW_omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CCW_omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Control_Frequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;port_process&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">39945</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;end_reward&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;end_reward_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="mi">-20</span><span class="p">,</span>
+<span class="w">        </span><span class="mi">20</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;scene&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;citystreet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;weather&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;auto_start&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Other_State&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CloudPoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RewardParams&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RewardType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;verbose&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;delay&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span>
+<span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;LunarLander&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Need_render&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Action_dim&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;State_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;State_channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Norm_Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Among them, <code class="code docutils literal notranslate"><span class="pre">&quot;Benchmark&quot;</span></code>: The corresponding parameters are the configuration parameters for the simulation environment proposed in this project.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;LunarLander&quot;</span></code>: The parameter configuration for the Gym environment <code class="code docutils literal notranslate"><span class="pre">LunarLander</span></code>, used only for compatibility testing.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Need_render&quot;</span></code>: Select rendering mode (Gym environments require a rendering mode; <strong>the default for this project is 0</strong>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Action_dim&quot;</span></code>: Dimension of the agent’s action space.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;State_size&quot;</span></code>: Size of the images output by the environment.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;State_channel&quot;</span></code>: Number of channels in the images output by the environment (=3 for RGB images, =1 for grayscale images).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Norm_Type&quot;</span></code>: Normalization method for the images (default normalization to <code class="code docutils literal notranslate"><span class="pre">[0,1]</span></code>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Forward_Speed&quot;</span></code>: Speed corresponding to the agent’s forward action ( <span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Backward_Speed&quot;</span></code>: Speed corresponding to the agent’s backward action ( <span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Left_Speed&quot;</span></code>: Speed corresponding to the agent’s left movement action ( <span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Right_Speed&quot;</span></code>: Speed corresponding to the agent’s right movement action ( <span class="math notranslate nohighlight">\(m/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;CW_omega&quot;</span></code>: Speed corresponding to the agent’s clockwise action ( <span class="math notranslate nohighlight">\(rad/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;CCW_omega&quot;</span></code>: Speed corresponding to the agent’s counterclockwise action ( <span class="math notranslate nohighlight">\(rad/s\)</span>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Control_Frequence&quot;</span></code>: Frequency at which the agent operates (the simulator runs at 500 Hz, while the algorithm side generally runs at 125 Hz).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;port_process&quot;</span></code>: Port specified for data transmission between processes.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;end_reward&quot;</span></code>: Whether to enable additional end rewards.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;end_reward_list&quot;</span></code>: List of additional end rewards (valid only when <code class="code docutils literal notranslate"><span class="pre">end_reward</span></code> is enabled).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;scene&quot;</span></code>: Determines the current experimental scene (valid only when <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> is enabled).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;weather&quot;</span></code>: Determines the weather of the current experimental scene (valid only when <code class="code docutils literal notranslate"><span class="pre">auto_start</span></code> is enabled).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;auto_start&quot;</span></code>: Whether to automatically start the simulator.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;Other_State&quot;</span></code>: Whether to enable additional state options on the simulator side.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;CloudPoint&quot;</span></code>: Whether to enable the point cloud option on the simulator side.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;RewardParams&quot;</span></code>: Whether to enable additional reward parameters options on the simulator side.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;RewardType&quot;</span></code>: Specifies the type of reward (can choose different baseline algorithms for reward).</p>
+<ul>
+<li><p>Includes <code class="code docutils literal notranslate"><span class="pre">&quot;default&quot;,</span> <span class="pre">&quot;E2E&quot;,</span> <span class="pre">&quot;D-VAT&quot;</span></code>, corresponding to <a class="reference internal" href="../Webots_Simulator/Simulator.html#built-in-reward"><span class="std std-ref">Built-in Reward</span></a>, <a class="footnote-reference brackets" href="#id5" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, <a class="footnote-reference brackets" href="#id6" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> reward setting</p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;verbose&quot;(bool)</span></code>: Configures whether the environment outputs log files.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&quot;delay&quot;(int)</span></code>: Configures the duration the system waits for the map to load.</p></li>
+</ul>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part-3-constructor">
+<span id="makeenv"></span><h3>Part 3 Constructor<a class="headerlink" href="#part-3-constructor" title="Link to this heading"></a></h3>
+<div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      Based on the above configuration file, <b>this project directly provides a constructor to obtain an initialized environment</b>. The usage of this function is as follows:
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    See the specific code in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/environment.py</code> in <code>general_env()</code>
+</div>
+</br><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a single-process environment (env_conf is the path to config.json)</span>
+<span class="n">env</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">general_env</span><span class="p">(</span><span class="n">env_id</span><span class="o">=</span><span class="s2">&quot;Benchmark&quot;</span><span class="p">,</span> <span class="n">env_conf</span><span class="o">=</span><span class="n">env_conf</span><span class="p">,</span> <span class="n">arg_worker</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">process_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      <code>general_env</code>: Generates an initialized environment based on the config.json file.
+</div>
+</br><p><strong>Input Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_id(str)</span></code>: The name of the current environment (<code class="code docutils literal notranslate"><span class="pre">&quot;Benchmark&quot;</span></code> or <code class="code docutils literal notranslate"><span class="pre">&quot;LunarLander&quot;</span></code>).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_conf(str)</span></code>: The path to the configuration file <code class="code docutils literal notranslate"><span class="pre">config.json</span></code>.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">arg_worker(int)</span></code>: Total number of processes for the environment.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_idx(int)</span></code>: The process index of the current environment.</p></li>
+</ul>
+<p><strong>Return Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">env</span></code>: Environment class.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_func</span></code>: Environment post-processing function (for <code class="code docutils literal notranslate"><span class="pre">&quot;Benchmark&quot;</span></code>, there are no post-processing operations).</p></li>
+</ul>
+</br></section>
+</section>
+<section id="gym-environment-class">
+<span id="gymnasium-gym"></span><h2>2 Gym Environment class<a class="headerlink" href="#gym-environment-class" title="Link to this heading"></a></h2>
+<p>Considering that users often build reinforcement learning algorithms based on <a class="reference external" href="https://github.com/openai/gym">Gym</a> and <a class="reference external" href="https://github.com/openai/gym">Gymnasium</a> environment interfaces, or utilize libraries such as <a class="reference external" href="https://github.com/DLR-RM/stable-baselines3">stable-baselines3</a> for algorithm validation, this project encapsulates the aforementioned base environment class to provide fully compatible environment classes for <a class="reference external" href="https://github.com/openai/gym">Gym</a> and <a class="reference external" href="https://github.com/openai/gym">Gymnasium</a>.</p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+  See the specific code in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>
+</div>
+</br><section id="part1-uav-vat-adapting-to-gym-library">
+<h3>Part1 UAV_VAT (Adapting to Gym Library)<a class="headerlink" href="#part1-uav-vat-adapting-to-gym-library" title="Link to this heading"></a></h3>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    See the specific code in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/gym_envs.py</code> in the <code>UAV_VAT(gym.Env)</code> class
+</div>
+</br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      1. <code>__init__</code>: Initializes the gym environment (including initialization of <code>action_space</code> and <code>observation_space</code>).
+</div>
+</br><p><strong>Input Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">arg_worker(int)</span></code>: Number of processes.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">conf_path(list)</span></code>: Path to the environment configuration file.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_conf_path(list)</span></code>: Path to the simulator configuration file.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">process_idx(list)</span></code>: Current process index.</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>reset</code>: Resets the environment, returning the initial state.
+</div>
+</br><p><strong>Return Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">state(np.ndarray)</span></code>: Returns the state (image).</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      3. <code>step</code>: Environment interaction, inputs action, retrieves state information.
+</div>
+</br><p><strong>Input Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">action(torch.tensor)</span></code>: Action.</p></li>
+</ul>
+<p><strong>Return Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">state(np.ndarray)</span></code>: Returns the state (image).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">reward(float)</span></code>: Reward.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done(int)</span></code>: Whether the environment has ended.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">info(dict)</span></code>: Information, including <code class="code docutils literal notranslate"><span class="pre">info[&quot;TimeLimit.truncated&quot;]</span></code> which indicates whether the reset was due to step ending.</p></li>
+</ul>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part-2-uav-vat-gymnasium-adapting-to-gymnasium-library">
+<h3>Part 2 UAV_VAT_Gymnasium (Adapting to Gymnasium Library)<a class="headerlink" href="#part-2-uav-vat-gymnasium-adapting-to-gymnasium-library" title="Link to this heading"></a></h3>
+<p>The Gymnasium environment is largely compatible with the Gym environment, and the following describes the differences from the Gym environment.</p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;"> See the specific code in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/gym_envs.py</code> in the <code>UAV_VAT_Gymnasium(gymnasium.Env)</code> class. </div> </br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;"> 1. <code>reset</code>: Resets the environment, returning the initial state. </div> </br><p>Input Parameters:</p>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">seed(int)</span></code>: Random seed.</p>
+</div></blockquote>
+<p>Return Parameters:</p>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">reset_info(dict)</span></code>: Reset environment information (default is empty).</p>
+</div></blockquote>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;"> 2. <code>step</code>: Environment interaction, inputs action, retrieves state information. </div> </br><p>Return Parameters:</p>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">truncated(bool)</span></code>: Whether the reset was due to step ending (equivalent to <code class="code docutils literal notranslate"><span class="pre">info[&quot;TimeLimit.truncated&quot;]</span></code> in Gym environment).</p>
+</div></blockquote>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part3-parallel-environment-encapsulation">
+<span id="subprovecenv"></span><h3>Part3 Parallel Environment Encapsulation<a class="headerlink" href="#part3-parallel-environment-encapsulation" title="Link to this heading"></a></h3>
+<div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+<b>Stacked environment for parallel computation</b>, enabling multiple environments to interact with multiple agents.
+</div>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    For specific code, see the <code>ASYNC_SubprocVecEnv</code> class in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/async_vecenv.py</code>.
+    Also, see the <code>SubprocVecEnv_TS</code> class in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/async_vecenv_ts.py</code>.
+</div>
+</br><p><strong>Existing Reinforcement Learning Library Parallel Class Features and Modifications in This Project</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Existing reinforcement learning libraries directly compatible with gym environments, such as the <code class="code docutils literal notranslate"><span class="pre">stable-baselines3</span></code> and <code class="code docutils literal notranslate"><span class="pre">tianshou</span></code> libraries, provide the parallel environment class <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> , allowing users to directly encapsulate gym environments into parallel environments.</p></li>
+<li><p>The above-mentioned <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> environment class checks whether to execute <code class="docutils literal notranslate"><span class="pre">reset</span></code> immediately after executing <code class="docutils literal notranslate"><span class="pre">step</span></code>, which may cause the <code class="docutils literal notranslate"><span class="pre">step</span></code> and <code class="code docutils literal notranslate"><span class="pre">reset</span></code> to be executed in the same cycle.(Not strictly aligned with <code class="code docutils literal notranslate"><span class="pre">step</span></code> and <code class="code docutils literal notranslate"><span class="pre">reset</span></code> as required by the project environment.)</p></li>
+<li><p>Modification in this project: Strictly align <code class="code docutils literal notranslate"><span class="pre">step</span></code> with <code class="code docutils literal notranslate"><span class="pre">reset</span></code> to keep individual environment operations synchronized.</p></li>
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> class from the <code class="docutils literal notranslate"><span class="pre">stable-baselines3</span></code> library is modified to the <code class="docutils literal notranslate"><span class="pre">Async_SubprocVecEnv</span></code> class, and the <code class="docutils literal notranslate"><span class="pre">SubprocVecEnv</span></code> and <code class="docutils literal notranslate"><span class="pre">Collector</span></code> classes from the <code class="docutils literal notranslate"><span class="pre">tianshou</span></code> library are modified to <code class="docutils literal notranslate"><span class="pre">SubprocVecEnv_TS</span></code> and <code class="docutils literal notranslate"><span class="pre">TS_Collector</span></code> classes, respectively.</p></li>
+<li><p>The differences between the original and modified implementations are shown in the figure below.</p></li>
+</ul>
+</div></blockquote>
+<img src="../_static/image/subprovecenv.png" alt="Comparison of Async_SubprocVecEnv before and after modifications">
+<center>comparison diagram of SubprocVecEnv before and after modification</center></br></br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part-4-interface-invocation">
+<h3>Part 4 Interface Invocation<a class="headerlink" href="#part-4-interface-invocation" title="Link to this heading"></a></h3>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    For specific code, see the <code>make_env()</code> function in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>.
+</div>
+</br><div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+      <code>make_env</code>: Initializes multiple gym environments.
+</div>
+</br><p><strong>Input Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">n_envs(int)</span></code>: Number of environments.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">rank(int)</span></code>: Current environment index.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">gym(bool)</span></code>: If <code class="code docutils literal notranslate"><span class="pre">True</span></code>, generates environments from the Gym library; if <code class="code docutils literal notranslate"><span class="pre">False</span></code>, generates environments from the Gymnasium library.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">monitor(bool)</span></code>: Whether to wrap in the <code class="code docutils literal notranslate"><span class="pre">stable_baselines3.common.monitor.Monitor</span></code> class.</p></li>
+</ul>
+<p><strong>Test Code:</strong></p>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    For specific code, see the <code>gym_test()</code> function and <code>stableparallel_test()</code> function in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>.
+</div>
+</br><p>If you wish to quickly test whether the implementation of the above environment class is correct, you can use the following code:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Single process (using only gym environment)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gym.envs.registration</span> <span class="kn">import</span> <span class="n">register</span>
+
+<span class="n">register</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;UAVVAT-v0&#39;</span><span class="p">,</span>
+    <span class="n">entry_point</span><span class="o">=</span><span class="s1">&#39;gym_envs:UAV_VAT&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">gym_test</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Use stable-baselines3 for algorithm testing</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stableparallel_test</span><span class="p">(</span><span class="n">n_envs</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">gym</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="border-left: 4px solid #FFC1C1; padding-left: 10px; margin-left: 0;">
+  <b>Note:</b> When using the stable-baselines3 library for parallel training, invoke the above <b>Async_SubprocVecEnv</b> class.
+</div></div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Use tianshou for algorithm testing</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_tianshou_env</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="border-left: 4px solid #FFC1C1; padding-left: 10px; margin-left: 0;">
+  <b>Note:</b> When using the tianshou library for parallel training, you need to invoke the above <b>SubprocVecEnv_TS</b> class.
+</div></br></div></blockquote>
+</div></blockquote>
+</section>
+</section>
+<section id="parallel-environment-classes">
+<span id="parallel"></span><h2>3 Parallel Environment Classes<a class="headerlink" href="#parallel-environment-classes" title="Link to this heading"></a></h2>
+<div style="background-color: #FDF5E6; padding: 15px; border-radius: 5px; border: 1px solid #EEC591;">
+  <blockquote>
+  <p>The design goal of the base environment class (BenchEnv_Multi) is <strong>multi-process asynchronous computation</strong> (e.g., A3C algorithm), calling the environment class to obtain data within individual processes.</p>
+  <p>To better utilize the GPU for parallel acceleration, synchronize the data of the above classes and execute the same commands in parallel, allowing the algorithm to <strong>operate in a single process on a synchronized parallel data flow</strong>, leading to this class (Envs).</p>
+  <p>This environment is primarily tailored to <strong>user-defined algorithm design needs</strong> (in scenarios where stable-baselines3 and other Gym-based environments are not used for algorithm implementation).</p>
+  </blockquote>
+</div>
+</br>
+</br><div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    For specific code, see the <code>Envs</code> class in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>.
+</div>
+</br><section id="part-1-envs">
+<h3>Part 1 Envs()<a class="headerlink" href="#part-1-envs" title="Link to this heading"></a></h3>
+<div style="border-left: 4px solid #d3d3d3; padding-left: 10px; margin-left: 0;">
+    For specific code, see the <code>Envs</code> class in <code>Alg_Base/rl_a3c_pytorch_benchmark/envs/envs_parallel.py</code>.
+</div>
+</br><div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      1. <code>__init__</code>: Initializes the Envs parallel environment (including the initialization of <code>action_space</code> and <code>observation_space</code>).
+</div>
+</br><dl class="simple">
+<dt><strong>Input Parameters:</strong></dt><dd><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">num_envs(int)</span></code>: Represents the concurrency level n.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">env_list(list(env))</span></code>: Initialize the list returned by the <code class="code docutils literal notranslate"><span class="pre">GE(n)</span></code> function by storing a number of pre-constructed environment classes in the list</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">logs_show(bool)</span></code> ：Whether to collect reward data in one of the environments to draw a training curve</p></li>
+</ul>
+</dd>
+</dl>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      2. <code>reset</code> ：reset environment, and return to the init environment
+</div>
+</br><p><strong>Return Parameters：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">states</span></code> ：Returns a collection of states (images) for each environment</p></li>
+</ul>
+<div style="background-color: #e5f1fe; padding: 15px; border-radius: 5px; border: 1px solid #1874CD;">
+      3. <code>step</code> ：Environment interaction, input action, get status information
+</div>
+</br><p><strong>Input Parameters：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">actions</span></code> ：Each Agent action</p></li>
+</ul>
+<p><strong>Return Parameters：</strong></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">states</span></code> ：Returns a collection of states (images) for each environment</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">rewards</span></code> ：The reward stack for each Agent</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">done</span></code> ：Whether each environment is in the end state</p></li>
+</ul>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+<section id="part2-data-format-changes-before-and-after-encapsulation">
+<h3>Part2 Data format changes before and after encapsulation<a class="headerlink" href="#part2-data-format-changes-before-and-after-encapsulation" title="Link to this heading"></a></h3>
+<p><strong>Comparison of data formats before and after encapsulation：</strong></p>
+<ul>
+<li><p>Pre-package(BenchEnv_Multi):</p>
+<p>Data sampling： <code class="code docutils literal notranslate"><span class="pre">state:ndarray,reward:float,done:float=</span> <span class="pre">env.step(action:int)</span></code></p>
+<p>Environment reset： <code class="code docutils literal notranslate"><span class="pre">state:ndarray</span> <span class="pre">=</span> <span class="pre">env.reset()</span></code></p>
+</li>
+<li><p>After packaging(Envs), set the parallel number n：</p>
+<p>Data sampling： <code class="code docutils literal notranslate"><span class="pre">states:ndarray(n,),rewards:ndarray(n),done:ndarray(n)=</span> <span class="pre">env.step(action:ndarray(n))</span></code></p>
+<p>Environment reset： <code class="code docutils literal notranslate"><span class="pre">states:ndarray(n,)</span> <span class="pre">=</span> <span class="pre">envs.reset()</span></code></p>
+</li>
+</ul>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br></section>
+</section>
+<section id="performance-evaluation-metrics">
+<h2>4 Performance Evaluation Metrics<a class="headerlink" href="#performance-evaluation-metrics" title="Link to this heading"></a></h2>
+<section id="cumulative-reward-cr">
+<h3>1. Cumulative Reward CR<a class="headerlink" href="#cumulative-reward-cr" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>The cumulative reward uses continuous rewards, and a cumulative calculation is performed to evaluate the performance of the intelligent body in keeping the target at the center of the image, as shown in the following formula:</p>
+</div></blockquote>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>C</mi><mi>R</mi><mo>=</mo><munderover><mo data-mjx-texclass="OP">∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mrow><msub><mi>E</mi><mi>l</mi></msub></mrow></munderover><msub><mi>r</mi><mrow><mi>c</mi><mi>t</mi></mrow></msub></math>
+</br><p>In the above formula, <span class="math notranslate nohighlight">\(r_{ct}\)</span> represents the continuous reward value at step <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(E_{ml}\)</span> represents the maximum trajectory length, and <span class="math notranslate nohighlight">\(E_t\)</span> represents the length of this trajectory.
+For a graphical representation of continuous reward calculation, see <a class="reference internal" href="../Webots_Simulator/Simulator.html#continuous-reward-diagram-for-tracking-object"><span class="std std-ref">Continuous Reward Diagram for Object Tracking</span></a>.</p>
+</section>
+<section id="tracking-success-rate-tsr">
+<h3>2. Tracking Success Rate TSR<a class="headerlink" href="#tracking-success-rate-tsr" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This metric uses discrete rewards to evaluate the proportion of successful tracking, calculated using the following formula:</p>
+</div></blockquote>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>T</mi><mi>S</mi><mi>R</mi><mo>=</mo><mfrac><mn>1</mn><msub><mi>E</mi><mrow><mi>m</mi><mi>l</mi></mrow></msub></mfrac><munderover><mo data-mjx-texclass="OP">∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mrow><msub><mi>E</mi><mi>t</mi></msub></mrow></munderover><msub><mi>r</mi><mrow><mi>d</mi><mi>t</mi></mrow></msub><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></math>
+</br><p>In the above formula, <span class="math notranslate nohighlight">\(r_{dt}\)</span> represents the discrete reward value at step <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(E_{ml}\)</span> is the maximum step length across batches, and <span class="math notranslate nohighlight">\(E_l\)</span> represents the length of the current batch. Detail parameters see: <a class="reference internal" href="../Webots_Simulator/Simulator.html#built-in-reward-parameter-configuration"><span class="std std-ref">Built-in reward parameter configuration (valid for drones only, cars return reward=1 by default)</span></a>
+For a graphical representation of discrete reward calculation, see <a class="reference internal" href="../Webots_Simulator/Simulator.html#discrete-reward-diagram-for-tracking-object"><span class="std std-ref">Discrete Reward Diagram of the Tracking Object</span></a>.</p>
+</br>
+<hr style="border: 2px solid #d3d3d3; width: 95%; margin: 10px auto;">
+</br>
+</br><p>Reference:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Luo, Wenhan, et al. “End-to-end active object tracking and its real-world deployment via reinforcement learning.” IEEE transactions on pattern analysis and machine intelligence 42.6 (2019): 1317-1332.</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Dionigi, Alberto, et al. “D-VAT: End-to-End Visual Active Tracking for Micro Aerial Vehicles.” IEEE Robotics and Automation Letters (2024).</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Introduction.html" class="btn btn-neutral float-left" title="Algorithm Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Model.html" class="btn btn-neutral float-right" title="Model Construction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
