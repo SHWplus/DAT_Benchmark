@@ -1,7 +1,7 @@
 # A Cross-Scene Benchmark for Open-World Drone Active Tracking
 [![Software License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Document-en](https://img.shields.io/badge/doc-guide-blue)](https://forcvpr2025.github.io/anonymous/)
-[![Document-zh](https://img.shields.io/badge/文档-指引-blue)](https://forcvpr2025.github.io/anonymous/zh/index.html)
+[![Document-en](https://img.shields.io/badge/doc-guide-blue)](https://dat-benchmark.tech/)
+[![Document-zh](https://img.shields.io/badge/文档-指引-blue)](https://dat-benchmark.tech/zh/index.html)
 [![Website](https://img.shields.io/badge/website-exhibition-blue)](https://dat-benchmark.framer.website/)
 [![Paper](https://img.shields.io/badge/paper-work-blue)](https://arxiv.org/)
 
