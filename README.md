@@ -1,4 +1,7 @@
-# A Cross-Scene Benchmark for Open-World Drone Active Tracking
+<h2 align="center">A Cross-Scene Benchmark for Open-World Drone Active Tracking</h2>
+<h4 align="right">by  <a href="https://shwplus.github.io/">Haowei Sun* </a>, <a href="https://fhujinwu.github.io/">Jinwu Hu*</a>, <a href="https://github.com/egd060708">Zhirui Zhang</a>，<a href="https://github.com/scybd">Haoyuan Tian</a>，<a href="https://olivessora.github.io/">Xinze Xe</a>，<a href="https://wang678.github.io/">Yufeng Wang</a>，<a href="https://scholar.google.com/citations?user=oAUB9cQAAAAJ&hl=en">Zhuliang Yu #</a>，<a href="https://scholar.google.com/citations?user=5YZ3kvoAAAAJ&hl=en&oi=ao">Xiaohua Xie</a>，<a href="https://tanmingkui.github.io/">Mingkui Tan #</a></h4>
+<!-- # A Cross-Scene Benchmark for Open-World Drone Active Tracking -->
+
 [![Software License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Document-en](https://img.shields.io/badge/doc-guide-blue)](https://dat-benchmark.tech/)
 [![Document-zh](https://img.shields.io/badge/文档-指引-blue)](https://dat-benchmark.tech/zh/index.html)
