@@ -28,11 +28,13 @@ Drone Visual Active Tracking aims to autonomously follow a target object by cont
 ## Citation
 If you find this project useful, please consider citing our paper
 ```bibtex
-@article{,
-  title={A Cross-Scene Benchmark for Open-World Drone Active Tracking},
-  author={},
-  journal={},
-  year={},
-  publisher={}
+@misc{crossscenebenchmarkopenworlddrone,
+      title={A Cross-Scene Benchmark for Open-World Drone Active Tracking}, 
+      author={Haowei Sun and Jinwu Hu and Zhirui Zhang and Haoyuan Tian and Xinze Xie and Yufeng Wang and Zhuliang Yu and Xiaohua Xie and Mingkui Tan},
+      year={2024},
+      eprint={2412.00744},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2412.00744}, 
 }
 ```
