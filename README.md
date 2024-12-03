@@ -16,7 +16,7 @@
 [![Document-en](https://img.shields.io/badge/doc-guide-blue)](https://dat-benchmark.tech/)
 [![Document-zh](https://img.shields.io/badge/文档-指引-blue)](https://dat-benchmark.tech/zh/index.html)
 [![Website](https://img.shields.io/badge/website-exhibition-blue)](https://dat-benchmark.framer.website/)
-[![Paper](https://img.shields.io/badge/paper-work-blue)](https://arxiv.org/)
+[![Paper](https://img.shields.io/badge/paper-work-blue)](https://arxiv.org/pdf/2412.00744)
 
 ![cover1](./readmeCache/cover1.png)
 ![cover](./readmeCache/cover.gif)
