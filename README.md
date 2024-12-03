@@ -38,3 +38,6 @@ If you find this project useful, please consider citing our paper
       url={https://arxiv.org/abs/2412.00744}, 
 }
 ```
+## Star History
+
+![Star History Chart](https://api.star-history.com/svg?repos=SHWplus/DAT_Benchmark&type=Date)
