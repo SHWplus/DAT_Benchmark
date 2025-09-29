@@ -1,4 +1,4 @@
-<h2 align="center">A Cross-Scene Benchmark for Open-World Drone Active Tracking</h2>
+<h2 align="center">Open-World Drone Active Tracking with Goal-Centered Rewards</h2>
 <h4 align="right">
   by <a href="https://shwplus.github.io/">Haowei Sun* </a>, 
   <a href="https://fhujinwu.github.io/">Jinwu Hu*</a>, 
@@ -6,8 +6,9 @@
   <a href="https://github.com/scybd">Haoyuan Tian</a>, 
   <a href="https://olivessora.github.io/">Xinze Xie</a>,<br> 
   <a href="https://wang678.github.io/">Yufeng Wang</a>, 
+  <a href="https://scholar.google.com/citations?user=5YZ3kvoAAAAJ&hl=en&oi=ao">Xiaohua Xie</a>,
+  <a herf="https://openreview.net/profile?id=~Yun_Lin4">Yun Lin</a>,
   <a href="https://scholar.google.com/citations?user=oAUB9cQAAAAJ&hl=en">Zhuliang Yu #</a>, 
-  <a href="https://scholar.google.com/citations?user=5YZ3kvoAAAAJ&hl=en&oi=ao">Xiaohua Xie</a>, 
   <a href="https://tanmingkui.github.io/">Mingkui Tan #</a>
 </h4>
 <!-- # A Cross-Scene Benchmark for Open-World Drone Active Tracking -->
