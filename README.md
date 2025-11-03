@@ -87,6 +87,14 @@ If you find this project useful, please consider citing our paper
       primaryClass={cs.RO},
       url={https://arxiv.org/abs/2412.00744}, 
 }
+
+@inproceedings{gcvat,
+ author = {Sun, Haowei and Hu, Jinwu and Zhang, Zhirui and Tian, Haoyuan and Xie, Xinze and Wang, Yufeng and Xie, Xiaohua and Lin, Yun and Yu, Zhuliang and Tan, Mingkui},
+ booktitle = {Advances in Neural Information Processing Systems},
+ title = {Open-World Drone Active Tracking with Goal-Centered Rewards},
+ url = {\url{[URL hidden]}},
+ year = {2025}
+}
 ```
 ## Star History
 
